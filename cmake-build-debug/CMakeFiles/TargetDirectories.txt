@@ -1,0 +1,7 @@
+/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles/Tank_mcts_library.dir
+/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles/Tank_mcts.dir
+/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles/Tank_minimax.dir
+/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles/Tank_minimax_library.dir
+/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles/Anneal.dir
