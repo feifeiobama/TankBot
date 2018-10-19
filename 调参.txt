@@ -1,5 +1,7 @@
 最后生成蓝方胜率
 
+Model Version 1
+
 single_threat i, j = 1 / dist_to_enemy_tank + w1 / dist_to_fire_enemy_tank // 追击 (+)
 single_counter i, j = 1 / dist_to_fire_enemy_tank + w2 / dist_to_enemy_tank + fire_or_self卡路线?w3 // counter (+)
 
@@ -15,5 +17,21 @@ double_tank_buff = sqrt(single_tank_invade * single_tank_invade) / dist_between_
 side = sqrt(single_tank_attack ^ 2, w9 * single_tank_defend ^ 2)[2] + w10 * double_tank_buff
 win_rate = blue / (blue - red)  (0,1)
 
+Model Version 2
+
+威胁基地
+* 距离步数 dist_to_shoot_base
+* 路线阻挡能力（追及效率）undone
+counter威胁
+* 卡路线 总结一哈
+* 技能状况
+* 且战且退 y方向退路
+* 重叠 有待评估
+* 协作卡线？横向
+打破僵局
+* 换位支援 两坦克威胁同一个对面坦克
+* 采取风险
+
+
 TODO:
-一边僵局另一边放手？对峙时卡人，越过己方后追及
+一边僵局另一边放手；对峙时卡人，越过己方后追及；没有进攻性

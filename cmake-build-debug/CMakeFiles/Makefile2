@@ -50,19 +50,93 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /usr/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/feifeiobama/Desktop/tank
+CMAKE_SOURCE_DIR = /Users/szc/Desktop/tank
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/feifeiobama/Desktop/tank/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/szc/Desktop/tank/cmake-build-debug
+
+#=============================================================================
+# Target rules for target CMakeFiles/Tank_mcts_library.dir
+
+# All Build rule for target.
+CMakeFiles/Tank_mcts_library.dir/all:
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/depend
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=10,11,12,13 "Built target Tank_mcts_library"
+.PHONY : CMakeFiles/Tank_mcts_library.dir/all
+
+# Include target in all.
+all: CMakeFiles/Tank_mcts_library.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Tank_mcts_library.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tank_mcts_library.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/Tank_mcts_library.dir/rule
+
+# Convenience name for target.
+Tank_mcts_library: CMakeFiles/Tank_mcts_library.dir/rule
+
+.PHONY : Tank_mcts_library
+
+# clean rule for target.
+CMakeFiles/Tank_mcts_library.dir/clean:
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/clean
+.PHONY : CMakeFiles/Tank_mcts_library.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/Tank_mcts_library.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Tank_mcts.dir
+
+# All Build rule for target.
+CMakeFiles/Tank_mcts.dir/all:
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/depend
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=5,6,7,8,9 "Built target Tank_mcts"
+.PHONY : CMakeFiles/Tank_mcts.dir/all
+
+# Include target in all.
+all: CMakeFiles/Tank_mcts.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Tank_mcts.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 5
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tank_mcts.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/Tank_mcts.dir/rule
+
+# Convenience name for target.
+Tank_mcts: CMakeFiles/Tank_mcts.dir/rule
+
+.PHONY : Tank_mcts
+
+# clean rule for target.
+CMakeFiles/Tank_mcts.dir/clean:
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/clean
+.PHONY : CMakeFiles/Tank_mcts.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/Tank_mcts.dir/clean
+
+.PHONY : clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Tank_minimax.dir
@@ -71,7 +145,7 @@ CMAKE_BINARY_DIR = /home/feifeiobama/Desktop/tank/cmake-build-debug
 CMakeFiles/Tank_minimax.dir/all:
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/depend
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=14,15,16,17,18 "Built target Tank_minimax"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=14,15,16,17,18 "Built target Tank_minimax"
 .PHONY : CMakeFiles/Tank_minimax.dir/all
 
 # Include target in all.
@@ -81,9 +155,9 @@ all: CMakeFiles/Tank_minimax.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Tank_minimax.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tank_minimax.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Tank_minimax.dir/rule
 
 # Convenience name for target.
@@ -102,13 +176,50 @@ clean: CMakeFiles/Tank_minimax.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/Tank_minimax_library.dir
+
+# All Build rule for target.
+CMakeFiles/Tank_minimax_library.dir/all:
+	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/depend
+	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=21,22,23,24 "Built target Tank_minimax_library"
+.PHONY : CMakeFiles/Tank_minimax_library.dir/all
+
+# Include target in all.
+all: CMakeFiles/Tank_minimax_library.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Tank_minimax_library.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tank_minimax_library.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/Tank_minimax_library.dir/rule
+
+# Convenience name for target.
+Tank_minimax_library: CMakeFiles/Tank_minimax_library.dir/rule
+
+.PHONY : Tank_minimax_library
+
+# clean rule for target.
+CMakeFiles/Tank_minimax_library.dir/clean:
+	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/clean
+.PHONY : CMakeFiles/Tank_minimax_library.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/Tank_minimax_library.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/Tank_minimax_cpp.dir
 
 # All Build rule for target.
 CMakeFiles/Tank_minimax_cpp.dir/all:
 	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/depend
 	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=19,20 "Built target Tank_minimax_cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=19,20 "Built target Tank_minimax_cpp"
 .PHONY : CMakeFiles/Tank_minimax_cpp.dir/all
 
 # Include target in all.
@@ -118,9 +229,9 @@ all: CMakeFiles/Tank_minimax_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Tank_minimax_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tank_minimax_cpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Tank_minimax_cpp.dir/rule
 
 # Convenience name for target.
@@ -145,7 +256,7 @@ clean: CMakeFiles/Tank_minimax_cpp.dir/clean
 CMakeFiles/Anneal.dir/all:
 	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/depend
 	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target Anneal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target Anneal"
 .PHONY : CMakeFiles/Anneal.dir/all
 
 # Include target in all.
@@ -155,9 +266,9 @@ all: CMakeFiles/Anneal.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Anneal.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Anneal.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Anneal.dir/rule
 
 # Convenience name for target.
@@ -172,117 +283,6 @@ CMakeFiles/Anneal.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/Anneal.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/Tank_minimax_library.dir
-
-# All Build rule for target.
-CMakeFiles/Tank_minimax_library.dir/all:
-	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/depend
-	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=21,22,23,24 "Built target Tank_minimax_library"
-.PHONY : CMakeFiles/Tank_minimax_library.dir/all
-
-# Include target in all.
-all: CMakeFiles/Tank_minimax_library.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Tank_minimax_library.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tank_minimax_library.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/Tank_minimax_library.dir/rule
-
-# Convenience name for target.
-Tank_minimax_library: CMakeFiles/Tank_minimax_library.dir/rule
-
-.PHONY : Tank_minimax_library
-
-# clean rule for target.
-CMakeFiles/Tank_minimax_library.dir/clean:
-	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/clean
-.PHONY : CMakeFiles/Tank_minimax_library.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/Tank_minimax_library.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/Tank_mcts.dir
-
-# All Build rule for target.
-CMakeFiles/Tank_mcts.dir/all:
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/depend
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=5,6,7,8,9 "Built target Tank_mcts"
-.PHONY : CMakeFiles/Tank_mcts.dir/all
-
-# Include target in all.
-all: CMakeFiles/Tank_mcts.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Tank_mcts.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 5
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tank_mcts.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/Tank_mcts.dir/rule
-
-# Convenience name for target.
-Tank_mcts: CMakeFiles/Tank_mcts.dir/rule
-
-.PHONY : Tank_mcts
-
-# clean rule for target.
-CMakeFiles/Tank_mcts.dir/clean:
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/clean
-.PHONY : CMakeFiles/Tank_mcts.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/Tank_mcts.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/Tank_mcts_library.dir
-
-# All Build rule for target.
-CMakeFiles/Tank_mcts_library.dir/all:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/depend
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=10,11,12,13 "Built target Tank_mcts_library"
-.PHONY : CMakeFiles/Tank_mcts_library.dir/all
-
-# Include target in all.
-all: CMakeFiles/Tank_mcts_library.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Tank_mcts_library.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tank_mcts_library.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/Tank_mcts_library.dir/rule
-
-# Convenience name for target.
-Tank_mcts_library: CMakeFiles/Tank_mcts_library.dir/rule
-
-.PHONY : Tank_mcts_library
-
-# clean rule for target.
-CMakeFiles/Tank_mcts_library.dir/clean:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/clean
-.PHONY : CMakeFiles/Tank_mcts_library.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/Tank_mcts_library.dir/clean
 
 .PHONY : clean
 
