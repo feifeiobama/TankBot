@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/szc/Desktop/tank/project
+CMAKE_SOURCE_DIR = /home/feifeiobama/Desktop/tank
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/szc/Desktop/tank/project/cmake-build-debug
+CMAKE_BINARY_DIR = /home/feifeiobama/Desktop/tank/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Tank_mcts.dir/depend.make
@@ -59,55 +59,55 @@ include CMakeFiles/Tank_mcts.dir/flags.make
 
 CMakeFiles/Tank_mcts.dir/src/main.cpp.o: CMakeFiles/Tank_mcts.dir/flags.make
 CMakeFiles/Tank_mcts.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Tank_mcts.dir/src/main.cpp.o"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/main.cpp.o -c /Users/szc/Desktop/tank/project/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Tank_mcts.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/main.cpp.o -c /home/feifeiobama/Desktop/tank/src/main.cpp
 
 CMakeFiles/Tank_mcts.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tank_mcts.dir/src/main.cpp.i"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/szc/Desktop/tank/project/src/main.cpp > CMakeFiles/Tank_mcts.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/feifeiobama/Desktop/tank/src/main.cpp > CMakeFiles/Tank_mcts.dir/src/main.cpp.i
 
 CMakeFiles/Tank_mcts.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tank_mcts.dir/src/main.cpp.s"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/szc/Desktop/tank/project/src/main.cpp -o CMakeFiles/Tank_mcts.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/feifeiobama/Desktop/tank/src/main.cpp -o CMakeFiles/Tank_mcts.dir/src/main.cpp.s
 
 CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o: CMakeFiles/Tank_mcts.dir/flags.make
 CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o: ../src/Game_mcts.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o -c /Users/szc/Desktop/tank/project/src/Game_mcts.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o -c /home/feifeiobama/Desktop/tank/src/Game_mcts.cpp
 
 CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.i"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/szc/Desktop/tank/project/src/Game_mcts.cpp > CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/feifeiobama/Desktop/tank/src/Game_mcts.cpp > CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.i
 
 CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.s"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/szc/Desktop/tank/project/src/Game_mcts.cpp -o CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/feifeiobama/Desktop/tank/src/Game_mcts.cpp -o CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.s
 
 CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o: CMakeFiles/Tank_mcts.dir/flags.make
 CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o: ../src/Field_info.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o -c /Users/szc/Desktop/tank/project/src/Field_info.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o -c /home/feifeiobama/Desktop/tank/src/Field_info.cpp
 
 CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/szc/Desktop/tank/project/src/Field_info.cpp > CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/feifeiobama/Desktop/tank/src/Field_info.cpp > CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i
 
 CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/szc/Desktop/tank/project/src/Field_info.cpp -o CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/feifeiobama/Desktop/tank/src/Field_info.cpp -o CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s
 
 CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o: CMakeFiles/Tank_mcts.dir/flags.make
 CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o: ../src/Field_map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o -c /Users/szc/Desktop/tank/project/src/Field_map.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o -c /home/feifeiobama/Desktop/tank/src/Field_map.cpp
 
 CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/szc/Desktop/tank/project/src/Field_map.cpp > CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/feifeiobama/Desktop/tank/src/Field_map.cpp > CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i
 
 CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s"
-	/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/szc/Desktop/tank/project/src/Field_map.cpp -o CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/feifeiobama/Desktop/tank/src/Field_map.cpp -o CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s
 
 # Object files for target Tank_mcts
 Tank_mcts_OBJECTS = \
@@ -125,7 +125,7 @@ Tank_mcts: CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o
 Tank_mcts: CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o
 Tank_mcts: CMakeFiles/Tank_mcts.dir/build.make
 Tank_mcts: CMakeFiles/Tank_mcts.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Tank_mcts"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Tank_mcts"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Tank_mcts.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -138,6 +138,6 @@ CMakeFiles/Tank_mcts.dir/clean:
 .PHONY : CMakeFiles/Tank_mcts.dir/clean
 
 CMakeFiles/Tank_mcts.dir/depend:
-	cd /Users/szc/Desktop/tank/project/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/szc/Desktop/tank/project /Users/szc/Desktop/tank/project /Users/szc/Desktop/tank/project/cmake-build-debug /Users/szc/Desktop/tank/project/cmake-build-debug /Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles/Tank_mcts.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/feifeiobama/Desktop/tank/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/feifeiobama/Desktop/tank /home/feifeiobama/Desktop/tank /home/feifeiobama/Desktop/tank/cmake-build-debug /home/feifeiobama/Desktop/tank/cmake-build-debug /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles/Tank_mcts.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Tank_mcts.dir/depend
 

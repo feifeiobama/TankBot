@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/szc/Desktop/tank/project
+CMAKE_SOURCE_DIR = /home/feifeiobama/Desktop/tank
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/szc/Desktop/tank/project/cmake-build-debug
+CMAKE_BINARY_DIR = /home/feifeiobama/Desktop/tank/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/szc/Desktop/tank/project/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles /Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/szc/Desktop/tank/project/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,32 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Tank_mcts_library
-
-# Build rule for target.
-Tank_mcts_library: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Tank_mcts_library
-.PHONY : Tank_mcts_library
-
-# fast build rule for target.
-Tank_mcts_library/fast:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/build
-.PHONY : Tank_mcts_library/fast
-
-#=============================================================================
-# Target rules for targets named Tank_mcts
-
-# Build rule for target.
-Tank_mcts: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Tank_mcts
-.PHONY : Tank_mcts
-
-# fast build rule for target.
-Tank_mcts/fast:
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/build
-.PHONY : Tank_mcts/fast
-
-#=============================================================================
 # Target rules for targets named Tank_minimax
 
 # Build rule for target.
@@ -148,6 +122,19 @@ Tank_minimax: cmake_check_build_system
 Tank_minimax/fast:
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/build
 .PHONY : Tank_minimax/fast
+
+#=============================================================================
+# Target rules for targets named Anneal
+
+# Build rule for target.
+Anneal: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Anneal
+.PHONY : Anneal
+
+# fast build rule for target.
+Anneal/fast:
+	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/build
+.PHONY : Anneal/fast
 
 #=============================================================================
 # Target rules for targets named Tank_minimax_library
@@ -163,17 +150,30 @@ Tank_minimax_library/fast:
 .PHONY : Tank_minimax_library/fast
 
 #=============================================================================
-# Target rules for targets named Anneal
+# Target rules for targets named Tank_mcts
 
 # Build rule for target.
-Anneal: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Anneal
-.PHONY : Anneal
+Tank_mcts: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Tank_mcts
+.PHONY : Tank_mcts
 
 # fast build rule for target.
-Anneal/fast:
-	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/build
-.PHONY : Anneal/fast
+Tank_mcts/fast:
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/build
+.PHONY : Tank_mcts/fast
+
+#=============================================================================
+# Target rules for targets named Tank_mcts_library
+
+# Build rule for target.
+Tank_mcts_library: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Tank_mcts_library
+.PHONY : Tank_mcts_library
+
+# fast build rule for target.
+Tank_mcts_library/fast:
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/build
+.PHONY : Tank_mcts_library/fast
 
 src/Field_info.o: src/Field_info.cpp.o
 
@@ -181,11 +181,11 @@ src/Field_info.o: src/Field_info.cpp.o
 
 # target to build an object file
 src/Field_info.cpp.o:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_info.cpp.o
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.o
-	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_info.cpp.o
 	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/src/Field_info.cpp.o
+	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_info.cpp.o
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_info.cpp.o
 .PHONY : src/Field_info.cpp.o
 
 src/Field_info.i: src/Field_info.cpp.i
@@ -194,11 +194,11 @@ src/Field_info.i: src/Field_info.cpp.i
 
 # target to preprocess a source file
 src/Field_info.cpp.i:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_info.cpp.i
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.i
-	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_info.cpp.i
 	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/src/Field_info.cpp.i
+	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_info.cpp.i
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_info.cpp.i
 .PHONY : src/Field_info.cpp.i
 
 src/Field_info.s: src/Field_info.cpp.s
@@ -207,11 +207,11 @@ src/Field_info.s: src/Field_info.cpp.s
 
 # target to generate assembly for a file
 src/Field_info.cpp.s:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_info.cpp.s
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.s
-	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_info.cpp.s
 	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/src/Field_info.cpp.s
+	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_info.cpp.s
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_info.cpp.s
 .PHONY : src/Field_info.cpp.s
 
 src/Field_map.o: src/Field_map.cpp.o
@@ -220,11 +220,11 @@ src/Field_map.o: src/Field_map.cpp.o
 
 # target to build an object file
 src/Field_map.cpp.o:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_map.cpp.o
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.o
-	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_map.cpp.o
 	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/src/Field_map.cpp.o
+	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_map.cpp.o
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_map.cpp.o
 .PHONY : src/Field_map.cpp.o
 
 src/Field_map.i: src/Field_map.cpp.i
@@ -233,11 +233,11 @@ src/Field_map.i: src/Field_map.cpp.i
 
 # target to preprocess a source file
 src/Field_map.cpp.i:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_map.cpp.i
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.i
-	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_map.cpp.i
 	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/src/Field_map.cpp.i
+	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_map.cpp.i
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_map.cpp.i
 .PHONY : src/Field_map.cpp.i
 
 src/Field_map.s: src/Field_map.cpp.s
@@ -246,11 +246,11 @@ src/Field_map.s: src/Field_map.cpp.s
 
 # target to generate assembly for a file
 src/Field_map.cpp.s:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_map.cpp.s
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.s
-	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_map.cpp.s
 	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/src/Field_map.cpp.s
+	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/src/Field_map.cpp.s
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Field_map.cpp.s
 .PHONY : src/Field_map.cpp.s
 
 src/Game_mcts.o: src/Game_mcts.cpp.o
@@ -259,8 +259,8 @@ src/Game_mcts.o: src/Game_mcts.cpp.o
 
 # target to build an object file
 src/Game_mcts.cpp.o:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Game_mcts.cpp.o
 	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Game_mcts.cpp.o
 .PHONY : src/Game_mcts.cpp.o
 
 src/Game_mcts.i: src/Game_mcts.cpp.i
@@ -269,8 +269,8 @@ src/Game_mcts.i: src/Game_mcts.cpp.i
 
 # target to preprocess a source file
 src/Game_mcts.cpp.i:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Game_mcts.cpp.i
 	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.i
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Game_mcts.cpp.i
 .PHONY : src/Game_mcts.cpp.i
 
 src/Game_mcts.s: src/Game_mcts.cpp.s
@@ -279,8 +279,8 @@ src/Game_mcts.s: src/Game_mcts.cpp.s
 
 # target to generate assembly for a file
 src/Game_mcts.cpp.s:
-	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Game_mcts.cpp.s
 	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.s
+	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/src/Game_mcts.cpp.s
 .PHONY : src/Game_mcts.cpp.s
 
 src/Game_minimax.o: src/Game_minimax.cpp.o
@@ -346,8 +346,8 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/main.cpp.o
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -356,8 +356,8 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/main.cpp.i
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -366,8 +366,8 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/main.cpp.s
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/Tank_mcts.dir/build.make CMakeFiles/Tank_mcts.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -376,13 +376,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... Tank_mcts_library"
-	@echo "... Tank_mcts"
-	@echo "... rebuild_cache"
 	@echo "... Tank_minimax"
-	@echo "... edit_cache"
-	@echo "... Tank_minimax_library"
 	@echo "... Anneal"
+	@echo "... rebuild_cache"
+	@echo "... Tank_minimax_library"
+	@echo "... Tank_mcts"
+	@echo "... edit_cache"
+	@echo "... Tank_mcts_library"
 	@echo "... src/Field_info.o"
 	@echo "... src/Field_info.i"
 	@echo "... src/Field_info.s"

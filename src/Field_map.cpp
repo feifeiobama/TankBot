@@ -46,7 +46,7 @@ Field_map::Field_map(const Field_map &field_map) {
 }
 
 bool Field_map::is_empty(int i, int j) const {
-    return ((map[i] >> (j << 1)) & 0b01) == 0;
+    return ((map[i] >> (j << 1)) & 0b11) == 0;
 }
 
 int Field_map::block_type(int i, int j) const {
@@ -91,6 +91,13 @@ void Field_map::update(Action &action1, Action &action2) {
             tanks[i].x += Dir[moves[i]][0];
             tanks[i].y += Dir[moves[i]][1];
             map[tanks[i].x] |= (0b11 << (tanks[i].y << 1));
+        }
+    }
+    for (int i = 0; i != 4; ++i) {
+        if (moves[i] == -1) {
+            if (tanks[i] != Null_pos) {
+                map[tanks[i].x] |= (0b11 << (tanks[i].y << 1));
+            }
         }
     }
 
