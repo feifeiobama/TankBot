@@ -15,3 +15,5 @@ double_tank_buff = sqrt(single_tank_invade * single_tank_invade) / dist_between_
 side = sqrt(single_tank_attack ^ 2, w9 * single_tank_defend ^ 2)[2] + w10 * double_tank_buff
 win_rate = blue / (blue - red)  (0,1)
 
+TODO:
+一边僵局另一边放手？对峙时卡人，越过己方后追及

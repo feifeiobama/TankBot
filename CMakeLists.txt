@@ -13,3 +13,5 @@ add_library(Tank_minimax_library SHARED src/Game_minimax.cpp src/Minimax_players
 
 add_executable(Tank_mcts ${exe_entry} src/Game_mcts.cpp src/MCTS_player.hpp src/IO_handler.hpp ${base})
 add_library(Tank_mcts_library SHARED src/Game_mcts.cpp src/MCTS_player.hpp src/IO_handler.hpp ${base})
+
+add_executable(Tank_minimax_cpp cpp/minimax.cpp)

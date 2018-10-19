@@ -17,6 +17,16 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/feifeiobama/Desktop/tank/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="Tank_minimax">
 				<Option output="/home/feifeiobama/Desktop/tank/cmake-build-debug/Tank_minimax" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/feifeiobama/Desktop/tank/cmake-build-debug"/>
@@ -56,6 +66,50 @@
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_minimax/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Tank_minimax_cpp">
+				<Option output="/home/feifeiobama/Desktop/tank/cmake-build-debug/Tank_minimax_cpp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/feifeiobama/Desktop/tank/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_minimax_cpp"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Tank_minimax_cpp/fast">
+				<Option output="/home/feifeiobama/Desktop/tank/cmake-build-debug/Tank_minimax_cpp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/feifeiobama/Desktop/tank/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_minimax_cpp/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -203,16 +257,6 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/feifeiobama/Desktop/tank/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/feifeiobama/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="Tank_mcts_library">
 				<Option output="/home/feifeiobama/Desktop/tank/cmake-build-debug/libTank_mcts_library.so" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/feifeiobama/Desktop/tank/cmake-build-debug"/>
@@ -258,6 +302,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/feifeiobama/Desktop/tank/cpp/minimax.cpp">
+			<Option target="Tank_minimax_cpp"/>
+		</Unit>
 		<Unit filename="/home/feifeiobama/Desktop/tank/src/Field.hpp">
 			<Option target="Tank_minimax"/>
 			<Option target="Anneal"/>

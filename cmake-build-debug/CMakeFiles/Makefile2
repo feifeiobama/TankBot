@@ -102,6 +102,43 @@ clean: CMakeFiles/Tank_minimax.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/Tank_minimax_cpp.dir
+
+# All Build rule for target.
+CMakeFiles/Tank_minimax_cpp.dir/all:
+	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/depend
+	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=19,20 "Built target Tank_minimax_cpp"
+.PHONY : CMakeFiles/Tank_minimax_cpp.dir/all
+
+# Include target in all.
+all: CMakeFiles/Tank_minimax_cpp.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Tank_minimax_cpp.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tank_minimax_cpp.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/Tank_minimax_cpp.dir/rule
+
+# Convenience name for target.
+Tank_minimax_cpp: CMakeFiles/Tank_minimax_cpp.dir/rule
+
+.PHONY : Tank_minimax_cpp
+
+# clean rule for target.
+CMakeFiles/Tank_minimax_cpp.dir/clean:
+	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/clean
+.PHONY : CMakeFiles/Tank_minimax_cpp.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/Tank_minimax_cpp.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/Anneal.dir
 
 # All Build rule for target.
@@ -145,7 +182,7 @@ clean: CMakeFiles/Anneal.dir/clean
 CMakeFiles/Tank_minimax_library.dir/all:
 	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/depend
 	$(MAKE) -f CMakeFiles/Tank_minimax_library.dir/build.make CMakeFiles/Tank_minimax_library.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=19,20,21,22 "Built target Tank_minimax_library"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/feifeiobama/Desktop/tank/cmake-build-debug/CMakeFiles --progress-num=21,22,23,24 "Built target Tank_minimax_library"
 .PHONY : CMakeFiles/Tank_minimax_library.dir/all
 
 # Include target in all.

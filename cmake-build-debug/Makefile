@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/feifeiobama/Desktop/tank/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -122,6 +122,19 @@ Tank_minimax: cmake_check_build_system
 Tank_minimax/fast:
 	$(MAKE) -f CMakeFiles/Tank_minimax.dir/build.make CMakeFiles/Tank_minimax.dir/build
 .PHONY : Tank_minimax/fast
+
+#=============================================================================
+# Target rules for targets named Tank_minimax_cpp
+
+# Build rule for target.
+Tank_minimax_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Tank_minimax_cpp
+.PHONY : Tank_minimax_cpp
+
+# fast build rule for target.
+Tank_minimax_cpp/fast:
+	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/build
+.PHONY : Tank_minimax_cpp/fast
 
 #=============================================================================
 # Target rules for targets named Anneal
@@ -174,6 +187,33 @@ Tank_mcts_library: cmake_check_build_system
 Tank_mcts_library/fast:
 	$(MAKE) -f CMakeFiles/Tank_mcts_library.dir/build.make CMakeFiles/Tank_mcts_library.dir/build
 .PHONY : Tank_mcts_library/fast
+
+cpp/minimax.o: cpp/minimax.cpp.o
+
+.PHONY : cpp/minimax.o
+
+# target to build an object file
+cpp/minimax.cpp.o:
+	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/cpp/minimax.cpp.o
+.PHONY : cpp/minimax.cpp.o
+
+cpp/minimax.i: cpp/minimax.cpp.i
+
+.PHONY : cpp/minimax.i
+
+# target to preprocess a source file
+cpp/minimax.cpp.i:
+	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/cpp/minimax.cpp.i
+.PHONY : cpp/minimax.cpp.i
+
+cpp/minimax.s: cpp/minimax.cpp.s
+
+.PHONY : cpp/minimax.s
+
+# target to generate assembly for a file
+cpp/minimax.cpp.s:
+	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/cpp/minimax.cpp.s
+.PHONY : cpp/minimax.cpp.s
 
 src/Field_info.o: src/Field_info.cpp.o
 
@@ -376,13 +416,17 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... edit_cache"
 	@echo "... Tank_minimax"
+	@echo "... Tank_minimax_cpp"
 	@echo "... Anneal"
 	@echo "... rebuild_cache"
 	@echo "... Tank_minimax_library"
 	@echo "... Tank_mcts"
-	@echo "... edit_cache"
 	@echo "... Tank_mcts_library"
+	@echo "... cpp/minimax.o"
+	@echo "... cpp/minimax.i"
+	@echo "... cpp/minimax.s"
 	@echo "... src/Field_info.o"
 	@echo "... src/Field_info.i"
 	@echo "... src/Field_info.s"
