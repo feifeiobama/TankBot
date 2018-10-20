@@ -17,13 +17,9 @@ double_tank_buff = sqrt(single_tank_invade * single_tank_invade) / dist_between_
 side = sqrt(single_tank_attack ^ 2, w9 * single_tank_defend ^ 2)[2] + w10 * double_tank_buff
 win_rate = blue / (blue - red)  (0,1)
 
-Model Version 2
+Model Version 2 (TODO)
 
 只以进攻思考问题，对方防御算在减弱进攻的范围内
-
-* 是否采取风险突进：对方能否承担自己不突进造成的后果 ?
-* 重叠以后的情况？
-* 到达底线以后的情况?
 
 tank_attack = g(dist_to_fire_base, being_blocked, being_chased)
 both_attack_enemy_tank = f(dist_to_fire_tank1, dist_to_fire_tank2)
@@ -31,5 +27,6 @@ cooperate_attack = sum(both_attack_enemy_tank)
 side_attack = w1 * sum(tank_attack) + w2 * cooperate_attack
 final_score = sigmoid(blue_attack - red_attack)
 
-TODO:
-一边僵局另一边放手；对峙时卡人，越过己方后追及；没有进攻性
+* 是否采取风险突进：对方能否承担自己不突进造成的后果 ?
+* 重叠以后的情况？
+* 到达底线以后的情况?
