@@ -19,19 +19,17 @@ win_rate = blue / (blue - red)  (0,1)
 
 Model Version 2
 
-威胁基地
-* 距离步数 dist_to_shoot_base
-* 路线阻挡能力（追及效率）undone
-counter威胁
-* 卡路线 总结一哈
-* 技能状况
-* 且战且退 y方向退路
-* 重叠 有待评估
-* 协作卡线？横向
-打破僵局
-* 换位支援 两坦克威胁同一个对面坦克
-* 采取风险
+只以进攻思考问题，对方防御算在减弱进攻的范围内
 
+* 是否采取风险突进：对方能否承担自己不突进造成的后果 ?
+* 重叠以后的情况？
+* 到达底线以后的情况?
+
+tank_attack = g(dist_to_fire_base, being_blocked, being_chased)
+both_attack_enemy_tank = f(dist_to_fire_tank1, dist_to_fire_tank2)
+cooperate_attack = sum(both_attack_enemy_tank)
+side_attack = w1 * sum(tank_attack) + w2 * cooperate_attack
+final_score = sigmoid(blue_attack - red_attack)
 
 TODO:
 一边僵局另一边放手；对峙时卡人，越过己方后追及；没有进攻性
