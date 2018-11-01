@@ -4,11 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/parallels/Desktop/tank/src/Field_info.cpp" "/home/parallels/Desktop/tank/CMakeFiles/Anneal.dir/src/Field_info.cpp.o"
-  "/home/parallels/Desktop/tank/src/Field_map.cpp" "/home/parallels/Desktop/tank/CMakeFiles/Anneal.dir/src/Field_map.cpp.o"
-  "/home/parallels/Desktop/tank/src/anneal.cpp" "/home/parallels/Desktop/tank/CMakeFiles/Anneal.dir/src/anneal.cpp.o"
+  "/media/psf/Home/Desktop/tank/src/Field_info.cpp" "/media/psf/Home/Desktop/tank/CMakeFiles/Anneal.dir/src/Field_info.cpp.o"
+  "/media/psf/Home/Desktop/tank/src/Field_map.cpp" "/media/psf/Home/Desktop/tank/CMakeFiles/Anneal.dir/src/Field_map.cpp.o"
+  "/media/psf/Home/Desktop/tank/src/anneal.cpp" "/media/psf/Home/Desktop/tank/CMakeFiles/Anneal.dir/src/anneal.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "_BOTZONE_ONLINE"
+  )
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

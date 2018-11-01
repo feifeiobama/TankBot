@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/parallels/Desktop/tank
+CMAKE_SOURCE_DIR = /media/psf/Home/Desktop/tank
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/parallels/Desktop/tank
+CMAKE_BINARY_DIR = /media/psf/Home/Desktop/tank
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Tank_mcts.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/Tank_mcts.dir/flags.make
 
 CMakeFiles/Tank_mcts.dir/src/main.cpp.o: CMakeFiles/Tank_mcts.dir/flags.make
 CMakeFiles/Tank_mcts.dir/src/main.cpp.o: src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parallels/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Tank_mcts.dir/src/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/main.cpp.o -c /home/parallels/Desktop/tank/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/psf/Home/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Tank_mcts.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/main.cpp.o -c /media/psf/Home/Desktop/tank/src/main.cpp
 
 CMakeFiles/Tank_mcts.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tank_mcts.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parallels/Desktop/tank/src/main.cpp > CMakeFiles/Tank_mcts.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/psf/Home/Desktop/tank/src/main.cpp > CMakeFiles/Tank_mcts.dir/src/main.cpp.i
 
 CMakeFiles/Tank_mcts.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tank_mcts.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parallels/Desktop/tank/src/main.cpp -o CMakeFiles/Tank_mcts.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/psf/Home/Desktop/tank/src/main.cpp -o CMakeFiles/Tank_mcts.dir/src/main.cpp.s
 
 CMakeFiles/Tank_mcts.dir/src/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/Tank_mcts.dir/src/main.cpp.o.provides.build: CMakeFiles/Tank_mcts.dir
 
 CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o: CMakeFiles/Tank_mcts.dir/flags.make
 CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o: src/Game_mcts.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parallels/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o -c /home/parallels/Desktop/tank/src/Game_mcts.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/psf/Home/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o -c /media/psf/Home/Desktop/tank/src/Game_mcts.cpp
 
 CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parallels/Desktop/tank/src/Game_mcts.cpp > CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/psf/Home/Desktop/tank/src/Game_mcts.cpp > CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.i
 
 CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parallels/Desktop/tank/src/Game_mcts.cpp -o CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/psf/Home/Desktop/tank/src/Game_mcts.cpp -o CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.s
 
 CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o.provides.build: CMakeFiles/Tank_mct
 
 CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o: CMakeFiles/Tank_mcts.dir/flags.make
 CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o: src/Field_info.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parallels/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o -c /home/parallels/Desktop/tank/src/Field_info.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/psf/Home/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o -c /media/psf/Home/Desktop/tank/src/Field_info.cpp
 
 CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parallels/Desktop/tank/src/Field_info.cpp > CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/psf/Home/Desktop/tank/src/Field_info.cpp > CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.i
 
 CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parallels/Desktop/tank/src/Field_info.cpp -o CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/psf/Home/Desktop/tank/src/Field_info.cpp -o CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.s
 
 CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o.provides.build: CMakeFiles/Tank_mc
 
 CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o: CMakeFiles/Tank_mcts.dir/flags.make
 CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o: src/Field_map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parallels/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o -c /home/parallels/Desktop/tank/src/Field_map.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/psf/Home/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o -c /media/psf/Home/Desktop/tank/src/Field_map.cpp
 
 CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parallels/Desktop/tank/src/Field_map.cpp > CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/psf/Home/Desktop/tank/src/Field_map.cpp > CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.i
 
 CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parallels/Desktop/tank/src/Field_map.cpp -o CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/psf/Home/Desktop/tank/src/Field_map.cpp -o CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.s
 
 CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o.requires:
 
@@ -169,7 +169,7 @@ Tank_mcts: CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o
 Tank_mcts: CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o
 Tank_mcts: CMakeFiles/Tank_mcts.dir/build.make
 Tank_mcts: CMakeFiles/Tank_mcts.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/parallels/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Tank_mcts"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/media/psf/Home/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Tank_mcts"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Tank_mcts.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -189,6 +189,6 @@ CMakeFiles/Tank_mcts.dir/clean:
 .PHONY : CMakeFiles/Tank_mcts.dir/clean
 
 CMakeFiles/Tank_mcts.dir/depend:
-	cd /home/parallels/Desktop/tank && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/parallels/Desktop/tank /home/parallels/Desktop/tank /home/parallels/Desktop/tank /home/parallels/Desktop/tank /home/parallels/Desktop/tank/CMakeFiles/Tank_mcts.dir/DependInfo.cmake --color=$(COLOR)
+	cd /media/psf/Home/Desktop/tank && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /media/psf/Home/Desktop/tank /media/psf/Home/Desktop/tank /media/psf/Home/Desktop/tank /media/psf/Home/Desktop/tank /media/psf/Home/Desktop/tank/CMakeFiles/Tank_mcts.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Tank_mcts.dir/depend
 

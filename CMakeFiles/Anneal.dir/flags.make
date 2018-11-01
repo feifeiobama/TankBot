@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS = -O3   -std=gnu++11
 
-CXX_DEFINES = 
+CXX_DEFINES = -D_BOTZONE_ONLINE
 
 CXX_INCLUDES = 
 

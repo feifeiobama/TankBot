@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/parallels/Desktop/tank
+CMAKE_SOURCE_DIR = /media/psf/Home/Desktop/tank
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/parallels/Desktop/tank
+CMAKE_BINARY_DIR = /media/psf/Home/Desktop/tank
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Anneal.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/Anneal.dir/flags.make
 
 CMakeFiles/Anneal.dir/src/anneal.cpp.o: CMakeFiles/Anneal.dir/flags.make
 CMakeFiles/Anneal.dir/src/anneal.cpp.o: src/anneal.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parallels/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Anneal.dir/src/anneal.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Anneal.dir/src/anneal.cpp.o -c /home/parallels/Desktop/tank/src/anneal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/psf/Home/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Anneal.dir/src/anneal.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Anneal.dir/src/anneal.cpp.o -c /media/psf/Home/Desktop/tank/src/anneal.cpp
 
 CMakeFiles/Anneal.dir/src/anneal.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Anneal.dir/src/anneal.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parallels/Desktop/tank/src/anneal.cpp > CMakeFiles/Anneal.dir/src/anneal.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/psf/Home/Desktop/tank/src/anneal.cpp > CMakeFiles/Anneal.dir/src/anneal.cpp.i
 
 CMakeFiles/Anneal.dir/src/anneal.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Anneal.dir/src/anneal.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parallels/Desktop/tank/src/anneal.cpp -o CMakeFiles/Anneal.dir/src/anneal.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/psf/Home/Desktop/tank/src/anneal.cpp -o CMakeFiles/Anneal.dir/src/anneal.cpp.s
 
 CMakeFiles/Anneal.dir/src/anneal.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/Anneal.dir/src/anneal.cpp.o.provides.build: CMakeFiles/Anneal.dir/src
 
 CMakeFiles/Anneal.dir/src/Field_info.cpp.o: CMakeFiles/Anneal.dir/flags.make
 CMakeFiles/Anneal.dir/src/Field_info.cpp.o: src/Field_info.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parallels/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Anneal.dir/src/Field_info.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Anneal.dir/src/Field_info.cpp.o -c /home/parallels/Desktop/tank/src/Field_info.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/psf/Home/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Anneal.dir/src/Field_info.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Anneal.dir/src/Field_info.cpp.o -c /media/psf/Home/Desktop/tank/src/Field_info.cpp
 
 CMakeFiles/Anneal.dir/src/Field_info.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Anneal.dir/src/Field_info.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parallels/Desktop/tank/src/Field_info.cpp > CMakeFiles/Anneal.dir/src/Field_info.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/psf/Home/Desktop/tank/src/Field_info.cpp > CMakeFiles/Anneal.dir/src/Field_info.cpp.i
 
 CMakeFiles/Anneal.dir/src/Field_info.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Anneal.dir/src/Field_info.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parallels/Desktop/tank/src/Field_info.cpp -o CMakeFiles/Anneal.dir/src/Field_info.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/psf/Home/Desktop/tank/src/Field_info.cpp -o CMakeFiles/Anneal.dir/src/Field_info.cpp.s
 
 CMakeFiles/Anneal.dir/src/Field_info.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/Anneal.dir/src/Field_info.cpp.o.provides.build: CMakeFiles/Anneal.dir
 
 CMakeFiles/Anneal.dir/src/Field_map.cpp.o: CMakeFiles/Anneal.dir/flags.make
 CMakeFiles/Anneal.dir/src/Field_map.cpp.o: src/Field_map.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/parallels/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Anneal.dir/src/Field_map.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Anneal.dir/src/Field_map.cpp.o -c /home/parallels/Desktop/tank/src/Field_map.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/media/psf/Home/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Anneal.dir/src/Field_map.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Anneal.dir/src/Field_map.cpp.o -c /media/psf/Home/Desktop/tank/src/Field_map.cpp
 
 CMakeFiles/Anneal.dir/src/Field_map.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Anneal.dir/src/Field_map.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/parallels/Desktop/tank/src/Field_map.cpp > CMakeFiles/Anneal.dir/src/Field_map.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /media/psf/Home/Desktop/tank/src/Field_map.cpp > CMakeFiles/Anneal.dir/src/Field_map.cpp.i
 
 CMakeFiles/Anneal.dir/src/Field_map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Anneal.dir/src/Field_map.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/parallels/Desktop/tank/src/Field_map.cpp -o CMakeFiles/Anneal.dir/src/Field_map.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /media/psf/Home/Desktop/tank/src/Field_map.cpp -o CMakeFiles/Anneal.dir/src/Field_map.cpp.s
 
 CMakeFiles/Anneal.dir/src/Field_map.cpp.o.requires:
 
@@ -143,7 +143,7 @@ Anneal: CMakeFiles/Anneal.dir/src/Field_info.cpp.o
 Anneal: CMakeFiles/Anneal.dir/src/Field_map.cpp.o
 Anneal: CMakeFiles/Anneal.dir/build.make
 Anneal: CMakeFiles/Anneal.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/parallels/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Anneal"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/media/psf/Home/Desktop/tank/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Anneal"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Anneal.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -162,6 +162,6 @@ CMakeFiles/Anneal.dir/clean:
 .PHONY : CMakeFiles/Anneal.dir/clean
 
 CMakeFiles/Anneal.dir/depend:
-	cd /home/parallels/Desktop/tank && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/parallels/Desktop/tank /home/parallels/Desktop/tank /home/parallels/Desktop/tank /home/parallels/Desktop/tank /home/parallels/Desktop/tank/CMakeFiles/Anneal.dir/DependInfo.cmake --color=$(COLOR)
+	cd /media/psf/Home/Desktop/tank && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /media/psf/Home/Desktop/tank /media/psf/Home/Desktop/tank /media/psf/Home/Desktop/tank /media/psf/Home/Desktop/tank /media/psf/Home/Desktop/tank/CMakeFiles/Anneal.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Anneal.dir/depend
 

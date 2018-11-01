@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/parallels/Desktop/tank/src/Field.hpp
+/media/psf/Home/Desktop/tank/src/Field.hpp
 cmath
 -
 cstring
@@ -16,13 +16,13 @@ iostream
 vector
 -
 def.hpp
-/home/parallels/Desktop/tank/src/def.hpp
+/media/psf/Home/Desktop/tank/src/def.hpp
 Field_map.h
-/home/parallels/Desktop/tank/src/Field_map.h
+/media/psf/Home/Desktop/tank/src/Field_map.h
 Field_info.h
-/home/parallels/Desktop/tank/src/Field_info.h
+/media/psf/Home/Desktop/tank/src/Field_info.h
 
-/home/parallels/Desktop/tank/src/Field_info.cpp
+/media/psf/Home/Desktop/tank/src/Field_info.cpp
 cstring
 -
 iostream
@@ -32,19 +32,19 @@ iomanip
 stack
 -
 Field_info.h
-/home/parallels/Desktop/tank/src/Field_info.h
+/media/psf/Home/Desktop/tank/src/Field_info.h
 Field_map.h
-/home/parallels/Desktop/tank/src/Field_map.h
+/media/psf/Home/Desktop/tank/src/Field_map.h
 
-/home/parallels/Desktop/tank/src/Field_info.h
+/media/psf/Home/Desktop/tank/src/Field_info.h
 def.hpp
-/home/parallels/Desktop/tank/src/def.hpp
+/media/psf/Home/Desktop/tank/src/def.hpp
 map
 -
 vector
 -
 
-/home/parallels/Desktop/tank/src/Field_map.cpp
+/media/psf/Home/Desktop/tank/src/Field_map.cpp
 stdlib.h
 -
 ctime
@@ -54,55 +54,55 @@ iostream
 cstring
 -
 Field_map.h
-/home/parallels/Desktop/tank/src/Field_map.h
+/media/psf/Home/Desktop/tank/src/Field_map.h
 Field_info.h
-/home/parallels/Desktop/tank/src/Field_info.h
+/media/psf/Home/Desktop/tank/src/Field_info.h
 
-/home/parallels/Desktop/tank/src/Field_map.h
+/media/psf/Home/Desktop/tank/src/Field_map.h
 def.hpp
-/home/parallels/Desktop/tank/src/def.hpp
+/media/psf/Home/Desktop/tank/src/def.hpp
 vector
 -
 map
 -
 
-/home/parallels/Desktop/tank/src/Game.hpp
+/media/psf/Home/Desktop/tank/src/Game.hpp
 
-/home/parallels/Desktop/tank/src/Game_minimax.cpp
+/media/psf/Home/Desktop/tank/src/Game_minimax.cpp
 IO_handler.hpp
-/home/parallels/Desktop/tank/src/IO_handler.hpp
+/media/psf/Home/Desktop/tank/src/IO_handler.hpp
 Minimax_players.hpp
-/home/parallels/Desktop/tank/src/Minimax_players.hpp
+/media/psf/Home/Desktop/tank/src/Minimax_players.hpp
 Game.hpp
-/home/parallels/Desktop/tank/src/Game.hpp
+/media/psf/Home/Desktop/tank/src/Game.hpp
 MCTS_player.hpp
-/home/parallels/Desktop/tank/src/MCTS_player.hpp
+/media/psf/Home/Desktop/tank/src/MCTS_player.hpp
 iostream
 -
 
-/home/parallels/Desktop/tank/src/IO_handler.hpp
+/media/psf/Home/Desktop/tank/src/IO_handler.hpp
 iostream
 -
 def.hpp
-/home/parallels/Desktop/tank/src/def.hpp
+/media/psf/Home/Desktop/tank/src/def.hpp
 Field.hpp
-/home/parallels/Desktop/tank/src/Field.hpp
+/media/psf/Home/Desktop/tank/src/Field.hpp
 jsoncpp/json.h
-/home/parallels/Desktop/tank/src/jsoncpp/json.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/json.h
 
-/home/parallels/Desktop/tank/src/MCTS_player.hpp
+/media/psf/Home/Desktop/tank/src/MCTS_player.hpp
 def.hpp
-/home/parallels/Desktop/tank/src/def.hpp
+/media/psf/Home/Desktop/tank/src/def.hpp
 Field.hpp
-/home/parallels/Desktop/tank/src/Field.hpp
+/media/psf/Home/Desktop/tank/src/Field.hpp
 
-/home/parallels/Desktop/tank/src/Minimax_players.hpp
+/media/psf/Home/Desktop/tank/src/Minimax_players.hpp
 cstring
 -
 Field.hpp
-/home/parallels/Desktop/tank/src/Field.hpp
+/media/psf/Home/Desktop/tank/src/Field.hpp
 
-/home/parallels/Desktop/tank/src/def.hpp
+/media/psf/Home/Desktop/tank/src/def.hpp
 cstdint
 -
 limits
@@ -110,9 +110,9 @@ limits
 climits
 -
 
-/home/parallels/Desktop/tank/src/jsoncpp.cpp
+/media/psf/Home/Desktop/tank/src/jsoncpp.cpp
 jsoncpp/json.h
-/home/parallels/Desktop/tank/src/jsoncpp/json.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/json.h
 json/assertions.h
 -
 json/reader.h
@@ -120,7 +120,7 @@ json/reader.h
 json/value.h
 -
 json_tool.h
-/home/parallels/Desktop/tank/src/json_tool.h
+/media/psf/Home/Desktop/tank/src/json_tool.h
 utility
 -
 cstdio
@@ -142,7 +142,7 @@ json/value.h
 json/writer.h
 -
 json_batchallocator.h
-/home/parallels/Desktop/tank/src/json_batchallocator.h
+/media/psf/Home/Desktop/tank/src/json_batchallocator.h
 math.h
 -
 sstream
@@ -158,15 +158,15 @@ cpptl/conststring.h
 cstddef
 -
 json_internalarray.inl
-/home/parallels/Desktop/tank/src/json_internalarray.inl
+/media/psf/Home/Desktop/tank/src/json_internalarray.inl
 json_internalmap.inl
-/home/parallels/Desktop/tank/src/json_internalmap.inl
+/media/psf/Home/Desktop/tank/src/json_internalmap.inl
 json_valueiterator.inl
-/home/parallels/Desktop/tank/src/json_valueiterator.inl
+/media/psf/Home/Desktop/tank/src/json_valueiterator.inl
 json/writer.h
 -
 json_tool.h
-/home/parallels/Desktop/tank/src/json_tool.h
+/media/psf/Home/Desktop/tank/src/json_tool.h
 utility
 -
 assert.h
@@ -184,15 +184,15 @@ math.h
 float.h
 -
 
-/home/parallels/Desktop/tank/src/jsoncpp/json.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/json.h
 cpptl/config.h
 -
 config.h
-/home/parallels/Desktop/tank/src/jsoncpp/config.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/config.h
 forwards.h
-/home/parallels/Desktop/tank/src/jsoncpp/forwards.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/forwards.h
 forwards.h
-/home/parallels/Desktop/tank/src/jsoncpp/forwards.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/forwards.h
 string
 -
 vector
@@ -204,9 +204,9 @@ cpptl/smallmap.h
 cpptl/forwards.h
 -
 features.h
-/home/parallels/Desktop/tank/src/jsoncpp/features.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/features.h
 value.h
-/home/parallels/Desktop/tank/src/jsoncpp/value.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/value.h
 deque
 -
 iosfwd
@@ -216,7 +216,7 @@ stack
 string
 -
 value.h
-/home/parallels/Desktop/tank/src/jsoncpp/value.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/value.h
 vector
 -
 string
@@ -224,9 +224,9 @@ string
 stdlib.h
 -
 config.h
-/home/parallels/Desktop/tank/src/jsoncpp/config.h
+/media/psf/Home/Desktop/tank/src/jsoncpp/config.h
 stdexcept
 -
 ../jsoncpp.cpp
-/home/parallels/Desktop/tank/src/jsoncpp.cpp
+/media/psf/Home/Desktop/tank/src/jsoncpp.cpp
 
