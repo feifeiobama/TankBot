@@ -1,4 +1,4 @@
 cmake -DCMAKE_BUILD_TYPE=Release .
 make clean;
-make Tank_minimax_library;
-mv Tank_minimax_library.so ./data/Tank_minimax_library.so;
+make Tank_minimax_lib;
+mv libTank_minimax_lib.so ./data/libTank_minimax_lib.so;

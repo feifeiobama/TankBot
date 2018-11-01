@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3   CMakeFiles/Tank_minimax.dir/src/main.cpp.o CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.o CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.o  -o Tank_minimax 

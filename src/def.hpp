@@ -5,12 +5,15 @@
 #ifndef TANK_DEF_HPP
 #define TANK_DEF_HPP
 
+#define __STDC_LIMIT_MACROS
+
 #ifndef _BOTZONE_ONLINE
 //#define _BOTZONE_ONLINE
 #endif
 
 #include <cstdint>
 #include <limits>
+#include <climits>
 
 struct Position {
     int x, y;

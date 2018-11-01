@@ -1,0 +1,7 @@
+/home/parallels/Desktop/tank/CMakeFiles/rebuild_cache.dir
+/home/parallels/Desktop/tank/CMakeFiles/Tank_minimax.dir
+/home/parallels/Desktop/tank/CMakeFiles/Tank_minimax_lib.dir
+/home/parallels/Desktop/tank/CMakeFiles/Anneal.dir
+/home/parallels/Desktop/tank/CMakeFiles/Tank_mcts.dir
+/home/parallels/Desktop/tank/CMakeFiles/edit_cache.dir
+/home/parallels/Desktop/tank/CMakeFiles/Tank_mcts_lib.dir
