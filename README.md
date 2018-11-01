@@ -1,6 +1,8 @@
 ## Tank AI
 
-feifeiobama@gmail.com
+##### feifeiobama@gmail.com
+
+#### 运行方法
 
 在非 mac 系统上编译时，请将 `src/jsoncpp.cpp` 和 `src/jsoncpp/` 下的文件替换为 `JsonCPP_versions/` 中相应的版本。
 
@@ -13,3 +15,22 @@ feifeiobama@gmail.com
 | 体验调参              | make Anneal       |
 
 强烈建议设置为 Release 编译模式。
+
+#### 估价函数
+
+(1) 基本估价 (debug 情况下一次估值需要 5e-5 s)
+
+val = sum(argv[0] * tank - argv[1] * dist + argv[2] * min_ahead +
+    argv[3] * area_move + argv[4] * area_fire) - argv[3] * first_threat
+   
+(2) 斩杀判定
+
+考虑若干种对位关系，每一方选择：
+
+    (1) 某坦克进攻/防敌方坦克
+
+    (2) 两坦克进攻敌方一名坦克，放空另一只坦克
+
+若一方全胜 +bonus and 斩杀步数
+ 
+(3) 最后sigmoid(blue - red)

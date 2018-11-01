@@ -8,16 +8,19 @@
 #include "MCTS_player.hpp"
 #include <iostream>
 
+using namespace std;
+
 extern "C" {
 void game_start() {
-    std::ios::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
 
+    vector<pair<Field_map, Action> > history[2];
     Field_map field_map = Field_map(false);
-    Color currentColor = recover_from_input(field_map);
-    Field field = Field(field_map);
+    Color currentColor = recover_from_input(field_map, history);
 
+    Field field = Field(field_map);
     Minimax_players player = Minimax_players();
-    Action action = player.make_decision(currentColor, field);
+    Action action = player.make_decision(currentColor, field, history);
     encode_output(action);
 }
 }

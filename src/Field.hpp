@@ -8,21 +8,22 @@
 #include <cmath>
 #include <cstring>
 #include <iostream>
+#include <vector>
 #include "def.hpp"
 #include "Field_map.h"
 #include "Field_info.h"
 
-constexpr int Argc = 10;
-constexpr double Argv[Argc] = {1, 1, 2, 0.01, 0.01, 4, 1, 10, 0.2, 10};
+constexpr int Argc = 6;
+constexpr double Argv[Argc] = {0};
 
 class Field {
     Field_map field_map;
     Field_info field_info;
     int ending = -2;
 public:
-    Field() : field_map(true), field_info(field_map) {}
+    Field(bool random_initialize=true) : field_map(random_initialize), field_info(field_map) {}
 
-    Field(const Field_map &field_map1) : field_map(field_map1), field_info(field_map1) {
+    Field(const Field_map &field_map1): field_map(field_map1), field_info(field_map1) {
         print();
     }
 
@@ -32,6 +33,21 @@ public:
         field_map.update(action1, action2);
         field_info.update(action1, action2, field_map);
         return field_map.judge();
+    }
+
+    void push_history(Action &action1, Action &action2, vector<pair<Field_map, Action> > history[2]) const {
+        history[0].push_back(make_pair(field_map, action1));
+        history[1].push_back(make_pair(field_map, action2));
+    }
+
+    Action find_history(vector<pair<Field_map, Action> > history) const {
+        Action action = {-2, -2};
+        for (auto p: history) {
+            if (p.first == field_map) {
+                return p.second;
+            }
+        }
+        return action;
     }
 
     // 0-蓝方赢 1-红方赢 -1-平局 2-继续
@@ -63,146 +79,88 @@ public:
                 if_tank_dead[i] = true;
             }
         }
-        // calc paired values
-        double single_threat[4][4] = {0}, single_counter[4][4] = {0};
+
+        // prepare values
+
+        unsigned dist_to_shoot_base[4];
+        pair<int, unsigned> dist_to_shoot_avoid[4][4];
+        pair<unsigned, unsigned> dist_to_shoot_after[4];
+        unsigned area_fire[4];
+        unsigned area_move[4];
+        bool has_both[2];
+
         for (int i = 0; i != 4; ++i) {
-            if (!if_tank_dead[i]) {
-                Color c1 = Color(i / 2), c2 = Color(1 - c1);
-                for (int j = 0; j != 2; ++j) {
-                    int k = (c2 << 1) + j;
-                    if (!if_tank_dead[k]) {
-                        single_threat[i][k] =
-                                double(1) / field_info.dist_to_tank(i, k, field_map) +
-                                argv[0] / field_info.dist_to_fire(i, k, field_map);
-                        single_counter[i][k] =
-                                double(1) / field_info.dist_to_fire(i, k, field_map) +
-                                argv[1] / field_info.dist_to_tank(i, k, field_map);
-                        if (field_info.block_route(i, k, field_map)) {
-                            single_counter[i][k] += argv[2];
+            if (if_tank_dead[i]) {
+                continue;
+            }
+            dist_to_shoot_base[i] = field_info.dist_to_shoot_base(i, field_map);
+            area_fire[i] = field_info.area_fire(i, field_map);
+            area_move[i] = field_info.area_move(i, field_map);
+
+            has_both[1 - (i >> 1)] = true;
+            FOR_ENEMY(i, j, {
+                if (if_tank_dead[j]) {
+                    has_both[1 - (i >> 1)] = false;
+                    continue;
+                }
+                dist_to_shoot_avoid[i][j] = field_info.dist_to_shoot_avoid(i, j, field_map);
+            })
+            if (has_both[1 - (i >> 1)]) {
+                dist_to_shoot_after[i] = field_info.dist_to_shoot_after(i, field_map);
+            }
+        }
+
+        // calc basic values
+        double score[2] = {0};
+
+        for (int c = 0; c != 2; ++c) {
+            for (int k = 0; k != 2; ++k) {
+                int i = (c << 1) + k;
+                if (!if_tank_dead[i]) {
+                    score[c] += argv[0];
+                    score[c] += argv[1] * dist_to_shoot_base[i];
+
+                    int min_ahead = INT_MIN;
+                    FOR_ENEMY(i, j, {
+                        if (!if_tank_dead[j]) {
+                            if (min_ahead < dist_to_shoot_avoid[i][j].first) {
+                                min_ahead = dist_to_shoot_avoid[i][j].first;
+                            }
+                        }
+                    })
+                    score[c] -= argv[2] * min_ahead;
+
+                    score[c] += argv[3] * area_fire[i];
+                    score[c] += argv[4] * area_move[i];
+                }
+            }
+            if (has_both[c]) {
+                int i = (c << 1);
+
+                unsigned min_threat = unsigned(-1);
+                FOR_ENEMY(i, j, {
+                    if (!if_tank_dead[j]) {
+                        if (min_threat < dist_to_shoot_after[j].second) {
+                            min_threat = dist_to_shoot_after[j].second;
                         }
                     }
-                }
+                })
+                score[c] -= argv[5] * min_threat;
             }
         }
 
-        // calc single tank values
-        double single_invade[4], single_alive[4] = {0};
-        for (int i = 0; i != 4; ++i) {
-            if (!if_tank_dead[i]) {
-                Color c1 = Color(i / 2), c2 = Color(1 - c1);
-                int dist = field_info.dist_to_shoot_base(i, field_map);
-                single_invade[i] = double(100) / (dist * dist) +
-                                   argv[3] * field_info.area_fire(i, field_map);
-                single_alive[i] = argv[5];
-                for (int j = 0; j != 2; ++j) {
-                    int k = (c2 << 1) + j;
-                    single_invade[i] += argv[4] * single_threat[i][k];
-                    single_alive[i] += single_threat[k][i];
-                }
-            }
-
-        }
-        for (int i = 0; i != 4; ++i) {
-            single_invade[i] = pow(single_invade[i], argv[6]);
-            if (single_alive[i] != 0) {
-                int area_move = field_info.area_move(i, field_map);
-                single_alive[i] = ((8 - area_move) * area_move + argv[7]) / single_alive[i];
-            }
-        }
+        // add kill judge
 
 
-        // calc tank associated values
-        double single_attack[4] = {0}, single_defend[4] = {0};
-        for (int i = 0; i != 4; ++i) {
-            single_attack[i] = single_invade[i] * single_alive[i];
-            for (int j = 0; j != 2; ++j) {
-                int k = ((1 - i / 2) << 1) + j;
-                single_defend[i] += single_invade[k] * single_counter[i][k];
-            }
-        }
-
-        double single_tank[4];
-        for (int i = 0; i != 4; ++i) {
-            single_tank[i] = sqrt(single_attack[i] * single_attack[i] + argv[8] * single_defend[i] * single_defend[i]);
-        }
-
-
-        double blue = single_tank[0] + single_tank[1];
-        // double tank buff
-        if (!if_tank_dead[0] && !if_tank_dead[1]) {
-            blue += argv[9] * sqrt(single_invade[0] * single_invade[1]) /
-                    field_info.dist_to_tank(0, 1, field_map);
-        }
-
-        double red = single_tank[2] + single_tank[3];
-        // double tank buff
-        if (!if_tank_dead[2] && !if_tank_dead[3]) {
-            red += argv[9] * sqrt(single_invade[2] * single_invade[3]) /
-                   field_info.dist_to_tank(2, 3, field_map);
-        }
-
-        // 输出各项数值
+        double eval = double(1) / (1 + exp(score[1] - score[0]));
         if (if_print) {
-            std::cout << "single_threat";
-            for (int i = 0; i != 4; ++i) {
-                for (int j = 0; j != 4; ++j) {
-                    std::cout << ' ' << single_threat[i][j];
-                }
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_counter";
-            for (int i = 0; i != 4; ++i) {
-                for (int j = 0; j != 4; ++j) {
-                    std::cout << ' ' << single_counter[i][j];
-                }
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_invade";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_invade[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_alive";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_alive[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_attack";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_attack[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_defend";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_defend[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_tank";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_tank[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << blue << ' ' << red << std::endl;
-            std::cout << blue / (blue + red) << std::endl;
+            cout << score[0] << " " << score[1] << " " << eval << endl;
         }
-
-
-        return blue / (blue + red);
+        return eval;
     }
 
     bool is_avail(int tank, Move m) const {
         return field_map.is_avail(tank, m);
-    }
-
-    bool is_tank_alive(Color color, int i) const {
-        return field_map.get_tank((color << 1) + i) != Null_pos;
     }
 
     int get_round() {

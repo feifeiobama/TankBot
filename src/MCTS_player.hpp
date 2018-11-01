@@ -14,7 +14,7 @@ class Node {
 public:
     Node() {}
 
-    Node(const Field_map &field_map1): field(field_map1) {}
+    Node(const Field &field_): field(field_) {}
 
     Node(const Node &node) : field(node.field) {}
 

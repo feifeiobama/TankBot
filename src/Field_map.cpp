@@ -9,6 +9,8 @@
 #include "Field_map.h"
 #include "Field_info.h"
 
+using namespace std;
+
 Field_map::Field_map(bool random_initialize) {
     map[0] = map[1] = map[7] = map[8] = 0b000000001100000000;
     map[2] = map[6] = 0b110000001100000011;
@@ -55,6 +57,11 @@ int Field_map::block_type(int i, int j) const {
 
 void Field_map::set_brick(int i, int j) {
     map[i] |= (0b11 << (j << 1));
+}
+
+void Field_map::push_history(Action &action1, Action &action2, vector<pair<Field_map, Action> > history[2]) const {
+    history[0].push_back(make_pair(Field_map(*this), action1));
+    history[1].push_back(make_pair(Field_map(*this), action2));
 }
 
 void Field_map::update(Action &action1, Action &action2) {
@@ -230,20 +237,19 @@ void Field_map::print() const {
     map[0][4] = map[0][4] == '#' ? '*' : ':';
     map[8][4] = map[8][4] == '#' ? '*' : ':';
     for (int i = 0; i != 9; ++i) {
-        std::cout << map[i] << std::endl;
+        cout << map[i] << endl;
     }
     for (int i = 0; i != 4; ++i) {
-        std::cout << tank_char[i] << " pos " << tanks[i].x << ',' << tanks[i].y << " loaded " << loaded[i] << std::endl;
+        cout << tank_char[i] << " pos " << tanks[i].x << ',' << tanks[i].y << " loaded " << loaded[i] << endl;
     }
 #endif
 }
 
 bool Field_map::operator==(const Field_map &field_map) const {
-    if (round != field_map.round) {
-        return false;
-    }
     for (int i = 0; i != 4; ++i) {
         if (tanks[i] != field_map.tanks[i]) {
+            return false;
+        } else if (loaded[i] != field_map.loaded[i]) {
             return false;
         }
     }

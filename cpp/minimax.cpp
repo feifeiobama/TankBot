@@ -9,6 +9,8 @@
 //#define _BOTZONE_ONLINE
 #endif
 
+#include <cstdint>
+#include <limits.h>
 
 struct Position {
     int x, y;
@@ -85,6 +87,13 @@ for (int i = 0; i != 9; ++i) {\
     }\
 }
 
+#define FOR_ENEMY(i, j, expression)\
+int c = i >> 1;\
+for (int j = 2 - (c << 1); j != 4 - (c << 1); ++j) {\
+    expression\
+}
+
+
 #endif //TANK_DEF_HPP
 
 //
@@ -94,7 +103,11 @@ for (int i = 0; i != 9; ++i) {\
 #ifndef TANK_FIELD_MAP_H
 #define TANK_FIELD_MAP_H
 
-//#include "def.hpp"
+
+#include <vector>
+#include <map>
+
+using namespace std;
 
 class Field_info;
 
@@ -115,6 +128,8 @@ public:
     int block_type(int i, int j) const;
 
     void set_brick(int i, int j);
+
+    void push_history(Action &action1, Action &action2, vector<pair<Field_map, Action> > history[2]) const;
 
     void update(Action &action1, Action &action2);
 
@@ -147,45 +162,60 @@ public:
 #ifndef TANK_FIELD_INFO_H
 #define TANK_FIELD_INFO_H
 
-//#include "def.hpp"
+
+#include <map>
+#include <vector>
+
+using namespace std;
 
 class Field_map;
 
+/*
+ * 0 1 2 3 4 5 6 7 8 pos.x
+ * 1 A B
+ * 2 A B
+ * 3 A B
+ * 4 A B
+ * 5 A B
+ * 6 A B
+ * 7 A B
+ * 8 A B
+ * pos.y
+ */
+
 // 各个坦克到周围距离信息的缓存, 位于MCT上每个节点，最好能够增量维护
 class Field_info {
+    int clean_map[9]; // 缓存的地图,坦克当作虚无,基地当作不能摧毁
+
     unsigned distance_map[4][9][9];
     bool fire_map[4][9][9] = {0};
-    int clean_map[9]; // 缓存的地图,坦克当作虚无,基地当作不能摧毁
+    unsigned base_row_barrier[2][9];
+
 public:
     Field_info(const Field_map &field_map);
 
     Field_info(const Field_info &field_info);
 
-    void update(Action action1, Action action2, const Field_map &field_map);
+    void update(Action &action1, Action &action2, const Field_map &field_map);
 
-    void calc_fire_map(const Field_map &field_map);
+    void calc_fire_map(int i, const Field_map &field_map);
 
-    void refresh_distance(int i, Position position, bool loaded = true);
+    void calc_base_row_barrier();
+
+    void calc_distance(int i, Position position, bool loaded = true);
 
     // 以下均保证坦克合法
 
     // 允许在其它位置射击击穿砖块
-    int dist_to_shoot_base(int tank, const Field_map &field_map) const;
+    unsigned dist_to_shoot_base(int tank, const Field_map &field_map, bool enemy=true) const;
 
-    // 因为坦克机动性高，不允许隔着射击（容易被窄口挡住）(tank1 fire tank2)
-    int dist_to_fire(int tank1, int tank2, const Field_map &field_map) const;
-
-    // 追击坦克 or 己方协助
-    int dist_to_tank(int tank1, int tank2, const Field_map &field_map) const;
-
-    // 视野宽敞 + 火力覆盖 (不能往家方向开火来防止那啥)
-    int area_fire(int tank, const Field_map &field_map) const;
-
-    // 附近移动宽敞(应当避开敌方火线，和所有坦克坐标)
-    int area_move(int tank, const Field_map &field_map) const;
-
-    // 局部卡路线
     bool block_route(int tank1, int tank2, const Field_map &field_map) const;
+
+    // <斩杀领先的步数, 最短的斩杀步数>
+    pair<int, unsigned> dist_to_shoot_avoid(int tank1, int tank2, const Field_map &field_map) const;
+
+    // 保证己方双坦都在 <完成骚操作操作需要的步数, 第一波威胁对面需要的步数>
+    pair<unsigned, unsigned> dist_to_shoot_after(int tank, const Field_map &field_map) const;
 
     void print(const Field_map &field_map) const;
 };
@@ -201,8 +231,8 @@ public:
 #include <ctime>
 #include <iostream>
 #include <cstring>
-//#include "Field_map.h"
-//#include "Field_info.h"
+
+
 
 Field_map::Field_map(bool random_initialize) {
     map[0] = map[1] = map[7] = map[8] = 0b000000001100000000;
@@ -241,7 +271,7 @@ Field_map::Field_map(const Field_map &field_map) {
 }
 
 bool Field_map::is_empty(int i, int j) const {
-    return ((map[i] >> (j << 1)) & 0b01) == 0;
+    return ((map[i] >> (j << 1)) & 0b11) == 0;
 }
 
 int Field_map::block_type(int i, int j) const {
@@ -250,6 +280,11 @@ int Field_map::block_type(int i, int j) const {
 
 void Field_map::set_brick(int i, int j) {
     map[i] |= (0b11 << (j << 1));
+}
+
+void Field_map::push_history(Action &action1, Action &action2, vector<pair<Field_map, Action> > history[2]) const {
+    history[0].push_back(make_pair(Field_map(*this), action1));
+    history[1].push_back(make_pair(Field_map(*this), action2));
 }
 
 void Field_map::update(Action &action1, Action &action2) {
@@ -434,11 +469,10 @@ void Field_map::print() const {
 }
 
 bool Field_map::operator==(const Field_map &field_map) const {
-    if (round != field_map.round) {
-        return false;
-    }
     for (int i = 0; i != 4; ++i) {
         if (tanks[i] != field_map.tanks[i]) {
+            return false;
+        } else if (loaded[i] != field_map.loaded[i]) {
             return false;
         }
     }
@@ -458,8 +492,8 @@ bool Field_map::operator==(const Field_map &field_map) const {
 #include <iostream>
 #include <iomanip>
 #include <stack>
-//#include "Field_info.h"
-//#include "Field_map.h"
+
+
 
 Field_info::Field_info(const Field_map &field_map) {
     for (int i = 0; i != 9; ++i) {
@@ -481,19 +515,29 @@ Field_info::Field_info(const Field_map &field_map) {
     for (int i = 0; i != 4; ++i) {
         Position tank = field_map.get_tank(i);
         if (tank != Null_pos) {
-            refresh_distance(i, tank);
+            calc_distance(i, tank);
         }
     }
 
     // 计算 fire_map
-    calc_fire_map(field_map);
+    for (int i = 0; i != 4; ++i) {
+        Position tank = field_map.get_tank(i);
+        if (tank == Null_pos) {
+            continue;
+        }
+        calc_fire_map(i, field_map);
+    }
+
+    // 计算 base_row_barrier
+    calc_base_row_barrier();
 }
 
 Field_info::Field_info(const Field_info &field_info) {
     memcpy(clean_map, field_info.clean_map, 9 * sizeof(int));
+    memcpy(fire_map, field_info.fire_map, 4 * 9 * 9 * sizeof(bool));
 }
 
-void Field_info::update(Action action1, Action action2, const Field_map &field_map) {
+void Field_info::update(Action &action1, Action &action2, const Field_map &field_map) {
     // 修改 clean_map, 处理 destroyed
     Position destroyed[4];
     for (int i = 0; i != 4; ++i) {
@@ -510,45 +554,80 @@ void Field_info::update(Action action1, Action action2, const Field_map &field_m
         }
     }
 
+    Move m[4] = {action1.move[0], action1.move[1], action2.move[0], action2.move[1]};
+
     // 初始化 distance_map
     memset(distance_map, -1, 4 * 9 * 9 * sizeof(unsigned));
     for (int i = 0; i != 4; ++i) {
         Position tank = field_map.get_tank(i);
         if (tank != Null_pos) {
-            refresh_distance(i, tank, field_map.get_loaded(i));
+            calc_distance(i, tank, field_map.get_loaded(i));
         }
     }
-    // 计算 fire_map
-    calc_fire_map(field_map);
-}
 
-void Field_info::calc_fire_map(const Field_map &field_map) {
+    // 计算 fire_map
     for (int i = 0; i != 4; ++i) {
-        Position pos1 = field_map.get_tank(i);
-        if (pos1 == Null_pos) {
+        Position tank = field_map.get_tank(i);
+        if (tank == Null_pos) {
             continue;
         }
-        for (int j = 0; j != 4; ++j) {
-            Position pos2 = get_adjacent_position(pos1, j);
-            while (is_in_field(pos2)) {
-                if (((clean_map[pos2.x] >> (pos2.y << 1)) & 0b11) != 0) {
-                    if (pos2.x == 4 && ((pos2.y == 0 && i < 2) || (pos2.y == 8 && i >= 2))) {
-                        int dir = (j + 2) % 4;
-                        while (pos2 != pos1) {
-                            fire_map[i][pos2.x][pos2.y] = false;
-                            pos2 = get_adjacent_position(pos2, dir);
-                        }
-                    }
-                    break;
+        if (m[i] >= 0 && m[i] < 4) {
+            calc_fire_map(i, field_map);
+        } else {
+            for (int j = 0; j != 4; ++j) {
+                if (tank.x == destroyed[j].x || tank.y == destroyed[j].y) {
+                    fire_map[i][destroyed[j].x][destroyed[j].y] = true;
                 }
-                fire_map[i][pos2.x][pos2.y] = true;
-                pos2 = get_adjacent_position(pos2, j);
+            }
+        }
+    }
+
+    // 计算 base_row_barrier
+    calc_base_row_barrier();
+}
+
+void Field_info::calc_fire_map(int i, const Field_map &field_map) {
+    Position pos1 = field_map.get_tank(i);
+    for (int j = 0; j != 4; ++j) {
+        Position pos2 = get_adjacent_position(pos1, j);
+        while (is_in_field(pos2)) {
+            if (((clean_map[pos2.x] >> (pos2.y << 1)) & 0b11) != 0) {
+                if (pos2.x == 4 && ((pos2.y == 0 && i < 2) || (pos2.y == 8 && i >= 2))) {
+                    int dir = (j + 2) % 4;
+                    while (pos2 != pos1) {
+                        fire_map[i][pos2.x][pos2.y] = false;
+                        pos2 = get_adjacent_position(pos2, dir);
+                    }
+                }
+                break;
+            }
+            fire_map[i][pos2.x][pos2.y] = true;
+            pos2 = get_adjacent_position(pos2, j);
+        }
+    }
+}
+
+void Field_info::calc_base_row_barrier() {
+    for (int c = 0; c != 2; ++c) {
+        int base_row = c << 3; // BLUE -> BLUE BASE
+        unsigned last = 1;
+        for (int i = 3; i >= 0; --i) {
+            base_row_barrier[c][i] = last;
+            if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
+                last += 1;
+            }
+        }
+        last = 1;
+        for (int i = 5; i <= 8; ++i) {
+            base_row_barrier[c][i] = last;
+            if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
+                last += 1;
             }
         }
     }
 }
 
-void Field_info::refresh_distance(int i, Position position, bool loaded) {
+void Field_info::calc_distance(int i, Position position, bool loaded) {
     std::stack<Position> searching, to_search;
     if (loaded) {
         distance_map[i][position.x][position.y] = 0;
@@ -594,101 +673,24 @@ void Field_info::refresh_distance(int i, Position position, bool loaded) {
 }
 
 // 允许在其它位置射击击穿砖块
-int Field_info::dist_to_shoot_base(int tank, const Field_map &field_map) const {
-    int base_row = 8 - ((tank / 2) << 3); // BLUE -> RED BASE
-    unsigned base_row_barrier[9] = {0};
-    unsigned last = 1;
-    for (int i = 3; i >= 0; --i) {
-        base_row_barrier[i] = last;
-        if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
-            last += 1;
-        }
-    }
-    last = 1;
-    for (int i = 5; i <= 8; ++i) {
-        base_row_barrier[i] = last;
-        if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
-            last += 1;
-        }
+unsigned Field_info::dist_to_shoot_base(int tank, const Field_map &field_map, bool enemy) const {
+    int base_row = 8 - ((tank >> 1) << 3); // BLUE -> RED BASE
+    int base_color = 1 - (tank >> 1);
+    if (!enemy) {
+        base_row = 8 - base_row;
+        base_color = 1 - base_color;
     }
     unsigned min_dist = unsigned(-1);
     for (int i = 0; i != 9; ++i) {
         if (i != 4) {
             // 不能连射
-            unsigned dist = (2 * base_row_barrier[i] - 1) + distance_map[tank][i][base_row];
+            unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank][i][base_row];
             if (min_dist > dist) {
                 min_dist = dist;
             }
         }
     }
-    return int(min_dist);
-}
-
-// 因为坦克机动性高，不允许隔着射击（容易被窄口挡住）(tank1 fire tank2)
-int Field_info::dist_to_fire(int tank1, int tank2, const Field_map &field_map) const {
-    unsigned min_dist = unsigned(-1);
-    FOR_THE_FIELD(i, j, {
-        if (fire_map[tank2][i][j]) {
-            unsigned dist = distance_map[tank1][i][j];
-            if (min_dist > dist) {
-                min_dist = dist;
-            }
-        }
-    })
-    if (min_dist == unsigned(-1)) {
-        Position pos = field_map.get_tank(tank2);
-        min_dist = distance_map[tank1][pos.x][pos.y];
-        return min_dist - 1;
-    } else {
-        if (min_dist == 0 && !field_map.get_loaded(tank1)) {
-            min_dist += 1;
-        }
-        return min_dist + 1;
-    }
-}
-
-// 追击坦克 or 己方协助
-int Field_info::dist_to_tank(int tank1, int tank2, const Field_map &field_map) const {
-    int distance = int(distance_map[tank1][field_map.get_tank(tank2).x][field_map.get_tank(tank2).y]);
-    if (distance == 0) {
-        distance = 2;
-    }
-    return distance;
-}
-
-// 视野宽敞 + 火力覆盖
-int Field_info::area_fire(int tank, const Field_map &field_map) const {
-    int area = 0;
-    FOR_THE_FIELD(i, j, {
-        if (fire_map[tank][i][j]) {
-            area += 1;
-        }
-    })
-    return area;
-}
-
-// 附近移动宽敞(应当避开敌方火线，和所有坦克坐标)
-int Field_info::area_move(int tank, const Field_map &field_map) const {
-    Position pos = field_map.get_tank(tank);
-    Color color = Color(tank / 2);
-    // 去掉所有坦克坐标
-    int c0 = (color << 1) + 1 - tank, c1 = 2 - (color << 1), c2 = 3 - (color << 1);
-    Position pos0 = field_map.get_tank(c0), pos1 = field_map.get_tank(c1), pos2 = field_map.get_tank(c2);
-    int cnt = 0;
-    FOR_ADJACENT_POS_INDEX(pos, adj_pos, {
-        if (((clean_map[adj_pos.x] >> (adj_pos.y << 1)) & 0b11) != 0) {
-            continue;
-        }
-        if (adj_pos == pos0 || adj_pos == pos1 || adj_pos == pos2) {
-            continue;
-        }
-        if ((field_map.get_loaded(c1) && fire_map[c1][adj_pos.x][adj_pos.y]) ||
-            (field_map.get_loaded(c2) && fire_map[c2][adj_pos.x][adj_pos.y])) {
-            continue;
-        }
-        cnt += 1;
-    })
-    return cnt;
+    return min_dist;
 }
 
 // 局部卡路线
@@ -706,6 +708,113 @@ bool Field_info::block_route(int tank1, int tank2, const Field_map &field_map) c
         pos3 = get_adjacent_position(pos3, dir);
     }
     return false;
+}
+
+// <斩杀领先的步数, 最短的斩杀步数>
+pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const Field_map &field_map) const {
+    int base_color = 1 - (tank1 >> 1);
+    int base_row = base_color << 3; // BLUE -> RED BASE
+    int next_row = 1 + base_color * 6;
+    unsigned min_ahead_dist = unsigned(-1);
+    int max_ahead = INT_MIN;
+
+    for (int i = 0; i != 9; ++i) {
+        if (i == 4) {
+            continue;
+        }
+
+        unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank1][i][base_row];
+        int min_ahead = INT_MAX;
+
+        // 考虑在哪被拦截
+        if (i < 4) {
+            for (int j = i + 1; j != 4; ++j) {
+                int e_dist = distance_map[tank2][j][next_row];
+                if (min_ahead > e_dist + 2 - dist) {
+                    min_ahead = e_dist + 2 - dist;
+                }
+            }
+        } else {
+            for (int j = 5; j != i; ++j) {
+                int e_dist = distance_map[tank2][j][next_row];
+                if (min_ahead > e_dist + 2 - dist) {
+                    min_ahead = e_dist + 2 - dist;
+                }
+            }
+        }
+
+        int ahead = distance_map[tank2][i][base_row] + 1 - distance_map[tank1][i][base_row];
+        if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
+            ahead += 1;
+        }
+        if (min_ahead > ahead) {
+            min_ahead = ahead;
+        }
+
+        // 考虑竖直方向位置造成的拦截关系
+        if (block_route(tank2, tank1, field_map)) {
+            min_ahead -= 1;
+        }
+
+        if (min_ahead > max_ahead) {
+            max_ahead = min_ahead;
+        }
+        if (min_ahead_dist > dist) {
+            min_ahead_dist = dist;
+        }
+    }
+
+    return make_pair(max_ahead, min_ahead_dist);
+}
+
+// 保证己方双坦都在 <操作需要的步数, 第一波威胁对面需要的步数>
+pair<unsigned, unsigned> Field_info::dist_to_shoot_after(int tank, const Field_map &field_map) const {
+    int enemy_color = tank >> 1;
+    int our_color = 1 - enemy_color;
+
+    unsigned follow_dist = dist_to_shoot_base(tank, field_map, false);
+    unsigned total_dist[4] = {unsigned(-1), unsigned(-1), unsigned(-1), unsigned(-1)},
+            first_dist[4] = {unsigned(-1), unsigned(-1), unsigned(-1), unsigned(-1)};
+
+    Position pos = field_map.get_tank(tank);
+
+    for (int k = 0; k != 2; ++k) {
+        for (int i = 0; i != 9; ++i) {
+            if (fire_map[tank][i][pos.y]) {
+                int tank2 = (our_color << 1) + k;
+                unsigned dist = distance_map[tank2][i][pos.y];
+                if (dist == 0 && !field_map.get_loaded(tank2)) {
+                    dist += 1;
+                }
+                if (total_dist[k] > dist + abs(pos.x - i) + 1 + follow_dist) {
+                    total_dist[k] = dist + abs(pos.x - i) + 1 + follow_dist;
+                }
+                if (first_dist[k] > dist + 1) {
+                    first_dist[k] = dist + 1;
+                }
+            }
+        }
+        for (int i = 0; i != 9; ++i) {
+            if (fire_map[tank][pos.x][i]) {
+                int tank2 = (our_color << 1) + k;
+                unsigned dist = distance_map[tank2][pos.x][i];
+                if (dist == 0 && !field_map.get_loaded(tank2)) {
+                    dist += 1;
+                }
+                if (total_dist[k + 2] > dist + abs(pos.y - i) + 1 + follow_dist) {
+                    total_dist[k + 2] = dist + abs(pos.y - i) + 1 + follow_dist;
+                }
+                if (first_dist[k + 2] > dist + 1) {
+                    first_dist[k + 2] = dist + 1;
+                }
+            }
+        }
+    }
+
+    unsigned min_total_dist = min(max(total_dist[0], total_dist[3]), max(total_dist[1], total_dist[2])),
+            min_first_dist = min(max(first_dist[0], first_dist[3]), max(first_dist[1], first_dist[2]));
+
+    return make_pair(min_total_dist, min_first_dist);
 }
 
 void Field_info::print(const Field_map &field_map) const {
@@ -746,6 +855,14 @@ void Field_info::print(const Field_map &field_map) const {
             std::cout << std::endl;
         }
     }
+    // 打印 base_row_barrier
+    std::cout << "fire_map" << std::endl;
+    for (int i = 0; i != 2; ++i) {
+        for (int j = 0; j != 9; ++j) {
+            cout << std::setw(2) << right << base_row_barrier[i][j];
+        }
+        cout << endl;
+    }
     // dist to shoot base
     std::cout << "dist_to_shoot_base";
     for (int i = 0; i != 4; ++i) {
@@ -754,44 +871,45 @@ void Field_info::print(const Field_map &field_map) const {
         }
     }
     std::cout << std::endl;
-    // dist to fire
-    std::cout << "dist_to_fire";
+    // dist to shoot my base
+    std::cout << "dist_to_shoot_my_base";
+    for (int i = 0; i != 4; ++i) {
+        if (field_map.get_tank(i) != Null_pos) {
+            std::cout << ' ' << i << ':' << dist_to_shoot_base(i, field_map, false);
+        }
+    }
+    std::cout << std::endl;
+    // dist to shoot avoid
+    std::cout << "dist_to_shoot_avoid";
     for (int i = 0; i != 4; ++i) {
         if (field_map.get_tank(i) != Null_pos) {
             for (int j = 0; j != 2; ++j) {
                 int k = ((1 - i / 2) << 1) + j;
                 if (field_map.get_tank(k) != Null_pos) {
-                    std::cout << ' ' << i << ',' << k << ':' << dist_to_fire(i, k, field_map);
+                    auto p = dist_to_shoot_avoid(i, k, field_map);
+                    std::cout << ' ' << i << ',' << k << ':' << p.first << ',' << p.second;
                 }
             }
         }
     }
     std::cout << std::endl;
-    // dist to tank
-    std::cout << "dist_to_tank";
+    // dist to shoot after
+    std::cout << "dist_to_shoot_after";
     for (int i = 0; i != 4; ++i) {
         if (field_map.get_tank(i) != Null_pos) {
-            for (int j = 0; j != 4; ++j) {
-                if (field_map.get_tank(j) != Null_pos) {
-                    std::cout << ' ' << i << ',' << j << ':' << dist_to_tank(i, j, field_map);
+            bool has_both = true;
+            for (int j = 0; j != 2; ++j) {
+                int k = ((1 - i / 2) << 1) + j;
+                if (field_map.get_tank(k) != Null_pos) {
+                    has_both = false;
+                    break;
                 }
             }
-        }
-    }
-    std::cout << std::endl;
-    //area_fire
-    std::cout << "area_fire";
-    for (int i = 0; i != 4; ++i) {
-        if (field_map.get_tank(i) != Null_pos) {
-            std::cout << ' ' << i << ':' << area_fire(i, field_map);
-        }
-    }
-    std::cout << std::endl;
-    //area_move
-    std::cout << "area_move";
-    for (int i = 0; i != 4; ++i) {
-        if (field_map.get_tank(i) != Null_pos) {
-            std::cout << ' ' << i << ':' << area_move(i, field_map);
+            if (!has_both) {
+                continue;
+            }
+            auto p = dist_to_shoot_after(i, field_map);
+            std::cout << ' ' << i << ':' << p.first << ',' << p.second;
         }
     }
     std::cout << std::endl;
@@ -808,9 +926,10 @@ void Field_info::print(const Field_map &field_map) const {
 #include <cmath>
 #include <cstring>
 #include <iostream>
-//#include "def.hpp"
-//#include "Field_map.h"
-//#include "Field_info.h"
+#include <vector>
+
+
+
 
 constexpr int Argc = 10;
 constexpr double Argv[Argc] = {1, 1, 2, 0.01, 0.01, 4, 1, 10, 0.2, 10};
@@ -820,10 +939,13 @@ class Field {
     Field_info field_info;
     int ending = -2;
 public:
-    Field() : field_map(true), field_info(field_map) {}
+    Field(bool random_initialize=true) : field_map(random_initialize), field_info(field_map) {}
 
-    Field(const Field_map &field_map1) : field_map(field_map1), field_info(field_map1) {
-        print();
+    Field(const Field_map &field_map1): field_map(field_map1), field_info(field_map1) {
+        field_map.print();
+        field_info.print(field_map);
+        double* argv;
+        evaluate(argv, true);
     }
 
     Field(const Field &field) : field_map(field.field_map), field_info(field.field_info) {}
@@ -832,6 +954,16 @@ public:
         field_map.update(action1, action2);
         field_info.update(action1, action2, field_map);
         return field_map.judge();
+    }
+
+    Action find_history(vector<pair<Field_map, Action> > history) const {
+        Action action = {-2, -2};
+        for (auto p: history) {
+            if (p.first == field_map) {
+                return p.second;
+            }
+        }
+        return action;
     }
 
     // 0-蓝方赢 1-红方赢 -1-平局 2-继续
@@ -845,7 +977,7 @@ public:
     }
 
     // 返回蓝方胜率 (0,1) 禁止已经结束的局进入
-    double evaluate(double argv[Argc], bool if_print = false) {
+    double evaluate(double argv[Argc], bool if_print=false) {
 #ifdef _BOTZONE_ONLINE
         if_print = false;
 #endif
@@ -863,146 +995,51 @@ public:
                 if_tank_dead[i] = true;
             }
         }
-        // calc paired values
-        double single_threat[4][4] = {0}, single_counter[4][4] = {0};
+
+        // prepare values
+
+        unsigned dist_to_shoot_base[4];
+        pair<int, unsigned> dist_to_shoot_avoid[4][4];
+        unsigned min_dist_to_shoot_avoid[4];
+        pair<unsigned, unsigned> dist_to_shoot_after[4];
+
         for (int i = 0; i != 4; ++i) {
-            if (!if_tank_dead[i]) {
-                Color c1 = Color(i / 2), c2 = Color(1 - c1);
-                for (int j = 0; j != 2; ++j) {
-                    int k = (c2 << 1) + j;
-                    if (!if_tank_dead[k]) {
-                        single_threat[i][k] =
-                                double(1) / field_info.dist_to_tank(i, k, field_map) +
-                                argv[0] / field_info.dist_to_fire(i, k, field_map);
-                        single_counter[i][k] =
-                                double(1) / field_info.dist_to_fire(i, k, field_map) +
-                                argv[1] / field_info.dist_to_tank(i, k, field_map);
-                        if (field_info.block_route(i, k, field_map)) {
-                            single_counter[i][k] += argv[2];
-                        }
-                    }
+            min_dist_to_shoot_avoid[i] = unsigned(-1);
+            if (if_tank_dead[i]) {
+                continue;
+            }
+            dist_to_shoot_base[i] = field_info.dist_to_shoot_base(i, field_map);
+            bool both_has = true;
+            FOR_ENEMY(i, j, {
+                if (if_tank_dead[j]) {
+                    both_has = false;
+                    continue;
                 }
-            }
-        }
-
-        // calc single tank values
-        double single_invade[4], single_alive[4] = {0};
-        for (int i = 0; i != 4; ++i) {
-            if (!if_tank_dead[i]) {
-                Color c1 = Color(i / 2), c2 = Color(1 - c1);
-                int dist = field_info.dist_to_shoot_base(i, field_map);
-                single_invade[i] = double(100) / (dist * dist) +
-                                   argv[3] * field_info.area_fire(i, field_map);
-                single_alive[i] = argv[5];
-                for (int j = 0; j != 2; ++j) {
-                    int k = (c2 << 1) + j;
-                    single_invade[i] += argv[4] * single_threat[i][k];
-                    single_alive[i] += single_threat[k][i];
+                dist_to_shoot_avoid[i][j] = field_info.dist_to_shoot_avoid(i, j, field_map);
+                if (min_dist_to_shoot_avoid[i] > dist_to_shoot_avoid[i][j].second) {
+                    min_dist_to_shoot_avoid[i] = dist_to_shoot_avoid[i][j].second;
                 }
-            }
-
-        }
-        for (int i = 0; i != 4; ++i) {
-            single_invade[i] = pow(single_invade[i], argv[6]);
-            if (single_alive[i] != 0) {
-                int area_move = field_info.area_move(i, field_map);
-                single_alive[i] = ((8 - area_move) * area_move + argv[7]) / single_alive[i];
+            })
+            if (both_has) {
+                dist_to_shoot_after[i] = field_info.dist_to_shoot_after(i, field_map);
             }
         }
 
+        // calc basic values
 
-        // calc tank associated values
-        double single_attack[4] = {0}, single_defend[4] = {0};
-        for (int i = 0; i != 4; ++i) {
-            single_attack[i] = single_invade[i] * single_alive[i];
-            for (int j = 0; j != 2; ++j) {
-                int k = ((1 - i / 2) << 1) + j;
-                single_defend[i] += single_invade[k] * single_counter[i][k];
-            }
-        }
+        double blue = 0, red = 0;
+        blue -= 0.1 * (min_dist_to_shoot_avoid[0] + min_dist_to_shoot_avoid[1]);
+        red -= 0.1 * (min_dist_to_shoot_avoid[2] + min_dist_to_shoot_avoid[3]);
 
-        double single_tank[4];
-        for (int i = 0; i != 4; ++i) {
-            single_tank[i] = sqrt(single_attack[i] * single_attack[i] + argv[8] * single_defend[i] * single_defend[i]);
-        }
-
-
-        double blue = single_tank[0] + single_tank[1];
-        // double tank buff
-        if (!if_tank_dead[0] && !if_tank_dead[1]) {
-            blue += argv[9] * sqrt(single_invade[0] * single_invade[1]) /
-                    field_info.dist_to_tank(0, 1, field_map);
-        }
-
-        double red = single_tank[2] + single_tank[3];
-        // double tank buff
-        if (!if_tank_dead[2] && !if_tank_dead[3]) {
-            red += argv[9] * sqrt(single_invade[2] * single_invade[3]) /
-                   field_info.dist_to_tank(2, 3, field_map);
-        }
-
-        // 输出各项数值
         if (if_print) {
-            std::cout << "single_threat";
-            for (int i = 0; i != 4; ++i) {
-                for (int j = 0; j != 4; ++j) {
-                    std::cout << ' ' << single_threat[i][j];
-                }
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_counter";
-            for (int i = 0; i != 4; ++i) {
-                for (int j = 0; j != 4; ++j) {
-                    std::cout << ' ' << single_counter[i][j];
-                }
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_invade";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_invade[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_alive";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_alive[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_attack";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_attack[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_defend";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_defend[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << "single_tank";
-            for (int i = 0; i != 4; ++i) {
-                std::cout << ' ' << single_tank[i];
-            }
-            std::cout << std::endl;
-
-            std::cout << blue << ' ' << red << std::endl;
-            std::cout << blue / (blue + red) << std::endl;
+            std::cout << blue << " " << red << endl;
         }
 
-
-        return blue / (blue + red);
+        return double(1) / (1 + exp(red - blue));
     }
 
     bool is_avail(int tank, Move m) const {
         return field_map.is_avail(tank, m);
-    }
-
-    bool is_tank_alive(Color color, int i) const {
-        return field_map.get_tank((color << 1) + i) != Null_pos;
     }
 
     int get_round() {
@@ -1030,11 +1067,11 @@ public:
 #define TANK_IO_HANDLER_HPP
 
 #include <iostream>
-//#include "def.hpp"
-//#include "Field.hpp"
 #include "jsoncpp/json.h"
 
-Color recover_from_input(Field_map &field_map) {
+
+
+Color recover_from_input(Field_map &field_map, vector<pair<Field_map, Action> > history[2]) {
     Json::Reader reader;
     Json::Value input;
     std::string inputString;
@@ -1080,6 +1117,7 @@ Color recover_from_input(Field_map &field_map) {
         Action action[2];
         action[color] = Action{Move(response[0].asInt()), Move(response[1].asInt())};
         action[op_color(color)] = Action{Move(request[0].asInt()), Move(request[1].asInt())};
+        field_map.push_history(action[0], action[1], history);
         field_map.update(action[0], action[1]);
     }
 
@@ -1114,7 +1152,7 @@ void encode_output(Action action, std::string debug = "") {
 #define PROJECT_GREEDY_HPP
 
 #include <cstring>
-//#include "Field.hpp"
+
 
 class Minimax_players {
     double argv[20];
@@ -1136,7 +1174,7 @@ public:
         return field1.evaluate(argv);
     }
 
-    Action make_decision(Color color, const Field &field) {
+    Action make_decision(Color color, const Field &field, vector<pair<Field_map, Action> > history[2]) {
         // 判定双方可做的动作 (不管怎样 -1 应该都是可以的)
         bool is_avail[4][9];
         for (int i = 0; i != 4; ++i) {
@@ -1144,6 +1182,8 @@ public:
                 is_avail[i][m + 1] = field.is_avail(i, m);
             }
         }
+
+        Action a = field.find_history(history[1 - color]);
 
         // 带剪枝的 minimax
         Action ans = {-1, -1};
@@ -1158,23 +1198,35 @@ public:
                         continue;
                     }
                     double min_val = 1.0;
-                    for (int m3 = -1; m3 != 8; ++m3) {
-                        if (!is_avail[2][m3 + 1]) {
-                            continue;
+                    int m3, m4;
+
+                    if (a.move[0] != -2) {
+                        m3 = a.move[0];
+                        m4 = a.move[1];
+                        double val = get_val(m1, m2, m3, m4, field);
+                        if (val < min_val) {
+                            min_val = val;
                         }
-                        for (int m4 = -1; m4 != 8; ++m4) {
-                            if (!is_avail[3][m4 + 1]) {
+                    } else {
+                        for (m3 = -1; m3 != 8; ++m3) {
+                            if (!is_avail[2][m3 + 1]) {
                                 continue;
                             }
-                            double val = get_val(m1, m2, m3, m4, field);
-                            if (val < max_val) {
-                                goto label1;
-                            }
-                            if (val < min_val) {
-                                min_val = val;
+                            for (m4 = -1; m4 != 8; ++m4) {
+                                if (!is_avail[3][m4 + 1]) {
+                                    continue;
+                                }
+                                double val = get_val(m1, m2, m3, m4, field);
+                                if (val < max_val) {
+                                    goto label1;
+                                }
+                                if (val < min_val) {
+                                    min_val = val;
+                                }
                             }
                         }
                     }
+
                     if (min_val > max_val) {
                         max_val = min_val;
                         ans = Action{m1, m2};
@@ -1193,20 +1245,31 @@ public:
                         continue;
                     }
                     double max_val = 0.0;
-                    for (int m1 = -1; m1 != 8; ++m1) {
-                        if (!is_avail[0][m1 + 1]) {
-                            continue;
+                    int m1, m2;
+
+                    if (a.move[0] != -2) {
+                        m1 = a.move[0];
+                        m2 = a.move[1];
+                        double val = get_val(m1, m2, m3, m4, field);
+                        if (val > max_val) {
+                            max_val = val;
                         }
-                        for (int m2 = -1; m2 != 8; ++m2) {
-                            if (!is_avail[1][m2 + 1]) {
+                    } else {
+                        for (int m1 = -1; m1 != 8; ++m1) {
+                            if (!is_avail[0][m1 + 1]) {
                                 continue;
                             }
-                            double val = get_val(m1, m2, m3, m4, field);
-                            if (val > min_val) {
-                                goto label2;
-                            }
-                            if (val > max_val) {
-                                max_val = val;
+                            for (int m2 = -1; m2 != 8; ++m2) {
+                                if (!is_avail[1][m2 + 1]) {
+                                    continue;
+                                }
+                                double val = get_val(m1, m2, m3, m4, field);
+                                if (val > min_val) {
+                                    goto label2;
+                                }
+                                if (val > max_val) {
+                                    max_val = val;
+                                }
                             }
                         }
                     }
@@ -1219,14 +1282,6 @@ public:
             }
         }
 
-
-        // 但愿能踩到对面 bug
-        for (int i = 0; i != 2; ++i) {
-            if (!field.is_tank_alive(color, i)) {
-                ans.move[i] = Move(color << 1);
-            }
-        }
-        get_val(ans.move[0], ans.move[1], -1, -1, field, true);
         return ans;
     }
 };
@@ -1250,31 +1305,26 @@ void game_start();
 // Created by szc on 2018/10/16.
 //
 
-//#include "IO_handler.hpp"
-//#include "Minimax_players.hpp"
-//#include "Game.hpp"
-//#include "MCTS_player.hpp"
+
+
+
+
 #include <iostream>
 
 extern "C" {
 void game_start() {
     std::ios::sync_with_stdio(false);
 
+    vector<pair<Field_map, Action> > history[2];
     Field_map field_map = Field_map(false);
-    Color currentColor = recover_from_input(field_map);
-    Field field = Field(field_map);
+    Color currentColor = recover_from_input(field_map, history);
 
+    Field field = Field(field_map);
     Minimax_players player = Minimax_players();
-    Action action = player.make_decision(currentColor, field);
+    Action action = player.make_decision(currentColor, field, history);
     encode_output(action);
 }
 }
-
-//
-// Created by szc on 2018/10/16.
-//
-
-//#include "Game.hpp"
 
 int main() {
     game_start();

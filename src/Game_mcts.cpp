@@ -8,12 +8,15 @@
 #include "MCTS_player.hpp"
 #include <iostream>
 
+using namespace std;
+
 extern "C" {
 void game_start() {
-    std::ios::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
 
-    Field_map field_map = Field_map(false);
-    Color currentColor = recover_from_input(field_map);
+    vector<pair<Field_map, Action> > history[2];
+    Field_map field_map = Field(false);
+    Color currentColor = recover_from_input(field_map, history);
     Node node = Node(field_map);
 
     MCTS_player player = MCTS_player(currentColor);

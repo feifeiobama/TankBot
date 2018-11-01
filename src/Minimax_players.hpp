@@ -28,7 +28,9 @@ public:
         return field1.evaluate(argv);
     }
 
-    Action make_decision(Color color, const Field &field) {
+    Action make_decision(Color color, const Field &field, vector<pair<Field_map, Action> > history[2]) {
+        clock_t clk0 = clock();
+
         // 判定双方可做的动作 (不管怎样 -1 应该都是可以的)
         bool is_avail[4][9];
         for (int i = 0; i != 4; ++i) {
@@ -36,6 +38,8 @@ public:
                 is_avail[i][m + 1] = field.is_avail(i, m);
             }
         }
+
+        Action a = field.find_history(history[1 - color]);
 
         // 带剪枝的 minimax
         Action ans = {-1, -1};
@@ -50,23 +54,35 @@ public:
                         continue;
                     }
                     double min_val = 1.0;
-                    for (int m3 = -1; m3 != 8; ++m3) {
-                        if (!is_avail[2][m3 + 1]) {
-                            continue;
+                    int m3, m4;
+
+                    if (a.move[0] != -2) {
+                        m3 = a.move[0];
+                        m4 = a.move[1];
+                        double val = get_val(m1, m2, m3, m4, field);
+                        if (val < min_val) {
+                            min_val = val;
                         }
-                        for (int m4 = -1; m4 != 8; ++m4) {
-                            if (!is_avail[3][m4 + 1]) {
+                    } else {
+                        for (m3 = -1; m3 != 8; ++m3) {
+                            if (!is_avail[2][m3 + 1]) {
                                 continue;
                             }
-                            double val = get_val(m1, m2, m3, m4, field);
-                            if (val < max_val) {
-                                goto label1;
-                            }
-                            if (val < min_val) {
-                                min_val = val;
+                            for (m4 = -1; m4 != 8; ++m4) {
+                                if (!is_avail[3][m4 + 1]) {
+                                    continue;
+                                }
+                                double val = get_val(m1, m2, m3, m4, field);
+                                if (val < max_val) {
+                                    goto label1;
+                                }
+                                if (val < min_val) {
+                                    min_val = val;
+                                }
                             }
                         }
                     }
+
                     if (min_val > max_val) {
                         max_val = min_val;
                         ans = Action{m1, m2};
@@ -85,20 +101,31 @@ public:
                         continue;
                     }
                     double max_val = 0.0;
-                    for (int m1 = -1; m1 != 8; ++m1) {
-                        if (!is_avail[0][m1 + 1]) {
-                            continue;
+                    int m1, m2;
+
+                    if (a.move[0] != -2) {
+                        m1 = a.move[0];
+                        m2 = a.move[1];
+                        double val = get_val(m1, m2, m3, m4, field);
+                        if (val > max_val) {
+                            max_val = val;
                         }
-                        for (int m2 = -1; m2 != 8; ++m2) {
-                            if (!is_avail[1][m2 + 1]) {
+                    } else {
+                        for (int m1 = -1; m1 != 8; ++m1) {
+                            if (!is_avail[0][m1 + 1]) {
                                 continue;
                             }
-                            double val = get_val(m1, m2, m3, m4, field);
-                            if (val > min_val) {
-                                goto label2;
-                            }
-                            if (val > max_val) {
-                                max_val = val;
+                            for (int m2 = -1; m2 != 8; ++m2) {
+                                if (!is_avail[1][m2 + 1]) {
+                                    continue;
+                                }
+                                double val = get_val(m1, m2, m3, m4, field);
+                                if (val > min_val) {
+                                    goto label2;
+                                }
+                                if (val > max_val) {
+                                    max_val = val;
+                                }
                             }
                         }
                     }
@@ -111,14 +138,11 @@ public:
             }
         }
 
+        clock_t clk1 = clock();
+#ifndef _BOTZONE_ONLINE
+        cout << "time: " << (clk1 - clk0) / double(CLOCKS_PER_SEC) << endl;
+#endif
 
-        // 但愿能踩到对面 bug
-        for (int i = 0; i != 2; ++i) {
-            if (!field.is_tank_alive(color, i)) {
-                ans.move[i] = Move(color << 1);
-            }
-        }
-        get_val(ans.move[0], ans.move[1], -1, -1, field, true);
         return ans;
     }
 };

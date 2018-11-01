@@ -9,6 +9,9 @@
 //#define _BOTZONE_ONLINE
 #endif
 
+#include <cstdint>
+#include <limits>
+
 
 struct Position {
     int x, y;
@@ -84,5 +87,12 @@ for (int i = 0; i != 9; ++i) {\
         expression\
     }\
 }
+
+#define FOR_ENEMY(i, j, expression)\
+int c = i >> 1;\
+for (int j = 2 - (c << 1); j != 4 - (c << 1); ++j) {\
+    expression\
+}
+
 
 #endif //TANK_DEF_HPP

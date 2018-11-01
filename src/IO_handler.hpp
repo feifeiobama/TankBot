@@ -10,21 +10,23 @@
 #include "Field.hpp"
 #include "jsoncpp/json.h"
 
-Color recover_from_input(Field_map &field_map) {
+using namespace std;
+
+Color recover_from_input(Field_map &field_map, vector<pair<Field_map, Action> > history[2]) {
     Json::Reader reader;
     Json::Value input;
-    std::string inputString;
+    string inputString;
     do {
-        getline(std::cin, inputString);
+        getline(cin, inputString);
     } while (inputString.empty());
 #ifndef _BOTZONE_ONLINE
     // 猜测是单行还是多行
     char lastChar = inputString[inputString.size() - 1];
     if (lastChar != '}' && lastChar != ']') {
         // 第一行不以}或]结尾，猜测是多行
-        std::string newString;
+        string newString;
         do {
-            getline(std::cin, newString);
+            getline(cin, newString);
             inputString += newString;
         } while (newString != "}" && newString != "]");
     }
@@ -56,6 +58,7 @@ Color recover_from_input(Field_map &field_map) {
         Action action[2];
         action[color] = Action{Move(response[0].asInt()), Move(response[1].asInt())};
         action[op_color(color)] = Action{Move(request[0].asInt()), Move(request[1].asInt())};
+        field_map.push_history(action[0], action[1], history);
         field_map.update(action[0], action[1]);
     }
 
@@ -63,7 +66,7 @@ Color recover_from_input(Field_map &field_map) {
     return color;
 }
 
-void encode_output(Action action, std::string debug = "") {
+void encode_output(Action action, string debug = "") {
 #ifdef _BOTZONE_ONLINE
     Json::FastWriter writer;
 #else
@@ -77,7 +80,7 @@ void encode_output(Action action, std::string debug = "") {
     if (!debug.empty()) {
         output["debug"] = debug;
     }
-    std::cout << writer.write(output) << std::endl;
+    cout << writer.write(output) << endl;
 }
 
 #endif //TANK_IO_HANDLER_HPP

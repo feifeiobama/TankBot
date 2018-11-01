@@ -8,6 +8,8 @@
 #include <random>
 #include <iomanip>
 
+using namespace std;
+
 double mutation_range = 0.5;
 double decay_rate = 0.995;
 int max_step = 40;
@@ -20,29 +22,29 @@ public:
     void read_player() {
         for (int player = 0; player != 3; ++player) {
             for (int i = 0; i != Argc; ++i) {
-                std::cin >> players[player][i];
+                cin >> players[player][i];
             }
         }
 
-        std::cout << "There are " << Argc << " args" << std::endl;
+        cout << "There are " << Argc << " args" << endl;
         for (int player = 0; player != 3; ++player) {
             print_player(player);
         }
     }
 
     void print_player(int player) {
-        std::cout << "Player " << player << ": ";
+        cout << "Player " << player << ": ";
         for (int i = 0; i != Argc; ++i) {
-            std::cout << std::fixed << std::setprecision(10) << std::right << std::setw(14) << players[player][i]
+            cout << fixed << setprecision(10) << right << setw(14) << players[player][i]
                       << ' ';
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 
     void anneal() {
 
 
-        std::cout << "anneal finished" << std::endl;
+        cout << "anneal finished" << endl;
     }
 
     int multi_simulate(int player1, int player2) {
@@ -60,33 +62,35 @@ public:
                 score[1] += 1;
             }
         }
-        std::cout << "SUMMARY: " << score[0] << ":" << score[1] << ", ";
+        cout << "SUMMARY: " << score[0] << ":" << score[1] << ", ";
         double sec = (clock() - start) / double(CLOCKS_PER_SEC);
-        std::cout << std::fixed << std::setprecision(4) << sec << " s." << std::endl;
+        cout << fixed << setprecision(4) << sec << " s." << endl;
         return score[0] - score[1];
     }
 
     int single_simulate(int player1, int player2, Minimax_players &greedy_player1, Minimax_players &greedy_player2) {
         time_t start = clock();
 
+        vector<pair<Field_map, Action> > history[2];
         Field field = Field();
         int result = 2;
         while (result == 2) {
-            Action action1 = greedy_player1.make_decision(BLUE, field);
-            Action action2 = greedy_player2.make_decision(RED, field);
+            Action action1 = greedy_player1.make_decision(BLUE, field, history);
+            Action action2 = greedy_player2.make_decision(RED, field, history);
+            field.push_history(action1, action2, history);
             result = field.update(action1, action2);
         }
 
         if (result == 1) {
-            std::cout << "Draw, ";
+            cout << "Draw, ";
         } else {
             int win_player = result == -1 ? player1 : player2;
-            std::cout << "Player " << win_player << " won, ";
+            cout << "Player " << win_player << " won, ";
         }
 
         double sec = (clock() - start) / double(CLOCKS_PER_SEC);
-        std::cout << field.get_round() << " rounds, ";
-        std::cout << std::fixed << std::setprecision(4) << sec << " s." << std::endl;
+        cout << field.get_round() << " rounds, ";
+        cout << fixed << setprecision(4) << sec << " s." << endl;
 
         return result;
     }
@@ -95,7 +99,7 @@ public:
 int main() {
     Play_ground play_ground = Play_ground();
 
-    std::ios::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
     play_ground.read_player();
     play_ground.anneal();
 }

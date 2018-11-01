@@ -6,6 +6,10 @@
 #define TANK_FIELD_MAP_H
 
 #include "def.hpp"
+#include <vector>
+#include <map>
+
+using namespace std;
 
 class Field_info;
 
@@ -26,6 +30,8 @@ public:
     int block_type(int i, int j) const;
 
     void set_brick(int i, int j);
+
+    void push_history(Action &action1, Action &action2, vector<pair<Field_map, Action> > history[2]) const;
 
     void update(Action &action1, Action &action2);
 
