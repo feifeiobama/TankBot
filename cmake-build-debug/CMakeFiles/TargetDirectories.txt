@@ -4,5 +4,4 @@
 /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles/Tank_minimax.dir
 /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles/Tank_minimax_library.dir
-/Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles/Tank_minimax_cpp.dir
 /Users/szc/Desktop/tank/cmake-build-debug/CMakeFiles/Anneal.dir

@@ -54,6 +54,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Tank_mcts.dir/DependInfo.cmake"
   "CMakeFiles/Tank_minimax.dir/DependInfo.cmake"
   "CMakeFiles/Tank_minimax_library.dir/DependInfo.cmake"
-  "CMakeFiles/Tank_minimax_cpp.dir/DependInfo.cmake"
   "CMakeFiles/Anneal.dir/DependInfo.cmake"
   )

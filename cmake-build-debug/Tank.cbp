@@ -205,48 +205,6 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Tank_minimax_cpp">
-				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/Tank_minimax_cpp" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_minimax_cpp"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Tank_minimax_cpp/fast">
-				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/Tank_minimax_cpp" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_minimax_cpp/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="Anneal">
 				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/Anneal" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
@@ -290,9 +248,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/szc/Desktop/tank/cpp/minimax.cpp">
-			<Option target="Tank_minimax_cpp"/>
-		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/Field.hpp">
 			<Option target="Tank_mcts_library"/>
 			<Option target="Tank_mcts"/>

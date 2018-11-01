@@ -213,6 +213,7 @@ int Field_map::get_map(int i) const {
 
 void Field_map::print() const {
 #ifndef _BOTZONE_ONLINE
+    cout << round << endl;
     char map[9][10] = {'\0'};
     bool multi[9][9] = {0};
     FOR_THE_FIELD(i, j, {

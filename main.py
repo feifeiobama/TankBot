@@ -1,4 +1,4 @@
 import ctypes
 
-lib = ctypes.cdll.LoadLibrary("./data/Tank_greedy_library.so")
+lib = ctypes.cdll.LoadLibrary("./data/Tank_minimax_library.so")
 lib.game_start()

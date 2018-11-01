@@ -163,19 +163,6 @@ Tank_minimax_library/fast:
 .PHONY : Tank_minimax_library/fast
 
 #=============================================================================
-# Target rules for targets named Tank_minimax_cpp
-
-# Build rule for target.
-Tank_minimax_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Tank_minimax_cpp
-.PHONY : Tank_minimax_cpp
-
-# fast build rule for target.
-Tank_minimax_cpp/fast:
-	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/build
-.PHONY : Tank_minimax_cpp/fast
-
-#=============================================================================
 # Target rules for targets named Anneal
 
 # Build rule for target.
@@ -187,33 +174,6 @@ Anneal: cmake_check_build_system
 Anneal/fast:
 	$(MAKE) -f CMakeFiles/Anneal.dir/build.make CMakeFiles/Anneal.dir/build
 .PHONY : Anneal/fast
-
-cpp/minimax.o: cpp/minimax.cpp.o
-
-.PHONY : cpp/minimax.o
-
-# target to build an object file
-cpp/minimax.cpp.o:
-	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/cpp/minimax.cpp.o
-.PHONY : cpp/minimax.cpp.o
-
-cpp/minimax.i: cpp/minimax.cpp.i
-
-.PHONY : cpp/minimax.i
-
-# target to preprocess a source file
-cpp/minimax.cpp.i:
-	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/cpp/minimax.cpp.i
-.PHONY : cpp/minimax.cpp.i
-
-cpp/minimax.s: cpp/minimax.cpp.s
-
-.PHONY : cpp/minimax.s
-
-# target to generate assembly for a file
-cpp/minimax.cpp.s:
-	$(MAKE) -f CMakeFiles/Tank_minimax_cpp.dir/build.make CMakeFiles/Tank_minimax_cpp.dir/cpp/minimax.cpp.s
-.PHONY : cpp/minimax.cpp.s
 
 src/Field_info.o: src/Field_info.cpp.o
 
@@ -422,11 +382,7 @@ help:
 	@echo "... Tank_minimax"
 	@echo "... edit_cache"
 	@echo "... Tank_minimax_library"
-	@echo "... Tank_minimax_cpp"
 	@echo "... Anneal"
-	@echo "... cpp/minimax.o"
-	@echo "... cpp/minimax.i"
-	@echo "... cpp/minimax.s"
 	@echo "... src/Field_info.o"
 	@echo "... src/Field_info.i"
 	@echo "... src/Field_info.s"
