@@ -9,6 +9,8 @@
 #include <cstring>
 #include <iostream>
 #include <vector>
+#include <cstdint>
+#include <limits>
 #include "def.hpp"
 #include "Field_map.h"
 #include "Field_info.h"

@@ -12,7 +12,6 @@
 #include <cstdint>
 #include <limits>
 
-
 struct Position {
     int x, y;
 };
