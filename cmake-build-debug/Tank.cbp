@@ -17,85 +17,11 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Tank_mcts_library">
-				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/libTank_mcts_library.dylib" prefix_auto="0" extension_auto="0"/>
+			<Target title="edit_cache">
 				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="3"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_mcts_library"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Tank_mcts_library/fast">
-				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/libTank_mcts_library.dylib" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="3"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_mcts_library/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Tank_mcts">
-				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/Tank_mcts" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_mcts"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Tank_mcts/fast">
-				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/Tank_mcts" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
-					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/System/Library/Frameworks"/>
-					<Add directory="/Library/Frameworks"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_mcts/fast"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -153,18 +79,8 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Tank_minimax_library">
-				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/libTank_minimax_library.dylib" prefix_auto="0" extension_auto="0"/>
+			<Target title="Tank_mcts_lib">
+				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/libTank_mcts_lib.dylib" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
@@ -178,14 +94,14 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_minimax_library"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_mcts_lib"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Tank_minimax_library/fast">
-				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/libTank_minimax_library.dylib" prefix_auto="0" extension_auto="0"/>
+			<Target title="Tank_mcts_lib/fast">
+				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/libTank_mcts_lib.dylib" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
@@ -199,7 +115,91 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_minimax_library/fast"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_mcts_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Tank_minimax_lib">
+				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/libTank_minimax_lib.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_minimax_lib"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Tank_minimax_lib/fast">
+				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/libTank_minimax_lib.dylib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_minimax_lib/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Tank_mcts">
+				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/Tank_mcts" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_mcts"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Tank_mcts/fast">
+				<Option output="/Users/szc/Desktop/tank/cmake-build-debug/Tank_mcts" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/szc/Desktop/tank/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 Tank_mcts/fast"/>
 					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/szc/Desktop/tank/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -249,80 +249,80 @@
 			</Target>
 		</Build>
 		<Unit filename="/Users/szc/Desktop/tank/src/Field.hpp">
-			<Option target="Tank_mcts_library"/>
-			<Option target="Tank_mcts"/>
 			<Option target="Tank_minimax"/>
-			<Option target="Tank_minimax_library"/>
+			<Option target="Tank_mcts_lib"/>
+			<Option target="Tank_minimax_lib"/>
+			<Option target="Tank_mcts"/>
 			<Option target="Anneal"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/Field_info.cpp">
-			<Option target="Tank_mcts_library"/>
-			<Option target="Tank_mcts"/>
 			<Option target="Tank_minimax"/>
-			<Option target="Tank_minimax_library"/>
+			<Option target="Tank_mcts_lib"/>
+			<Option target="Tank_minimax_lib"/>
+			<Option target="Tank_mcts"/>
 			<Option target="Anneal"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/Field_info.h">
-			<Option target="Tank_mcts_library"/>
-			<Option target="Tank_mcts"/>
 			<Option target="Tank_minimax"/>
-			<Option target="Tank_minimax_library"/>
+			<Option target="Tank_mcts_lib"/>
+			<Option target="Tank_minimax_lib"/>
+			<Option target="Tank_mcts"/>
 			<Option target="Anneal"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/Field_map.cpp">
-			<Option target="Tank_mcts_library"/>
-			<Option target="Tank_mcts"/>
 			<Option target="Tank_minimax"/>
-			<Option target="Tank_minimax_library"/>
+			<Option target="Tank_mcts_lib"/>
+			<Option target="Tank_minimax_lib"/>
+			<Option target="Tank_mcts"/>
 			<Option target="Anneal"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/Field_map.h">
-			<Option target="Tank_mcts_library"/>
-			<Option target="Tank_mcts"/>
 			<Option target="Tank_minimax"/>
-			<Option target="Tank_minimax_library"/>
+			<Option target="Tank_mcts_lib"/>
+			<Option target="Tank_minimax_lib"/>
+			<Option target="Tank_mcts"/>
 			<Option target="Anneal"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/Game.hpp">
-			<Option target="Tank_mcts"/>
 			<Option target="Tank_minimax"/>
+			<Option target="Tank_mcts"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/Game_mcts.cpp">
-			<Option target="Tank_mcts_library"/>
+			<Option target="Tank_mcts_lib"/>
 			<Option target="Tank_mcts"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/Game_minimax.cpp">
 			<Option target="Tank_minimax"/>
-			<Option target="Tank_minimax_library"/>
+			<Option target="Tank_minimax_lib"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/IO_handler.hpp">
-			<Option target="Tank_mcts_library"/>
-			<Option target="Tank_mcts"/>
 			<Option target="Tank_minimax"/>
-			<Option target="Tank_minimax_library"/>
+			<Option target="Tank_mcts_lib"/>
+			<Option target="Tank_minimax_lib"/>
+			<Option target="Tank_mcts"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/MCTS_player.hpp">
-			<Option target="Tank_mcts_library"/>
+			<Option target="Tank_mcts_lib"/>
 			<Option target="Tank_mcts"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/Minimax_players.hpp">
 			<Option target="Tank_minimax"/>
-			<Option target="Tank_minimax_library"/>
+			<Option target="Tank_minimax_lib"/>
 			<Option target="Anneal"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/anneal.cpp">
 			<Option target="Anneal"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/def.hpp">
-			<Option target="Tank_mcts_library"/>
-			<Option target="Tank_mcts"/>
 			<Option target="Tank_minimax"/>
-			<Option target="Tank_minimax_library"/>
+			<Option target="Tank_mcts_lib"/>
+			<Option target="Tank_minimax_lib"/>
+			<Option target="Tank_mcts"/>
 			<Option target="Anneal"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/src/main.cpp">
-			<Option target="Tank_mcts"/>
 			<Option target="Tank_minimax"/>
+			<Option target="Tank_mcts"/>
 		</Unit>
 		<Unit filename="/Users/szc/Desktop/tank/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

@@ -7,10 +7,6 @@
 
 #define __STDC_LIMIT_MACROS
 
-#ifndef _BOTZONE_ONLINE
-//#define _BOTZONE_ONLINE
-#endif
-
 #include <cstdint>
 #include <limits>
 #include <climits>

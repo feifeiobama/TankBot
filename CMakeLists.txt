@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(base src/def.hpp src/Field_info.cpp src/Field_map.cpp src/Field.hpp)
 set(exe_entry src/main.cpp src/Game.hpp)
 
-add_definitions(-D_BOTZONE_ONLINE)
+#add_definitions(-D_BOTZONE_ONLINE)
 
 add_executable(Anneal src/anneal.cpp src/Minimax_players.hpp ${base})
 add_executable(Tank_minimax ${exe_entry} src/Game_minimax.cpp src/Minimax_players.hpp src/IO_handler.hpp ${base})

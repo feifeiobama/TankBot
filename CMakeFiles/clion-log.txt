@@ -1,4 +1,0 @@
-Cannot generate into /Users/szc/Desktop/tank
-It is already used for project /media/psf/Home/Desktop/tank
-
-Please either delete it manually or select another generation directory

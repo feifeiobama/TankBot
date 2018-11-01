@@ -50,9 +50,9 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Tank_mcts_library.dir/DependInfo.cmake"
-  "CMakeFiles/Tank_mcts.dir/DependInfo.cmake"
   "CMakeFiles/Tank_minimax.dir/DependInfo.cmake"
-  "CMakeFiles/Tank_minimax_library.dir/DependInfo.cmake"
+  "CMakeFiles/Tank_mcts_lib.dir/DependInfo.cmake"
+  "CMakeFiles/Tank_minimax_lib.dir/DependInfo.cmake"
+  "CMakeFiles/Tank_mcts.dir/DependInfo.cmake"
   "CMakeFiles/Anneal.dir/DependInfo.cmake"
   )
