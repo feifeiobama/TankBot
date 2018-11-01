@@ -22,20 +22,6 @@ Field_map.h
 Field_info.h
 /Users/szc/Desktop/tank/src/Field_info.h
 
-/Users/szc/Desktop/tank/src/Field_info.cpp
-cstring
--
-iostream
--
-iomanip
--
-stack
--
-Field_info.h
-/Users/szc/Desktop/tank/src/Field_info.h
-Field_map.h
-/Users/szc/Desktop/tank/src/Field_map.h
-
 /Users/szc/Desktop/tank/src/Field_info.h
 def.hpp
 /Users/szc/Desktop/tank/src/def.hpp
@@ -43,20 +29,6 @@ map
 -
 vector
 -
-
-/Users/szc/Desktop/tank/src/Field_map.cpp
-stdlib.h
--
-ctime
--
-iostream
--
-cstring
--
-Field_map.h
-/Users/szc/Desktop/tank/src/Field_map.h
-Field_info.h
-/Users/szc/Desktop/tank/src/Field_info.h
 
 /Users/szc/Desktop/tank/src/Field_map.h
 def.hpp
@@ -229,8 +201,4 @@ stdexcept
 -
 ../jsoncpp.cpp
 /Users/szc/Desktop/tank/src/jsoncpp.cpp
-
-/Users/szc/Desktop/tank/src/main.cpp
-Game.hpp
-/Users/szc/Desktop/tank/src/Game.hpp
 

@@ -292,7 +292,69 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const 
         if (min_ahead > max_ahead) {
             max_ahead = min_ahead;
         }
-        if (min_ahead > 0 && min_ahead_dist > dist) {
+        if (min_ahead >= 0 && min_ahead_dist > dist) {
+            min_ahead_dist = dist;
+        }
+    }
+
+    return make_pair(max_ahead, min_ahead_dist);
+}
+
+// 保证对面有两个，返回 <斩杀领先的步数>=0, 最短的斩杀步数>
+pair<int, unsigned> Field_info::dist_to_shoot_avoid_both(int tank, const Field_map &field_map) const {
+    int base_color = 1 - (tank >> 1);
+    int tank1 = (base_color << 1), tank2 = (base_color << 1) + 1;
+    int base_row = base_color << 3; // BLUE -> RED BASE
+    int next_row = 1 + base_color * 6;
+    unsigned min_ahead_dist = unsigned(-1);
+    int max_ahead = INT_MIN;
+
+    for (int i = 0; i != 9; ++i) {
+        if (i == 4) {
+            continue;
+        }
+
+        unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank][i][base_row];
+        int min_ahead = INT_MAX;
+
+        // 考虑在哪被拦截
+        if (i < 4) {
+            for (int j = i + 1; j != 4; ++j) {
+                int e_dist = min(distance_map[tank1][j][next_row], distance_map[tank2][j][next_row]);
+                if (min_ahead > e_dist + 2 - dist) {
+                    min_ahead = e_dist + 2 - dist;
+                }
+            }
+        } else {
+            for (int j = 5; j != i; ++j) {
+                int e_dist = min(distance_map[tank1][j][next_row], distance_map[tank2][j][next_row]);
+                if (min_ahead > e_dist + 2 - dist) {
+                    min_ahead = e_dist + 2 - dist;
+                }
+            }
+        }
+
+        int ahead = min(distance_map[tank1][i][next_row], distance_map[tank2][i][next_row]) + 1 -
+                    distance_map[tank][i][base_row];
+        if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
+            ahead += 1;
+        }
+        if (min_ahead > ahead) {
+            min_ahead = ahead;
+        }
+
+        // 考虑竖直方向位置造成的拦截关系
+        if (block_route(tank1, tank, field_map)) {
+            min_ahead -= 1;
+        }
+        if (block_route(tank2, tank, field_map)) {
+            min_ahead -= 1;
+        }
+
+        if (min_ahead > max_ahead) {
+            max_ahead = min_ahead;
+        }
+        if (min_ahead >= 0 && min_ahead_dist > dist) {
             min_ahead_dist = dist;
         }
     }
@@ -459,6 +521,26 @@ void Field_info::print(const Field_map &field_map) const {
                     cout << ' ' << i << ',' << k << ':' << p.first << ',' << int(p.second);
                 }
             }
+        }
+    }
+    cout << endl;
+    // dist to shoot avoid
+    cout << "dist_to_shoot_avoid_both";
+    for (int i = 0; i != 4; ++i) {
+        if (field_map.get_tank(i) != Null_pos) {
+            bool has_both = true;
+            for (int j = 0; j != 2; ++j) {
+                int k = ((1 - i / 2) << 1) + j;
+                if (field_map.get_tank(k) == Null_pos) {
+                    has_both = false;
+                    break;
+                }
+            }
+            if (!has_both) {
+                continue;
+            }
+            auto p = dist_to_shoot_avoid_both(i, field_map);
+            cout << ' ' << i << ":" << p.first << "," << int(p.second);
         }
     }
     cout << endl;

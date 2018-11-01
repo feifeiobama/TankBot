@@ -14,17 +14,17 @@
 #include "Field_map.h"
 #include "Field_info.h"
 
-constexpr int Argc = 6;
-constexpr double Argv[Argc] = {0};
+constexpr int Argc = 8;
+constexpr double Argv[Argc] = {2, 0.05, 0.02, 0.002, 0.01, 0.01, 4, 0.1};
 
 class Field {
     Field_map field_map;
     Field_info field_info;
     int ending = -2;
 public:
-    Field(bool random_initialize=true) : field_map(random_initialize), field_info(field_map) {}
+    Field(bool random_initialize = true) : field_map(random_initialize), field_info(field_map) {}
 
-    Field(const Field_map &field_map1): field_map(field_map1), field_info(field_map1) {
+    Field(const Field_map &field_map1) : field_map(field_map1), field_info(field_map1) {
         print();
     }
 
@@ -62,10 +62,11 @@ public:
     }
 
     // 返回蓝方胜率 (0,1) 禁止已经结束的局进入
-    double evaluate(double argv[Argc], bool if_print=false) {
+    double evaluate(double argv[Argc], bool if_print = false) {
 #ifdef _BOTZONE_ONLINE
         if_print = false;
 #endif
+
         int pre_judge = judge();
         if (pre_judge == -1) {
             return 0.5;
@@ -85,6 +86,7 @@ public:
 
         unsigned dist_to_shoot_base[4];
         pair<int, unsigned> dist_to_shoot_avoid[4][4];
+        pair<int, unsigned> dist_to_shoot_avoid_both[4];
         pair<unsigned, unsigned> dist_to_shoot_after[4];
         unsigned area_fire[4];
         unsigned area_move[4];
@@ -108,6 +110,7 @@ public:
             })
             if (has_both[1 - (i >> 1)]) {
                 dist_to_shoot_after[i] = field_info.dist_to_shoot_after(i, field_map);
+                dist_to_shoot_avoid_both[i] = field_info.dist_to_shoot_avoid_both(i, field_map);
             }
         }
 
@@ -119,17 +122,22 @@ public:
                 int i = (c << 1) + k;
                 if (!if_tank_dead[i]) {
                     score[c] += argv[0];
-                    score[c] += argv[1] * dist_to_shoot_base[i];
+                    score[c] -= argv[1] * dist_to_shoot_base[i];
 
                     int min_ahead = INT_MIN;
-                    FOR_ENEMY(i, j, {
-                        if (!if_tank_dead[j]) {
-                            if (min_ahead < dist_to_shoot_avoid[i][j].first) {
-                                min_ahead = dist_to_shoot_avoid[i][j].first;
+                    if (has_both[1 - c]) {
+                        min_ahead = dist_to_shoot_avoid_both[i].first;
+                    } else {
+                        FOR_ENEMY(i, j, {
+                            if (!if_tank_dead[j]) {
+                                if (min_ahead < dist_to_shoot_avoid[i][j].first) {
+                                    min_ahead = dist_to_shoot_avoid[i][j].first;
+                                }
+                                break;
                             }
-                        }
-                    })
-                    score[c] -= argv[2] * min_ahead;
+                        })
+                    }
+                    score[c] += argv[2] * min_ahead;
 
                     score[c] += argv[3] * area_fire[i];
                     score[c] += argv[4] * area_move[i];
@@ -152,6 +160,220 @@ public:
 
         // add kill judge
 
+        unsigned min_step = unsigned(-1);
+        for (int i = 0; i != 6; ++i) {
+            if (i >= 4 && (!has_both[0] || if_tank_dead[i - 2])) {
+                continue;
+            }
+
+            unsigned max_step = 0;
+            for (int j = 0; j != 6; ++j) {
+                if (j >= 4 && (!has_both[1] || if_tank_dead[j - 4])) {
+                    continue;
+                }
+
+                if (i >= 4 && j >= 4) {
+                    unsigned dist1 = dist_to_shoot_after[i - 2].second,
+                            dist2 = dist_to_shoot_after[j - 4].second;
+                    if (dist1 >= dist2) {
+                        goto skip_first_loop;
+                    } else {
+                        unsigned step = dist_to_shoot_after[i - 2].first;
+                        if (step > max_step) {
+                            max_step = step;
+                        }
+                    }
+                } else if (i >= 4 || j >= 4) {
+                    unsigned dist1 = unsigned(-1), dist2 = unsigned(-1);
+                    if (i >= 4) {
+                        int tank_id = i - 2;
+                        int another_tank_id = tank_id / 2 + (1 - tank_id % 2);
+                        dist1 = dist_to_shoot_after[tank_id].first;
+                        if (!if_tank_dead[another_tank_id]) {
+                            dist2 = dist_to_shoot_base[another_tank_id];
+                        }
+                        if (dist2 > dist_to_shoot_avoid_both[tank_id].second) {
+                            dist2 = dist_to_shoot_avoid_both[tank_id].second;
+                        }
+                    } else {
+                        int tank_id = j - 4;
+                        int another_tank_id = tank_id / 2 + (1 - tank_id % 2);
+                        dist2 = dist_to_shoot_after[tank_id].first;
+                        if (!if_tank_dead[another_tank_id]) {
+                            dist1 = dist_to_shoot_base[another_tank_id];
+                        }
+                        if (dist1 > dist_to_shoot_avoid_both[tank_id].second) {
+                            dist1 = dist_to_shoot_avoid_both[tank_id].second;
+                        }
+                    }
+                    if (dist1 >= dist2) {
+                        goto skip_first_loop;
+                    } else {
+                        if (dist1 > max_step) {
+                            max_step = dist1;
+                        }
+                    }
+                } else {
+                    int action[4] = {i % 2, i / 2, j % 2, j / 2};
+                    unsigned dist[4] = {unsigned(-1), unsigned(-1), unsigned(-1), unsigned(-1)};
+                    for (int t = 0; t != 4; ++t) {
+                        if (if_tank_dead[t]) {
+                            continue;
+                        }
+                        if (action[t] != 1) {
+                            continue;
+                        }
+                        dist[t] = dist_to_shoot_base[t];
+
+                        bool both_defend = true;
+                        FOR_ENEMY(t, e, {
+                            if (if_tank_dead[e]) {
+                                both_defend = false;
+                                continue;
+                            }
+                            if (action[e] == 1) {
+                                both_defend = false;
+                                continue;
+                            }
+                            if (dist_to_shoot_avoid[t][e].second > dist[t]) {
+                                dist[t] = dist_to_shoot_avoid[t][e].second;
+                            }
+                        })
+
+                        if (both_defend) {
+                            dist[t] = dist_to_shoot_avoid_both[t].second;
+                        }
+                    }
+                    unsigned min_dist1 = min(dist[0], dist[1]), min_dist2 = min(dist[2], dist[3]);
+                    if (min_dist1 >= min_dist2) {
+                        goto skip_first_loop;
+                    } else {
+                        if (min_dist1 > max_step) {
+                            max_step = min_dist1;
+                        }
+                    }
+                }
+            }
+            if (min_step > max_step) {
+                min_step = max_step;
+            }
+            skip_first_loop:;
+        }
+        if (if_print) {
+            cout << "blue kill " << int(min_step) << endl;
+        }
+        if (min_step != unsigned(-1)) {
+            score[0] += (argv[6] - argv[7] * min_step);
+            goto skip_red;
+        }
+
+        min_step = unsigned(-1);
+        for (int i = 0; i != 6; ++i) {
+            if (i >= 4 && (!has_both[1] || if_tank_dead[i - 4])) {
+                continue;
+            }
+
+            unsigned max_step = 0;
+            for (int j = 0; j != 6; ++j) {
+                if (j >= 4 && (!has_both[0] || if_tank_dead[j - 2])) {
+                    continue;
+                }
+
+                if (i >= 4 && j >= 4) {
+                    unsigned dist1 = dist_to_shoot_after[i - 4].second,
+                            dist2 = dist_to_shoot_after[j - 2].second;
+                    if (dist1 >= dist2) {
+                        goto skip_second_loop;
+                    } else {
+                        unsigned step = dist_to_shoot_after[i - 4].first;
+                        if (step > max_step) {
+                            max_step = step;
+                        }
+                    }
+                } else if (i >= 4 || j >= 4) {
+                    unsigned dist1 = unsigned(-1), dist2 = unsigned(-1);
+                    if (i >= 4) {
+                        int tank_id = i - 4;
+                        int another_tank_id = tank_id / 2 + (1 - tank_id % 2);
+                        dist1 = dist_to_shoot_after[tank_id].first;
+                        if (!if_tank_dead[another_tank_id]) {
+                            dist2 = dist_to_shoot_base[another_tank_id];
+                        }
+                        if (dist2 > dist_to_shoot_avoid_both[tank_id].second) {
+                            dist2 = dist_to_shoot_avoid_both[tank_id].second;
+                        }
+                    } else {
+                        int tank_id = j - 2;
+                        int another_tank_id = tank_id / 2 + (1 - tank_id % 2);
+                        dist2 = dist_to_shoot_after[tank_id].first;
+                        if (!if_tank_dead[another_tank_id]) {
+                            dist1 = dist_to_shoot_base[another_tank_id];
+                        }
+                        if (dist1 > dist_to_shoot_avoid_both[tank_id].second) {
+                            dist1 = dist_to_shoot_avoid_both[tank_id].second;
+                        }
+                    }
+                    if (dist1 >= dist2) {
+                        goto skip_second_loop;
+                    } else {
+                        if (dist1 > max_step) {
+                            max_step = dist1;
+                        }
+                    }
+                } else {
+                    int action[4] = {j % 2, j / 2, i % 2, i / 2};
+                    unsigned dist[4] = {unsigned(-1), unsigned(-1), unsigned(-1), unsigned(-1)};
+                    for (int t = 0; t != 4; ++t) {
+                        if (if_tank_dead[t]) {
+                            continue;
+                        }
+                        if (action[t] != 1) {
+                            continue;
+                        }
+                        dist[t] = dist_to_shoot_base[t];
+
+                        bool both_defend = true;
+                        FOR_ENEMY(t, e, {
+                            if (if_tank_dead[e]) {
+                                both_defend = false;
+                                continue;
+                            }
+                            if (action[e] == 1) {
+                                both_defend = false;
+                                continue;
+                            }
+                            if (dist_to_shoot_avoid[t][e].second > dist[t]) {
+                                dist[t] = dist_to_shoot_avoid[t][e].second;
+                            }
+                        })
+
+                        if (both_defend) {
+                            dist[t] = dist_to_shoot_avoid_both[t].second;
+                        }
+                    }
+                    unsigned min_dist1 = min(dist[0], dist[1]), min_dist2 = min(dist[2], dist[3]);
+                    if (min_dist1 <= min_dist2) {
+                        goto skip_second_loop;
+                    } else {
+                        if (min_dist2 > max_step) {
+                            max_step = min_dist2;
+                        }
+                    }
+                }
+            }
+            if (min_step > max_step) {
+                min_step = max_step;
+            }
+            skip_second_loop:;
+        }
+        if (if_print) {
+            cout << "red kill " << int(min_step) << endl;
+        }
+        if (min_step != unsigned(-1)) {
+            score[1] += (argv[6] - argv[7] * min_step);
+        }
+
+        skip_red:;
 
         double eval = double(1) / (1 + exp(score[1] - score[0]));
         if (if_print) {

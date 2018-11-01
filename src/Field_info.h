@@ -14,16 +14,18 @@ using namespace std;
 class Field_map;
 
 /*
- * 0 1 2 3 4 5 6 7 8 pos.x
- * 1 A B
- * 2 A B
- * 3 A B
- * 4 A B
- * 5 A B
- * 6 A B
- * 7 A B
- * 8 A B
- * pos.y
+ *       0 1 2 3 4 5 6 7
+ *     . ---------------> pos.x
+ *   0 | A B C D E F G H
+ *   1 | A B C D E F G H
+ *   2 | A B C D E F G H
+ *   3 | A B C D E F G H
+ *   4 | A B C D E F G H
+ *   5 | A B C D E F G H
+ *   6 | A B C D E F G H
+ *   7 | A B C D E F G H
+ *     V
+ *   pos.y
  */
 
 // 各个坦克到周围距离信息的缓存, 位于MCT上每个节点，最好能够增量维护
@@ -54,8 +56,11 @@ public:
 
     bool block_route(int tank1, int tank2, const Field_map &field_map) const;
 
-    // <斩杀领先的步数, 最短的斩杀步数>
+    // <斩杀领先的步数>=0, 最短的斩杀步数>
     pair<int, unsigned> dist_to_shoot_avoid(int tank1, int tank2, const Field_map &field_map) const;
+
+    // 保证对面双坦都在，返回 <斩杀领先的步数>=0, 最短的斩杀步数>
+    pair<int, unsigned> dist_to_shoot_avoid_both(int tank, const Field_map &field_map) const;
 
     // 保证己方双坦都在 <完成骚操作操作需要的步数, 第一波威胁对面需要的步数>
     pair<unsigned, unsigned> dist_to_shoot_after(int tank, const Field_map &field_map) const;
