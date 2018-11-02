@@ -17,24 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fde8d7a-b06c-440a-a2c6-b29b165f58b3" name="Default Changelist" comment="1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Tank_minimax" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Tank_minimax" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/src/Field_info.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/src/Field_info.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/src/Field_map.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/src/Field_map.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/src/Game_minimax.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/src/Game_minimax.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/libTank_minimax_lib.so" beforeDir="false" afterPath="$PROJECT_DIR$/data/libTank_minimax_lib.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Field.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Field_info.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field_info.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Field_info.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field_info.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Field_map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field_map.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game_mcts.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_mcts.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game_minimax.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_minimax.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/anneal.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/anneal.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/CMakeFiles/" />
@@ -64,7 +47,7 @@
           <entry key="cmake" value="1" />
           <entry key="cpp" value="16" />
           <entry key="h" value="7" />
-          <entry key="hpp" value="20" />
+          <entry key="hpp" value="23" />
           <entry key="md" value="4" />
           <entry key="py" value="3" />
           <entry key="txt" value="9" />
@@ -75,17 +58,17 @@
           <entry key="CMakeCache.txt" value="1" />
           <entry key="CMakeLists.txt" value="9" />
           <entry key="Markdown" value="4" />
-          <entry key="ObjectiveC" value="44" />
+          <entry key="ObjectiveC" value="47" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="Python" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="3830" />
+          <entry key="cpp" value="3836" />
           <entry key="h" value="293" />
           <entry key="hpp" value="5067" />
-          <entry key="md" value="87" />
+          <entry key="md" value="113" />
           <entry key="py" value="3" />
           <entry key="txt" value="4" />
         </counts>
@@ -93,8 +76,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="3" />
-          <entry key="Markdown" value="87" />
-          <entry key="ObjectiveC" value="9190" />
+          <entry key="Markdown" value="113" />
+          <entry key="ObjectiveC" value="9196" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Python" value="3" />
         </counts>
@@ -110,8 +93,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/anneal.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="17" selection-start-line="17" selection-end-line="17" />
+                <state relative-caret-position="343">
+                  <caret line="51" column="91" selection-start-line="51" selection-start-column="91" selection-end-line="51" selection-end-column="91" />
                   <folding>
                     <element signature="e#40#60#0" expanded="true" />
                   </folding>
@@ -123,8 +106,8 @@
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="FIRST">
-                  <first_editor relative-caret-position="480">
-                    <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+                  <first_editor relative-caret-position="405">
+                    <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
                   </first_editor>
                   <second_editor />
                 </state>
@@ -138,8 +121,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/annealing.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="750">
-                  <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+                <state relative-caret-position="630">
+                  <caret line="91" column="30" lean-forward="true" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
                 </state>
               </provider>
             </entry>
@@ -166,16 +149,16 @@
       <list>
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/def.hpp" />
         <option value="$PROJECT_DIR$/src/Game_minimax.cpp" />
         <option value="$PROJECT_DIR$/src/Game_mcts.cpp" />
-        <option value="$PROJECT_DIR$/src/anneal.cpp" />
         <option value="$PROJECT_DIR$/src/Field_info.h" />
         <option value="$PROJECT_DIR$/src/Field_map.cpp" />
         <option value="$PROJECT_DIR$/src/Field.hpp" />
         <option value="$PROJECT_DIR$/src/Field_info.cpp" />
         <option value="$PROJECT_DIR$/src/Minimax_players.hpp" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/anneal.cpp" />
       </list>
     </option>
   </component>
@@ -291,18 +274,18 @@
       <option name="presentableId" value="Default" />
       <updated>1541058040834</updated>
       <workItem from="1541058044757" duration="503000" />
-      <workItem from="1541058571951" duration="51614000" />
+      <workItem from="1541058571951" duration="52898000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52117000" />
+    <option name="totallyTimeSpent" value="53401000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14774115" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14774115" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -338,9 +321,6 @@
     <entry file="file://$PROJECT_DIR$/CMakeCache.txt" />
     <entry file="file://$PROJECT_DIR$/cmake_install.cmake" />
     <entry file="file://$PROJECT_DIR$/Tank.cbp" />
-    <entry file="file://$PROJECT_DIR$/src/MCTS_player.hpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file:///Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/algorithm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
@@ -389,16 +369,6 @@
     <entry file="file://$PROJECT_DIR$/src/Game.hpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Field.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2745">
-          <caret line="193" column="70" selection-start-line="193" selection-start-column="70" selection-end-line="193" selection-end-column="70" />
-          <folding>
-            <element signature="e#1759#1776#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Field_map.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-410">
@@ -430,9 +400,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Field.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="17" column="71" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="71" />
+          <folding>
+            <element signature="e#1759#1776#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/annealing.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="91" column="30" lean-forward="true" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MCTS_player.hpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Minimax_players.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="-296">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
         </state>
       </provider>
@@ -440,24 +430,17 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="480">
-            <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
+          <first_editor relative-caret-position="405">
+            <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/annealing.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/anneal.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="343">
+          <caret line="51" column="91" selection-start-line="51" selection-start-column="91" selection-end-line="51" selection-end-column="91" />
           <folding>
             <element signature="e#40#60#0" expanded="true" />
           </folding>

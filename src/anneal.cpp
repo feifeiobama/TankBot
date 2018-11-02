@@ -49,8 +49,7 @@ public:
     }
 
     void anneal() {
-        int a[3] = {multi_simulate(0, 1), multi_simulate(0, 2), multi_simulate(1, 2)};
-        int record[2] = {a[0] + a[1], - a[0] + a[2]};
+        int record[3] = {multi_simulate(0, 1), multi_simulate(0, 2), multi_simulate(1, 2)};
 
         bool tag1 = true, tag2 = true;
         while(tag1 || tag2) {
