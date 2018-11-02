@@ -1,7 +1,0 @@
-/Users/szc/Desktop/tank/cmake-build-release/CMakeFiles/edit_cache.dir
-/Users/szc/Desktop/tank/cmake-build-release/CMakeFiles/rebuild_cache.dir
-/Users/szc/Desktop/tank/cmake-build-release/CMakeFiles/Tank_minimax.dir
-/Users/szc/Desktop/tank/cmake-build-release/CMakeFiles/Tank_mcts_lib.dir
-/Users/szc/Desktop/tank/cmake-build-release/CMakeFiles/Tank_minimax_lib.dir
-/Users/szc/Desktop/tank/cmake-build-release/CMakeFiles/Tank_mcts.dir
-/Users/szc/Desktop/tank/cmake-build-release/CMakeFiles/Anneal.dir

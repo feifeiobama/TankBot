@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3   CMakeFiles/Tank_mcts.dir/src/main.cpp.o CMakeFiles/Tank_mcts.dir/src/Game_mcts.cpp.o CMakeFiles/Tank_mcts.dir/src/Field_info.cpp.o CMakeFiles/Tank_mcts.dir/src/Field_map.cpp.o  -o Tank_mcts 

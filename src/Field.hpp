@@ -14,8 +14,9 @@
 #include "Field_map.h"
 #include "Field_info.h"
 
-constexpr int Argc = 8;
-constexpr double Argv[Argc] = {2, 0.05, 0.02, 0.002, 0.01, 0.01, 4, 0.1};
+constexpr int Argc = 9;
+constexpr double Argv[Argc] = {4.3955680634, 0.0338705485, 0.0154156685, 0.0017443425, 0.0169060982, 0.0035423176,
+                               2.5964951784, 0.0701474018, 1};
 
 class Field {
     Field_map field_map;
@@ -181,7 +182,8 @@ public:
                         if (!if_tank_dead[another_tank_id]) {
                             dist2 = dist_to_shoot_base[another_tank_id];
                         }
-                        if (dist_to_shoot_after[tank_id].second > 1 && dist2 > dist_to_shoot_avoid_both[tank_id].second) {
+                        if (dist_to_shoot_after[tank_id].second > 1 &&
+                            dist2 > dist_to_shoot_avoid_both[tank_id].second) {
                             dist2 = dist_to_shoot_avoid_both[tank_id].second;
                         }
                     }
@@ -194,7 +196,8 @@ public:
                         if (!if_tank_dead[another_tank_id] && dist1 > dist_to_shoot_base[another_tank_id]) {
                             dist1 = dist_to_shoot_base[another_tank_id];
                         }
-                        if (dist_to_shoot_after[tank_id].second > 1 && dist1 > dist_to_shoot_avoid_both[tank_id].second) {
+                        if (dist_to_shoot_after[tank_id].second > 1 &&
+                            dist1 > dist_to_shoot_avoid_both[tank_id].second) {
                             dist1 = dist_to_shoot_avoid_both[tank_id].second;
                         }
                     }
@@ -370,7 +373,7 @@ public:
 
         skip_red:;
 
-        double eval = double(1) / (1 + exp(score[1] - score[0]));
+        double eval = double(1) / (1 + exp(argv[8] * (score[1] - score[0])));
         if (if_print) {
             cout << score[0] << " " << score[1] << " " << eval << endl;
         }

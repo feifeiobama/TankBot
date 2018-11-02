@@ -31,9 +31,6 @@ val = sum(argv[0] * tank - argv[1] * dist + argv[2] * min_ahead +
 
 若一方全胜 val += argv[6] - argv[7] * 斩杀步数
  
-(3) 最后sigmoid(alpha* (blue - red))
-
-#### 参数的进化
-
-    2.0 0.05 0.02 0.002 0.01 0.01 4.0 0.1
-
+(3) 最后sigmoid(argv[8] * (blue - red))
+     
+    

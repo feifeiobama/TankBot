@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3   CMakeFiles/Anneal.dir/src/anneal.cpp.o CMakeFiles/Anneal.dir/src/Field_info.cpp.o CMakeFiles/Anneal.dir/src/Field_map.cpp.o  -o Anneal 
