@@ -79,6 +79,8 @@ MCTS_player.hpp
 /media/psf/Home/Desktop/tank/src/MCTS_player.hpp
 iostream
 -
+random
+-
 
 /media/psf/Home/Desktop/tank/src/IO_handler.hpp
 iostream

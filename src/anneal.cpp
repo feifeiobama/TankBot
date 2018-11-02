@@ -7,6 +7,7 @@
 #include <iostream>
 #include <random>
 #include <iomanip>
+#include <cstdlib>
 
 using namespace std;
 
@@ -32,6 +33,12 @@ public:
         }
     }
 
+    void mutation(int player) {
+        for (int i = 0; i != Argc; ++i) {
+            mutate_player[i] = players[player][i] * pow(2.0, (drand48() - 0.5) * mutation_range);
+        }
+    }
+
     void print_player(int player) {
         cout << "Player " << player << ": ";
         for (int i = 0; i != Argc; ++i) {
@@ -42,7 +49,15 @@ public:
     }
 
     void anneal() {
+        int a[3] = {multi_simulate(0, 1), multi_simulate(0, 2), multi_simulate(1, 2)};
+        int record[2] = {a[0] + a[1], - a[0] + a[2]};
 
+        bool tag1 = true, tag2 = true;
+        while(tag1 || tag2) {
+            print_player(0);
+            print_player(1);
+            print_player(2);
+        }
 
         cout << "anneal finished" << endl;
     }
@@ -54,6 +69,7 @@ public:
         Minimax_players greedy_player1 = Minimax_players(players[player1]),
                 greedy_player2 = Minimax_players(players[player2]);
 
+        cout << "Player " << player1 << " vs " << player2 << endl;
         for (int i = 0; i != play_round; ++i) {
             int result = single_simulate(player1, player2, greedy_player1, greedy_player2);
             if (result == -1) {

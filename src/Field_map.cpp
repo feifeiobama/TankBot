@@ -132,13 +132,15 @@ void Field_map::update(Action &action1, Action &action2) {
     }
 
     // 剔除对射 + 去掉被摧毁的坦克的纪录
-    int destroyed_time[4] = {0};
-    int destroyed[4] = {0}; // destroyed[被摧毁] = 摧毁者
+    int destroyed_time[4] = {0}, destroy_time[4] = {0};
+    int destroyed[4] = {0}, destroy[4] = {0}; // destroyed[被摧毁] = 摧毁者
     for (int i = 0; i != 4; ++i) {
         if (to_destroy[i]) {
             for (int j = 0; j != 4; ++j) {
                 if (destroyed_by[i] == tanks[j]) {
                     destroyed[j] = i;
+                    destroy[i] = j;
+                    destroy_time[i] += 1;
                     destroyed_time[j] += 1;
                 }
             }
@@ -146,12 +148,12 @@ void Field_map::update(Action &action1, Action &action2) {
     }
     for (int i = 0; i != 4; ++i) {
         if (destroyed_time[i] == 1) {
+            // 查看位置上是否都为1个坦克
             int destroyer = destroyed[i];
-            if (destroyed_time[destroyer] == 1 && destroyed[destroyer] == i) {
-                destroyed_time[destroyer] = 0; // 避免下次比较
-                destroyed_by[i] = destroyed_by[destroyer] = Null_pos;
-            } else {
+            if (destroy_time[i] != 1 || destroy[i] != destroyer || destroy_time[destroyer] != 1) {
                 tanks[i] = Null_pos;
+            } else {
+                destroyed_by[destroyer] = Null_pos;
             }
         } else if (destroyed_time[i] > 1) {
             tanks[i] = Null_pos;

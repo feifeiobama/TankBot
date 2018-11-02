@@ -56,6 +56,9 @@ public:
 
     bool block_route(int tank1, int tank2, const Field_map &field_map) const;
 
+    // 保证对方双坦都在
+    bool blocked_route(int tank, const Field_map &field_map) const;
+
     // <斩杀领先的步数>=0, 最短的斩杀步数>
     pair<int, unsigned> dist_to_shoot_avoid(int tank1, int tank2, const Field_map &field_map) const;
 

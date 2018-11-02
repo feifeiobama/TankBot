@@ -88,6 +88,7 @@ void Field_info::update(Action &action1, Action &action2, const Field_map &field
             continue;
         }
         if (m[i] >= 0 && m[i] < 4) {
+            memset(fire_map[i], 0, 9 * 9 * sizeof(bool));
             calc_fire_map(i, field_map);
         } else {
             for (int j = 0; j != 4; ++j) {
@@ -226,21 +227,124 @@ unsigned Field_info::dist_to_shoot_base(int tank, const Field_map &field_map, bo
     return min_dist;
 }
 
-// 局部卡路线
+// 卡路线
 bool Field_info::block_route(int tank1, int tank2, const Field_map &field_map) const {
-    int dir = tank1 < 2 ? 0 : 2;
     Position pos1 = field_map.get_tank(tank1), pos2 = field_map.get_tank(tank2);
-    Position pos3 = get_adjacent_position(pos2, dir);
-    while (is_in_field(pos3)) {
-        if (pos3.y == 0 || pos3.y == 8) {
-            break;
+    if (pos1 == pos2 || (pos1.x - 4) * (pos2.x - 4) <= 0 || abs(pos1.x - 4) > abs(pos2.x - 4)) {
+        return false;
+    }
+    if (tank2 < 2) {
+        if (pos1.y < pos2.y) {
+            return false;
         }
-        if (pos3 == pos1 || fire_map[tank1][pos3.x][pos3.y]) {
+        int max_j = 0;
+        for (int j = 8; j >= 0; --j) {
+            if (fire_map[tank2][pos2.x][j]) {
+                max_j = j;
+                break;
+            }
+        }
+        max_j = max(max_j, pos2.y);
+        if (pos1.y < max_j && !fire_map[tank1][pos1.x][max_j]) {
+            return false;
+        }
+    } else {
+        if (pos1.y > pos2.y) {
+            return false;
+        }
+        int min_j = 8;
+        for (int j = 0; j != 9; ++j) {
+            if (fire_map[tank2][pos2.x][j]) {
+                min_j = j;
+                break;
+            }
+        }
+        min_j = min(min_j, pos2.y);
+        if (pos1.y > min_j && !fire_map[tank1][pos1.x][min_j]) {
+            return false;
+        }
+    }
+    if (pos2.x < 4) {
+        int max_i = 0;
+        for (int i = 3; i >= 0; --i) {
+            if (fire_map[tank2][i][pos2.y]) {
+                max_i = i;
+                break;
+            }
+        }
+        max_i = max(max_i, pos2.x);
+        if (pos1.x < max_i && !fire_map[tank1][max_i][pos1.y]) {
+            return false;
+        } else {
             return true;
         }
-        pos3 = get_adjacent_position(pos3, dir);
+    } else {
+        int min_i = 8;
+        for (int i = 5; i != 9; ++i) {
+            if (fire_map[tank2][i][pos2.y]) {
+                min_i = i;
+                break;
+            }
+        }
+        min_i = min(min_i, pos2.x);
+        if (pos1.x > min_i && !fire_map[tank1][min_i][pos1.y]) {
+            return false;
+        } else {
+            return true;
+        }
     }
-    return false;
+}
+
+bool Field_info::blocked_route(int tank, const Field_map &field_map) const {
+    Position pos = field_map.get_tank(tank);
+    int tank1 = 2 - ((tank >> 1) << 1), tank2 = 3 - ((tank >> 1) << 1);
+    if (pos.x == 4) {
+        Position pos1 = field_map.get_tank(tank1), pos2 = field_map.get_tank(tank2);
+        if ((pos1.x != 3 || pos2.x != 5) && (pos1.x != 5 || pos2.x != 3)) {
+            return false;
+        }
+        if (tank < 2) {
+            if (pos.y > pos1.y || pos.y > pos2.y) {
+                return false;
+            }
+            int max_j = 0;
+            for (int j = 8; j >= 0; --j) {
+                if (fire_map[tank][4][j]) {
+                    max_j = j;
+                    break;
+                }
+            }
+            max_j = max(max_j, pos.y);
+            if (pos1.y < max_j && !fire_map[tank1][pos1.x][max_j]) {
+                return false;
+            } else if (pos2.y < max_j && !fire_map[tank2][pos2.x][max_j]) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if (pos.y < pos1.y || pos.y < pos2.y) {
+                return false;
+            }
+            int min_j = 8;
+            for (int j = 0; j != 9; ++j) {
+                if (fire_map[tank][4][j]) {
+                    min_j = j;
+                    break;
+                }
+            }
+            min_j = min(min_j, pos.y);
+            if (pos1.y > min_j && !fire_map[tank1][pos1.x][min_j]) {
+                return false;
+            } else if (pos2.y > min_j && !fire_map[tank2][pos2.x][min_j]) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    } else {
+        return block_route(tank1, tank, field_map) || block_route(tank2, tank, field_map);
+    }
 }
 
 // <斩杀领先的步数, 最短的斩杀步数（-1）>
@@ -258,25 +362,24 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const 
 
         unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank1][i][base_row];
         int min_ahead = INT_MAX;
-
         // 考虑在哪被拦截
         if (i < 4) {
             for (int j = i + 1; j != 4; ++j) {
                 int e_dist = distance_map[tank2][j][next_row];
-                if (min_ahead > e_dist + 2 - dist) {
-                    min_ahead = e_dist + 2 - dist;
+                if (min_ahead > e_dist + 1 - dist) {
+                    min_ahead = e_dist + 1 - dist;
                 }
             }
         } else {
             for (int j = 5; j != i; ++j) {
                 int e_dist = distance_map[tank2][j][next_row];
-                if (min_ahead > e_dist + 2 - dist) {
-                    min_ahead = e_dist + 2 - dist;
+                if (min_ahead > e_dist + 1 - dist) {
+                    min_ahead = e_dist + 1 - dist;
                 }
             }
         }
 
-        int ahead = distance_map[tank2][i][base_row] + 1 - distance_map[tank1][i][base_row];
+        int ahead = distance_map[tank2][i][base_row] - distance_map[tank1][i][base_row];
         if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
             ahead += 1;
         }
@@ -284,14 +387,17 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const 
             min_ahead = ahead;
         }
 
-        // 考虑竖直方向位置造成的拦截关系
-        if (block_route(tank2, tank1, field_map)) {
-            min_ahead -= 1;
+        // 考虑拦截关系
+        if (min_ahead >= 0) {
+            if (block_route(tank2, tank1, field_map)) {
+                min_ahead = -1;
+            }
         }
 
         if (min_ahead > max_ahead) {
             max_ahead = min_ahead;
         }
+
         if (min_ahead >= 0 && min_ahead_dist > dist) {
             min_ahead_dist = dist;
         }
@@ -317,24 +423,25 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid_both(int tank, const Field_m
         unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank][i][base_row];
         int min_ahead = INT_MAX;
 
+
         // 考虑在哪被拦截
         if (i < 4) {
             for (int j = i + 1; j != 4; ++j) {
                 int e_dist = min(distance_map[tank1][j][next_row], distance_map[tank2][j][next_row]);
-                if (min_ahead > e_dist + 2 - dist) {
-                    min_ahead = e_dist + 2 - dist;
+                if (min_ahead > e_dist + 1 - dist) {
+                    min_ahead = e_dist + 1 - dist;
                 }
             }
         } else {
             for (int j = 5; j != i; ++j) {
                 int e_dist = min(distance_map[tank1][j][next_row], distance_map[tank2][j][next_row]);
-                if (min_ahead > e_dist + 2 - dist) {
-                    min_ahead = e_dist + 2 - dist;
+                if (min_ahead > e_dist + 1 - dist) {
+                    min_ahead = e_dist + 1 - dist;
                 }
             }
         }
 
-        int ahead = min(distance_map[tank1][i][next_row], distance_map[tank2][i][next_row]) + 1 -
+        int ahead = min(distance_map[tank1][i][base_row], distance_map[tank2][i][base_row]) -
                     distance_map[tank][i][base_row];
         if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
             ahead += 1;
@@ -343,12 +450,11 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid_both(int tank, const Field_m
             min_ahead = ahead;
         }
 
-        // 考虑竖直方向位置造成的拦截关系
-        if (block_route(tank1, tank, field_map)) {
-            min_ahead -= 1;
-        }
-        if (block_route(tank2, tank, field_map)) {
-            min_ahead -= 1;
+        // 考虑拦截关系
+        if (min_ahead >= 0) {
+            if (blocked_route(tank, field_map)) {
+                min_ahead = -1;
+            }
         }
 
         if (min_ahead > max_ahead) {
@@ -368,7 +474,7 @@ pair<unsigned, unsigned> Field_info::dist_to_shoot_after(int tank, const Field_m
     int our_color = 1 - enemy_color;
 
     unsigned follow_dist = dist_to_shoot_base(tank, field_map, false);
-    unsigned total_dist[4] = {unsigned(-1), unsigned(-1), unsigned(-1), unsigned(-1)},
+    unsigned move_dist[4] = {unsigned(-1), unsigned(-1), unsigned(-1), unsigned(-1)},
             first_dist[4] = {unsigned(-1), unsigned(-1), unsigned(-1), unsigned(-1)};
 
     Position pos = field_map.get_tank(tank);
@@ -381,8 +487,8 @@ pair<unsigned, unsigned> Field_info::dist_to_shoot_after(int tank, const Field_m
                 if (dist == 0 && !field_map.get_loaded(tank2)) {
                     dist += 1;
                 }
-                if (total_dist[k] > dist + abs(pos.x - i) + 1 + follow_dist) {
-                    total_dist[k] = dist + abs(pos.x - i) + 1 + follow_dist;
+                if (move_dist[k] > dist + abs(pos.x - i)) {
+                    move_dist[k] = dist + abs(pos.x - i);
                 }
                 if (first_dist[k] > dist + 1) {
                     first_dist[k] = dist + 1;
@@ -396,8 +502,8 @@ pair<unsigned, unsigned> Field_info::dist_to_shoot_after(int tank, const Field_m
                 if (dist == 0 && !field_map.get_loaded(tank2)) {
                     dist += 1;
                 }
-                if (total_dist[k + 2] > dist + abs(pos.y - i) + 1 + follow_dist) {
-                    total_dist[k + 2] = dist + abs(pos.y - i) + 1 + follow_dist;
+                if (move_dist[k + 2] > dist + abs(pos.y - i)) {
+                    move_dist[k + 2] = dist + abs(pos.y - i);
                 }
                 if (first_dist[k + 2] > dist + 1) {
                     first_dist[k + 2] = dist + 1;
@@ -406,7 +512,9 @@ pair<unsigned, unsigned> Field_info::dist_to_shoot_after(int tank, const Field_m
         }
     }
 
-    unsigned min_total_dist = min(max(total_dist[0], total_dist[3]), max(total_dist[1], total_dist[2])),
+    unsigned min_total_dist =
+            min(min(max(move_dist[0], first_dist[3]), max(first_dist[0], move_dist[3])),
+                min(max(move_dist[1], first_dist[2]), max(first_dist[1], move_dist[2]))) + follow_dist + 1,
             min_first_dist = min(max(first_dist[0], first_dist[3]), max(first_dist[1], first_dist[2]));
 
     return make_pair(min_total_dist, min_first_dist);

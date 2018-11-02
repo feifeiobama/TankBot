@@ -172,18 +172,7 @@ public:
                     continue;
                 }
 
-                if (i >= 4 && j >= 4) {
-                    unsigned dist1 = dist_to_shoot_after[i - 2].second,
-                            dist2 = dist_to_shoot_after[j - 4].second;
-                    if (dist1 >= dist2) {
-                        goto skip_first_loop;
-                    } else {
-                        unsigned step = dist_to_shoot_after[i - 2].first;
-                        if (step > max_step) {
-                            max_step = step;
-                        }
-                    }
-                } else if (i >= 4 || j >= 4) {
+                if (i >= 4 || j >= 4) {
                     unsigned dist1 = unsigned(-1), dist2 = unsigned(-1);
                     if (i >= 4) {
                         int tank_id = i - 2;
@@ -192,17 +181,20 @@ public:
                         if (!if_tank_dead[another_tank_id]) {
                             dist2 = dist_to_shoot_base[another_tank_id];
                         }
-                        if (dist2 > dist_to_shoot_avoid_both[tank_id].second) {
+                        if (dist_to_shoot_after[tank_id].second > 1 && dist2 > dist_to_shoot_avoid_both[tank_id].second) {
                             dist2 = dist_to_shoot_avoid_both[tank_id].second;
                         }
-                    } else {
+                    }
+                    if (j >= 4) {
                         int tank_id = j - 4;
                         int another_tank_id = (tank_id / 2) * 2 + (1 - tank_id % 2);
-                        dist2 = dist_to_shoot_after[tank_id].first;
-                        if (!if_tank_dead[another_tank_id]) {
+                        if (dist2 > dist_to_shoot_after[tank_id].first) {
+                            dist2 = dist_to_shoot_after[tank_id].first;
+                        }
+                        if (!if_tank_dead[another_tank_id] && dist1 > dist_to_shoot_base[another_tank_id]) {
                             dist1 = dist_to_shoot_base[another_tank_id];
                         }
-                        if (dist1 > dist_to_shoot_avoid_both[tank_id].second) {
+                        if (dist_to_shoot_after[tank_id].second > 1 && dist1 > dist_to_shoot_avoid_both[tank_id].second) {
                             dist1 = dist_to_shoot_avoid_both[tank_id].second;
                         }
                     }
