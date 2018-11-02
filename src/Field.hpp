@@ -115,14 +115,14 @@ public:
         }
 
         // calc basic values
-        double score[2] = {0};
+        double score[2] = {0.0, 0.0};
 
         for (int c = 0; c != 2; ++c) {
             for (int k = 0; k != 2; ++k) {
                 int i = (c << 1) + k;
                 if (!if_tank_dead[i]) {
                     score[c] += argv[0];
-                    score[c] -= argv[1] * dist_to_shoot_base[i];
+                    score[c] -= argv[1] * int(dist_to_shoot_base[i]);
 
                     int min_ahead = INT_MIN;
                     if (has_both[1 - c]) {
@@ -149,7 +149,7 @@ public:
                 unsigned min_threat = unsigned(-1);
                 FOR_ENEMY(i, j, {
                     if (!if_tank_dead[j]) {
-                        if (min_threat < dist_to_shoot_after[j].second) {
+                        if (min_threat > dist_to_shoot_after[j].second) {
                             min_threat = dist_to_shoot_after[j].second;
                         }
                     }
@@ -187,7 +187,7 @@ public:
                     unsigned dist1 = unsigned(-1), dist2 = unsigned(-1);
                     if (i >= 4) {
                         int tank_id = i - 2;
-                        int another_tank_id = tank_id / 2 + (1 - tank_id % 2);
+                        int another_tank_id = (tank_id / 2) * 2 + (1 - tank_id % 2);
                         dist1 = dist_to_shoot_after[tank_id].first;
                         if (!if_tank_dead[another_tank_id]) {
                             dist2 = dist_to_shoot_base[another_tank_id];
@@ -197,7 +197,7 @@ public:
                         }
                     } else {
                         int tank_id = j - 4;
-                        int another_tank_id = tank_id / 2 + (1 - tank_id % 2);
+                        int another_tank_id = (tank_id / 2) * 2 + (1 - tank_id % 2);
                         dist2 = dist_to_shoot_after[tank_id].first;
                         if (!if_tank_dead[another_tank_id]) {
                             dist1 = dist_to_shoot_base[another_tank_id];
@@ -294,7 +294,7 @@ public:
                     unsigned dist1 = unsigned(-1), dist2 = unsigned(-1);
                     if (i >= 4) {
                         int tank_id = i - 4;
-                        int another_tank_id = tank_id / 2 + (1 - tank_id % 2);
+                        int another_tank_id = (tank_id / 2) * 2 + (1 - tank_id % 2);
                         dist1 = dist_to_shoot_after[tank_id].first;
                         if (!if_tank_dead[another_tank_id]) {
                             dist2 = dist_to_shoot_base[another_tank_id];
@@ -304,7 +304,7 @@ public:
                         }
                     } else {
                         int tank_id = j - 2;
-                        int another_tank_id = tank_id / 2 + (1 - tank_id % 2);
+                        int another_tank_id = (tank_id / 2) * 2 + (1 - tank_id % 2);
                         dist2 = dist_to_shoot_after[tank_id].first;
                         if (!if_tank_dead[another_tank_id]) {
                             dist1 = dist_to_shoot_base[another_tank_id];
@@ -313,6 +313,7 @@ public:
                             dist1 = dist_to_shoot_avoid_both[tank_id].second;
                         }
                     }
+
                     if (dist1 >= dist2) {
                         goto skip_second_loop;
                     } else {
@@ -351,6 +352,8 @@ public:
                             dist[t] = dist_to_shoot_avoid_both[t].second;
                         }
                     }
+
+
                     unsigned min_dist1 = min(dist[0], dist[1]), min_dist2 = min(dist[2], dist[3]);
                     if (min_dist1 <= min_dist2) {
                         goto skip_second_loop;

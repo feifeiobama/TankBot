@@ -34,7 +34,7 @@ class Field_info {
 
     unsigned distance_map[4][9][9];
     bool fire_map[4][9][9] = {0};
-    unsigned base_row_barrier[2][9];
+    unsigned base_row_barrier[2][9] = {0};
 
 public:
     Field_info(const Field_map &field_map);

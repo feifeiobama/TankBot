@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS = -O3 -fPIC   -std=gnu++11
 
-CXX_DEFINES = -DTank_mcts_lib_EXPORTS -D_BOTZONE_ONLINE
+CXX_DEFINES = -DTank_mcts_lib_EXPORTS
 
 CXX_INCLUDES = 
 
