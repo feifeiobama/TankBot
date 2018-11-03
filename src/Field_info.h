@@ -47,17 +47,18 @@ public:
 
     void calc_base_row_barrier();
 
-    void calc_distance(int i, Position position, bool loaded = true);
+    void calc_distance(int i, Position position, bool loaded);
 
     // 以下均保证坦克合法
 
     // 允许在其它位置射击击穿砖块
     unsigned dist_to_shoot_base(int tank, const Field_map &field_map, bool enemy=true) const;
 
-    bool block_route(int tank1, int tank2, const Field_map &field_map) const;
+    // <被延缓的步数，被禁止通过>
+    pair<int, bool> block_route(int tank1, int tank2, const Field_map &field_map) const;
 
     // 保证对方双坦都在
-    bool blocked_route(int tank, const Field_map &field_map) const;
+    pair<int, bool> blocked_route(int tank, const Field_map &field_map) const;
 
     // <斩杀领先的步数>=0, 最短的斩杀步数>
     pair<int, unsigned> dist_to_shoot_avoid(int tank1, int tank2, const Field_map &field_map) const;

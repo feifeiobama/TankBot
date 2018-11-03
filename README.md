@@ -19,7 +19,7 @@
 (1) 基本估价 (debug 情况下一次估值需要 5e-5 s)
 
 val = sum(argv[0] * tank - argv[1] * dist + argv[2] * min_ahead +
-    argv[3] * area_move + argv[4] * area_fire) - argv[5] * first_threat
+    argv[3] * area_fire + argv[4] * area_move) - argv[5] * first_threat
    
 (2) 斩杀判定
 
@@ -32,5 +32,7 @@ val = sum(argv[0] * tank - argv[1] * dist + argv[2] * min_ahead +
 若一方全胜 val += argv[6] - argv[7] * 斩杀步数
  
 (3) 最后sigmoid(argv[8] * (blue - red))
+
+
      
     

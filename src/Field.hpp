@@ -14,9 +14,9 @@
 #include "Field_map.h"
 #include "Field_info.h"
 
-constexpr int Argc = 9;
-constexpr double Argv[Argc] = {4.3955680634, 0.0338705485, 0.0154156685, 0.0017443425, 0.0169060982, 0.0035423176,
-                               2.5964951784, 0.0701474018, 1};
+constexpr int Argc = 8;
+constexpr double Argv[Argc] = {3.6034462436, 0.0534986776, 0.0351365857, 0.0031822821, 0.0152381077, 0.0073149502,
+                               12.8622818941, 0.0448960420};
 
 class Field {
     Field_map field_map;
@@ -373,7 +373,7 @@ public:
 
         skip_red:;
 
-        double eval = double(1) / (1 + exp(argv[8] * (score[1] - score[0])));
+        double eval = double(1) / (1 + exp(score[1] - score[0]));
         if (if_print) {
             cout << score[0] << " " << score[1] << " " << eval << endl;
         }

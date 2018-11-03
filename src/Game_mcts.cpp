@@ -17,12 +17,11 @@ void game_start() {
     srand48(clock());
 
     vector<pair<Field_map, Action> > history[2];
-    Field_map field_map = Field(false);
+    Field_map field_map = Field_map(false);
     Color currentColor = recover_from_input(field_map, history);
-    Node node = Node(field_map);
 
     MCTS_player player = MCTS_player(currentColor);
-    Action action = player.make_decision(node);
+    Action action = player.make_decision(field_map);
     encode_output(action);
 }
 }

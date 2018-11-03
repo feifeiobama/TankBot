@@ -1,5 +1,6 @@
-cd ./data/
-rm -rf ./*
+rm -rf data/
+mkdir data
+cd data/
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make clean;
-make Tank_mcts_lib;
+make Tank_minimax_lib;

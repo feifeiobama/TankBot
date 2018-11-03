@@ -31,7 +31,7 @@ class MCTS_player {
 public:
     MCTS_player(Color color) {}
 
-    Action make_decision(Node &node) {return Action{0, 0};}
+    Action make_decision(Field_map &field_map) {return Action{0, 0};}
 };
 
 #endif //PROJECT_NODE_HPP

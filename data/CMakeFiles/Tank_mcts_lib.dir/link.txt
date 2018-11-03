@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3  -shared -Wl,-soname,libTank_mcts_lib.so -o libTank_mcts_lib.so CMakeFiles/Tank_mcts_lib.dir/src/Game_mcts.cpp.o CMakeFiles/Tank_mcts_lib.dir/src/Field_info.cpp.o CMakeFiles/Tank_mcts_lib.dir/src/Field_map.cpp.o 

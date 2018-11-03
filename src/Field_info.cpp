@@ -31,7 +31,7 @@ Field_info::Field_info(const Field_map &field_map) {
     for (int i = 0; i != 4; ++i) {
         Position tank = field_map.get_tank(i);
         if (tank != Null_pos) {
-            calc_distance(i, tank);
+            calc_distance(i, tank, field_map.get_loaded(i));
         }
     }
 
@@ -228,14 +228,26 @@ unsigned Field_info::dist_to_shoot_base(int tank, const Field_map &field_map, bo
 }
 
 // 卡路线
-bool Field_info::block_route(int tank1, int tank2, const Field_map &field_map) const {
+pair<int, bool> Field_info::block_route(int tank1, int tank2, const Field_map &field_map) const {
     Position pos1 = field_map.get_tank(tank1), pos2 = field_map.get_tank(tank2);
+    int counter = 0;
+
+    // 计算拖延的步数(0/1)
+    if (pos1 != pos2) {
+        // y方向挡住
+        if ((tank2 < 2 && pos1.y > pos2.y) || (tank2 >= 2 && pos1.y < pos2.y)) {
+            if (pos1.x == pos2.x ||
+                (fire_map[tank1][pos2.x][pos1.y] && (abs(pos1.y - pos2.y) != 1 || field_map.get_loaded(tank1)))) {
+                counter = 1;
+            }
+        }
+    }
     if (pos1 == pos2 || (pos1.x - 4) * (pos2.x - 4) <= 0 || abs(pos1.x - 4) > abs(pos2.x - 4)) {
-        return false;
+        return make_pair(counter, false);
     }
     if (tank2 < 2) {
         if (pos1.y < pos2.y) {
-            return false;
+            return make_pair(counter, false);
         }
         int max_j = 0;
         for (int j = 8; j >= 0; --j) {
@@ -246,11 +258,11 @@ bool Field_info::block_route(int tank1, int tank2, const Field_map &field_map) c
         }
         max_j = max(max_j, pos2.y);
         if (pos1.y < max_j && !fire_map[tank1][pos1.x][max_j]) {
-            return false;
+            return make_pair(counter, false);
         }
     } else {
         if (pos1.y > pos2.y) {
-            return false;
+            return make_pair(counter, false);
         }
         int min_j = 8;
         for (int j = 0; j != 9; ++j) {
@@ -261,7 +273,7 @@ bool Field_info::block_route(int tank1, int tank2, const Field_map &field_map) c
         }
         min_j = min(min_j, pos2.y);
         if (pos1.y > min_j && !fire_map[tank1][pos1.x][min_j]) {
-            return false;
+            return make_pair(counter, false);
         }
     }
     if (pos2.x < 4) {
@@ -274,9 +286,9 @@ bool Field_info::block_route(int tank1, int tank2, const Field_map &field_map) c
         }
         max_i = max(max_i, pos2.x);
         if (pos1.x < max_i && !fire_map[tank1][max_i][pos1.y]) {
-            return false;
+            return make_pair(counter, false);
         } else {
-            return true;
+            return make_pair(counter, true);
         }
     } else {
         int min_i = 8;
@@ -288,24 +300,31 @@ bool Field_info::block_route(int tank1, int tank2, const Field_map &field_map) c
         }
         min_i = min(min_i, pos2.x);
         if (pos1.x > min_i && !fire_map[tank1][min_i][pos1.y]) {
-            return false;
+            return make_pair(counter, false);
         } else {
-            return true;
+            return make_pair(counter, true);
         }
     }
 }
 
-bool Field_info::blocked_route(int tank, const Field_map &field_map) const {
+pair<int, bool> Field_info::blocked_route(int tank, const Field_map &field_map) const {
     Position pos = field_map.get_tank(tank);
     int tank1 = 2 - ((tank >> 1) << 1), tank2 = 3 - ((tank >> 1) << 1);
+    Position pos1 = field_map.get_tank(tank1), pos2 = field_map.get_tank(tank2);
+
+    auto p1 = block_route(tank1, tank, field_map), p2 = block_route(tank2, tank, field_map);
+    int counter = p1.first + p2.first;
+    if (pos1.y == pos2.y && p1.first != 0 && p2.first != 0) {
+        counter -= 1;
+    }
+
     if (pos.x == 4) {
-        Position pos1 = field_map.get_tank(tank1), pos2 = field_map.get_tank(tank2);
         if ((pos1.x != 3 || pos2.x != 5) && (pos1.x != 5 || pos2.x != 3)) {
-            return false;
+            return make_pair(counter, false);
         }
         if (tank < 2) {
             if (pos.y > pos1.y || pos.y > pos2.y) {
-                return false;
+                return make_pair(counter, false);
             }
             int max_j = 0;
             for (int j = 8; j >= 0; --j) {
@@ -316,15 +335,15 @@ bool Field_info::blocked_route(int tank, const Field_map &field_map) const {
             }
             max_j = max(max_j, pos.y);
             if (pos1.y < max_j && !fire_map[tank1][pos1.x][max_j]) {
-                return false;
+                return make_pair(counter, false);
             } else if (pos2.y < max_j && !fire_map[tank2][pos2.x][max_j]) {
-                return false;
+                return make_pair(counter, false);
             } else {
-                return true;
+                return make_pair(counter, true);
             }
         } else {
             if (pos.y < pos1.y || pos.y < pos2.y) {
-                return false;
+                return make_pair(counter, false);
             }
             int min_j = 8;
             for (int j = 0; j != 9; ++j) {
@@ -335,15 +354,15 @@ bool Field_info::blocked_route(int tank, const Field_map &field_map) const {
             }
             min_j = min(min_j, pos.y);
             if (pos1.y > min_j && !fire_map[tank1][pos1.x][min_j]) {
-                return false;
+                return make_pair(counter, false);
             } else if (pos2.y > min_j && !fire_map[tank2][pos2.x][min_j]) {
-                return false;
+                return make_pair(counter, false);
             } else {
-                return true;
+                return make_pair(counter, true);
             }
         }
     } else {
-        return block_route(tank1, tank, field_map) || block_route(tank2, tank, field_map);
+        return make_pair(counter, p1.second || p2.second);
     }
 }
 
@@ -355,31 +374,41 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const 
     unsigned min_ahead_dist = unsigned(-1);
     int max_ahead = INT_MIN;
 
+    auto blk_route = block_route(tank2, tank1, field_map);
+
+    unsigned e_dist[9] = {0};
+    int min_e_dist = INT_MAX;
+    for (int i = 3; i >= 0; --i) {
+        e_dist[i] = min_e_dist;
+        int e_dist = min(distance_map[tank2][i][next_row] + 1, distance_map[tank2][i][base_row]);
+        if (min_e_dist > e_dist) {
+            min_e_dist = e_dist;
+        }
+    }
+    min_e_dist = INT_MAX;
+    for (int i = 5; i != 9; ++i) {
+        e_dist[i] = min_e_dist;
+        int e_dist = min(distance_map[tank2][i][next_row] + 1, distance_map[tank2][i][base_row]);
+        if (min_e_dist > e_dist) {
+            min_e_dist = e_dist;
+        }
+    }
+
     for (int i = 0; i != 9; ++i) {
         if (i == 4) {
             continue;
         }
 
         unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank1][i][base_row];
-        int min_ahead = INT_MAX;
-        // 考虑在哪被拦截
-        if (i < 4) {
-            for (int j = i + 1; j != 4; ++j) {
-                int e_dist = distance_map[tank2][j][next_row];
-                if (min_ahead > e_dist + 1 - dist) {
-                    min_ahead = e_dist + 1 - dist;
-                }
-            }
-        } else {
-            for (int j = 5; j != i; ++j) {
-                int e_dist = distance_map[tank2][j][next_row];
-                if (min_ahead > e_dist + 1 - dist) {
-                    min_ahead = e_dist + 1 - dist;
-                }
-            }
+        if (distance_map[tank1][i][base_row] == 0 && field_map.get_loaded(tank1)) {
+            dist -= 1;
         }
 
+        // 考虑在哪被拦截
+        int min_ahead = e_dist[i] - dist;
+
         int ahead = distance_map[tank2][i][base_row] - distance_map[tank1][i][base_row];
+
         if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
             ahead += 1;
         }
@@ -388,10 +417,10 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const 
         }
 
         // 考虑拦截关系
-        if (min_ahead >= 0) {
-            if (block_route(tank2, tank1, field_map)) {
-                min_ahead = -1;
-            }
+        min_ahead -= blk_route.first;
+        dist += blk_route.first;
+        if (min_ahead >= 0 && blk_route.second) {
+            min_ahead = -1;
         }
 
         if (min_ahead > max_ahead) {
@@ -415,34 +444,44 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid_both(int tank, const Field_m
     unsigned min_ahead_dist = unsigned(-1);
     int max_ahead = INT_MIN;
 
+    auto blk_route = blocked_route(tank, field_map);
+
+    int e_dist[9] = {0};
+    int min_e_dist = INT_MAX;
+    for (int i = 3; i > 0; --i) {
+        e_dist[i] = min_e_dist;
+        int e_dist = min(min(distance_map[tank1][i][next_row] + 1, distance_map[tank1][i][base_row]),
+                         min(distance_map[tank2][i][next_row] + 1, distance_map[tank2][i][base_row]));
+        if (min_e_dist > e_dist) {
+            min_e_dist = e_dist;
+        }
+    }
+    min_e_dist = INT_MAX;
+    for (int i = 5; i != 9; ++i) {
+        e_dist[i] = min_e_dist;
+        int e_dist = min(min(distance_map[tank1][i][next_row] + 1, distance_map[tank1][i][base_row]),
+                         min(distance_map[tank2][i][next_row] + 1, distance_map[tank2][i][base_row]));
+        if (min_e_dist > e_dist) {
+            min_e_dist = e_dist;
+        }
+    }
+
     for (int i = 0; i != 9; ++i) {
         if (i == 4) {
             continue;
         }
 
         unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank][i][base_row];
-        int min_ahead = INT_MAX;
-
+        if (distance_map[tank][i][base_row] == 0 && field_map.get_loaded(tank)) {
+            dist -= 1;
+        }
 
         // 考虑在哪被拦截
-        if (i < 4) {
-            for (int j = i + 1; j != 4; ++j) {
-                int e_dist = min(distance_map[tank1][j][next_row], distance_map[tank2][j][next_row]);
-                if (min_ahead > e_dist + 1 - dist) {
-                    min_ahead = e_dist + 1 - dist;
-                }
-            }
-        } else {
-            for (int j = 5; j != i; ++j) {
-                int e_dist = min(distance_map[tank1][j][next_row], distance_map[tank2][j][next_row]);
-                if (min_ahead > e_dist + 1 - dist) {
-                    min_ahead = e_dist + 1 - dist;
-                }
-            }
-        }
+        int min_ahead = e_dist[i] - dist;
 
         int ahead = min(distance_map[tank1][i][base_row], distance_map[tank2][i][base_row]) -
                     distance_map[tank][i][base_row];
+
         if (((clean_map[i] >> (base_row << 1)) & 0b11) != 0) {
             ahead += 1;
         }
@@ -451,10 +490,10 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid_both(int tank, const Field_m
         }
 
         // 考虑拦截关系
-        if (min_ahead >= 0) {
-            if (blocked_route(tank, field_map)) {
-                min_ahead = -1;
-            }
+        min_ahead -= blk_route.first;
+        dist += blk_route.first;
+        if (min_ahead >= 0 && blk_route.second) {
+            min_ahead = -1;
         }
 
         if (min_ahead > max_ahead) {
@@ -615,6 +654,40 @@ void Field_info::print(const Field_map &field_map) const {
     for (int i = 0; i != 4; ++i) {
         if (field_map.get_tank(i) != Null_pos) {
             cout << ' ' << i << ':' << dist_to_shoot_base(i, field_map, false);
+        }
+    }
+    cout << endl;
+    // block route
+    cout << "block_route";
+    for (int i = 0; i != 4; ++i) {
+        if (field_map.get_tank(i) != Null_pos) {
+            for (int j = 0; j != 2; ++j) {
+                int k = ((1 - i / 2) << 1) + j;
+                if (field_map.get_tank(k) != Null_pos) {
+                    auto p = block_route(i, k, field_map);
+                    cout << ' ' << i << ',' << k << ':' << p.first << ',' << p.second;
+                }
+            }
+        }
+    }
+    cout << endl;
+    // blocked route
+    cout << "blocked_route";
+    for (int i = 0; i != 4; ++i) {
+        if (field_map.get_tank(i) != Null_pos) {
+            bool has_both = true;
+            for (int j = 0; j != 2; ++j) {
+                int k = ((1 - i / 2) << 1) + j;
+                if (field_map.get_tank(k) == Null_pos) {
+                    has_both = false;
+                    break;
+                }
+            }
+            if (!has_both) {
+                continue;
+            }
+            auto p = blocked_route(i, field_map);
+            cout << ' ' << i << ":" << p.first << "," << p.second;
         }
     }
     cout << endl;
