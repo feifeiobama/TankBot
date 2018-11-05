@@ -16,3 +16,5 @@ target_compile_definitions(Tank_minimax_lib PUBLIC _BOTZONE_ONLINE)
 
 add_executable(Tank_mcts ${exe_entry} src/Game_mcts.cpp src/MCTS_player.hpp src/IO_handler.hpp ${base})
 add_library(Tank_mcts_lib SHARED src/Game_mcts.cpp src/MCTS_player.hpp src/IO_handler.hpp ${base})
+
+target_compile_definitions(Tank_mcts_lib PUBLIC _BOTZONE_ONLINE)

@@ -10,6 +10,7 @@
 
 class Minimax_players {
     double argv[20];
+    double record;
 public:
     Minimax_players() {
         memcpy(argv, Argv, Argc * sizeof(double));
@@ -25,7 +26,11 @@ public:
         if (if_print) {
             field1.print();
         }
-        return field1.evaluate(argv);
+        double ans = 0;
+        for (int i = 0; i != 5; ++i) {
+            ans += field1.evaluate(argv);
+        }
+        return ans / 5;
     }
 
     Action make_decision(Color color, const Field &field, vector<pair<Field_map, Action> > history[2]) {
@@ -82,7 +87,6 @@ public:
                             }
                         }
                     }
-
                     if (min_val > max_val) {
                         max_val = min_val;
                         ans = Action{m1, m2};
@@ -90,6 +94,7 @@ public:
                     label1:;
                 }
             }
+            record = max_val;
         } else {
             double min_val = 1.0;
             for (int m3 = -1; m3 != 8; ++m3) {
@@ -136,14 +141,78 @@ public:
                     label2:;
                 }
             }
+            record = min_val;
         }
 
         clock_t clk1 = clock();
 #ifndef _BOTZONE_ONLINE
+//        printDecision(color, 6, 6, field);
+//        printDecision(color, -1, -1, field);
         cout << "time: " << (clk1 - clk0) / double(CLOCKS_PER_SEC) << endl;
 #endif
-
         return ans;
+    }
+
+    bool must_win(Color color) {
+        if (color == BLUE) {
+            return record >= 0.95;
+        } else {
+            return record <= 0.05;
+        }
+    }
+
+    void printDecision(Color color, Move m1, Move m2, const Field &field) {
+        // 判定双方可做的动作 (不管怎样 -1 应该都是可以的)
+        bool is_avail[4][9];
+        for (int i = 0; i != 4; ++i) {
+            for (int m = -1; m != 8; ++m) {
+                is_avail[i][m + 1] = field.is_avail(i, m);
+            }
+        }
+
+        if (color == BLUE) {
+            double min_val = 1.0;
+            int m3, m4;
+            int best_m3, best_m4;
+            for (m3 = -1; m3 != 8; ++m3) {
+                if (!is_avail[2][m3 + 1]) {
+                    continue;
+                }
+                for (m4 = -1; m4 != 8; ++m4) {
+                    if (!is_avail[3][m4 + 1]) {
+                        continue;
+                    }
+                    double val = get_val(m1, m2, m3, m4, field);
+                    if (val < min_val) {
+                        min_val = val;
+                        best_m3 = m3;
+                        best_m4 = m4;
+                    }
+                }
+            }
+            get_val(m1, m2, best_m3, best_m4, field, true);
+        } else {
+            double max_val = 0.0;
+            int m3, m4;
+            int best_m3, best_m4;
+            for (m3 = -1; m3 != 8; ++m3) {
+                if (!is_avail[0][m3 + 1]) {
+                    continue;
+                }
+                for (m4 = -1; m4 != 8; ++m4) {
+                    if (!is_avail[1][m4 + 1]) {
+                        continue;
+                    }
+                    double val = get_val(m3, m4, m1, m2, field);
+                    if (val > max_val) {
+                        max_val = val;
+                        best_m3 = m3;
+                        best_m4 = m4;
+                    }
+                }
+            }
+            get_val(best_m3, best_m4, m1, m2, field, true);
+        }
     }
 };
 

@@ -219,6 +219,10 @@ unsigned Field_info::dist_to_shoot_base(int tank, const Field_map &field_map, bo
         if (i != 4) {
             // 不能连射
             unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank][i][base_row];
+            if (distance_map[tank][i][base_row] == 0 && field_map.get_loaded(tank)) {
+                dist -= 1;
+            }
+
             if (min_dist > dist) {
                 min_dist = dist;
             }
@@ -227,18 +231,29 @@ unsigned Field_info::dist_to_shoot_base(int tank, const Field_map &field_map, bo
     return min_dist;
 }
 
-// 卡路线
+// <被延缓的步数，被禁止通过>
 pair<int, bool> Field_info::block_route(int tank1, int tank2, const Field_map &field_map) const {
     Position pos1 = field_map.get_tank(tank1), pos2 = field_map.get_tank(tank2);
     int counter = 0;
 
     // 计算拖延的步数(0/1)
     if (pos1 != pos2) {
-        // y方向挡住
+        // y方向挡住 && x方向挡住
         if ((tank2 < 2 && pos1.y > pos2.y) || (tank2 >= 2 && pos1.y < pos2.y)) {
-            if (pos1.x == pos2.x ||
-                (fire_map[tank1][pos2.x][pos1.y] && (abs(pos1.y - pos2.y) != 1 || field_map.get_loaded(tank1)))) {
-                counter = 1;
+            int base_row = (tank1 >> 1) << 3;
+
+            if (pos1.x == pos2.x) {
+                if (pos1.y != base_row) {
+                    counter = 1;
+                }
+            } else if (fire_map[tank1][pos2.x][pos1.y]) {
+                if (abs(pos1.y - pos2.y) != 1 || field_map.get_loaded(tank1)) {
+                    if ((pos2.x - pos1.x) * (pos2.x - 4) >= 0) {
+                        counter = 1;
+                    } else if (pos1.y != base_row) {
+                        counter = 1;
+                    }
+                }
             }
         }
     }
@@ -381,6 +396,9 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const 
     for (int i = 3; i >= 0; --i) {
         e_dist[i] = min_e_dist;
         int e_dist = min(distance_map[tank2][i][next_row] + 1, distance_map[tank2][i][base_row]);
+        if (distance_map[tank2][i][base_row] == 0 && !field_map.get_loaded(tank2)) {
+            e_dist += 1;
+        }
         if (min_e_dist > e_dist) {
             min_e_dist = e_dist;
         }
@@ -389,6 +407,9 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const 
     for (int i = 5; i != 9; ++i) {
         e_dist[i] = min_e_dist;
         int e_dist = min(distance_map[tank2][i][next_row] + 1, distance_map[tank2][i][base_row]);
+        if (distance_map[tank2][i][base_row] == 0 && !field_map.get_loaded(tank2)) {
+            e_dist += 1;
+        }
         if (min_e_dist > e_dist) {
             min_e_dist = e_dist;
         }
@@ -400,8 +421,8 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const 
         }
 
         unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank1][i][base_row];
-        if (distance_map[tank1][i][base_row] == 0 && field_map.get_loaded(tank1)) {
-            dist -= 1;
+        if (distance_map[tank1][i][base_row] == 0 && !field_map.get_loaded(tank1)) {
+            dist += 1;
         }
 
         // 考虑在哪被拦截
@@ -417,10 +438,13 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid(int tank1, int tank2, const 
         }
 
         // 考虑拦截关系
-        min_ahead -= blk_route.first;
-        dist += blk_route.first;
-        if (min_ahead >= 0 && blk_route.second) {
-            min_ahead = -1;
+        if (blk_route.first == 1) {
+            if (blk_route.second || drand48() < 0.5) {
+                min_ahead -= blk_route.first;
+            }
+            if (blk_route.second || drand48() < 0.5) {
+                dist += blk_route.first;
+            }
         }
 
         if (min_ahead > max_ahead) {
@@ -452,6 +476,10 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid_both(int tank, const Field_m
         e_dist[i] = min_e_dist;
         int e_dist = min(min(distance_map[tank1][i][next_row] + 1, distance_map[tank1][i][base_row]),
                          min(distance_map[tank2][i][next_row] + 1, distance_map[tank2][i][base_row]));
+        if ((distance_map[tank1][i][base_row] == 0 && !field_map.get_loaded(tank1)) &&
+            (distance_map[tank2][i][base_row] == 0 && !field_map.get_loaded(tank2))) {
+            e_dist += 1;
+        }
         if (min_e_dist > e_dist) {
             min_e_dist = e_dist;
         }
@@ -461,6 +489,10 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid_both(int tank, const Field_m
         e_dist[i] = min_e_dist;
         int e_dist = min(min(distance_map[tank1][i][next_row] + 1, distance_map[tank1][i][base_row]),
                          min(distance_map[tank2][i][next_row] + 1, distance_map[tank2][i][base_row]));
+        if ((distance_map[tank1][i][base_row] == 0 && !field_map.get_loaded(tank1)) &&
+            (distance_map[tank2][i][base_row] == 0 && !field_map.get_loaded(tank2))) {
+            e_dist += 1;
+        }
         if (min_e_dist > e_dist) {
             min_e_dist = e_dist;
         }
@@ -472,8 +504,8 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid_both(int tank, const Field_m
         }
 
         unsigned dist = (2 * base_row_barrier[base_color][i] - 1) + distance_map[tank][i][base_row];
-        if (distance_map[tank][i][base_row] == 0 && field_map.get_loaded(tank)) {
-            dist -= 1;
+        if (distance_map[tank][i][base_row] == 0 && !field_map.get_loaded(tank)) {
+            dist += 1;
         }
 
         // 考虑在哪被拦截
@@ -490,10 +522,13 @@ pair<int, unsigned> Field_info::dist_to_shoot_avoid_both(int tank, const Field_m
         }
 
         // 考虑拦截关系
-        min_ahead -= blk_route.first;
-        dist += blk_route.first;
-        if (min_ahead >= 0 && blk_route.second) {
-            min_ahead = -1;
+        for (int j = 0; j != blk_route.first; ++j) {
+            if (blk_route.second || drand48() < 0.5) {
+                min_ahead -= blk_route.first;
+            }
+            if (blk_route.second || drand48() < 0.5) {
+                dist += blk_route.first;
+            }
         }
 
         if (min_ahead > max_ahead) {

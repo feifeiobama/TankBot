@@ -3,9 +3,9 @@
 //
 
 #include "IO_handler.hpp"
-#include "Minimax_players.hpp"
 #include "Game.hpp"
 #include "MCTS_player.hpp"
+#include "Minimax_players.hpp"
 #include <iostream>
 
 using namespace std;
@@ -22,6 +22,6 @@ void game_start() {
 
     MCTS_player player = MCTS_player(currentColor);
     Action action = player.make_decision(field_map);
-    encode_output(action);
+    encode_output(action, player.encode_debug());
 }
 }

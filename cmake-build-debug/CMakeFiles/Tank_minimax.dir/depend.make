@@ -17,7 +17,6 @@ CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o: ../src/Field_map.h
 CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o: ../src/Game.hpp
 CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o: ../src/Game_minimax.cpp
 CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o: ../src/IO_handler.hpp
-CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o: ../src/MCTS_player.hpp
 CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o: ../src/Minimax_players.hpp
 CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o: ../src/def.hpp
 CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o: ../src/jsoncpp.cpp

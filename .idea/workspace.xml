@@ -4,12 +4,12 @@
     <generated>
       <config projectName="Tank" targetName="Tank_mcts_lib" />
       <config projectName="Tank" targetName="Tank_minimax" />
-      <config projectName="Tank" targetName="Tank_mcts" />
       <config projectName="Tank" targetName="Tank_minimax_lib" />
+      <config projectName="Tank" targetName="Tank_mcts" />
       <config projectName="Tank" targetName="Anneal" />
     </generated>
   </component>
-  <component name="CMakeSettings">
+  <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" GENERATION_DIR="./cmake-build-debug" />
       <configuration PROFILE_NAME="Release" CONFIG_NAME="Release" />
@@ -18,13 +18,50 @@
   <component name="ChangeListManager">
     <list default="true" id="5fde8d7a-b06c-440a-a2c6-b29b165f58b3" name="Default Changelist" comment="1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_mcts.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_mcts.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_mcts_lib.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_mcts_lib.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_mcts_lib.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_mcts_lib.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Tank.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Tank.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Tank_minimax" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Tank_minimax" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/Anneal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Anneal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Anneal.dir/src/Field_info.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Anneal.dir/src/Field_info.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Anneal.dir/src/Field_map.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Anneal.dir/src/Field_map.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Anneal.dir/src/anneal.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Anneal.dir/src/anneal.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Tank_mcts_lib.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Tank_mcts_lib.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Tank_mcts_lib.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/Tank_mcts_lib.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-release/Tank.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-release/Tank.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_mcts_lib.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/Tank_mcts_lib.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_mcts_lib.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/Tank_mcts_lib.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_mcts_lib.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/Tank_mcts_lib.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/src/Field_info.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/src/Field_map.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/CMakeFiles/Tank_minimax_lib.dir/src/Game_minimax.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/libTank_minimax_lib.so" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Field.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Field_info.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field_info.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Field_info.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field_info.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Field_map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Field_map.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game_mcts.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_mcts.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game_minimax.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game_minimax.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MCTS_player.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/MCTS_player.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Minimax_players.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Minimax_players.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/def.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/def.hpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/CMakeFiles/" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -54,10 +91,11 @@
     <session id="-151959577">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="3" />
+          <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -65,41 +103,45 @@
           <entry key="algorithm" value="1" />
           <entry key="cbp" value="2" />
           <entry key="cmake" value="1" />
-          <entry key="cpp" value="25" />
-          <entry key="h" value="9" />
-          <entry key="hpp" value="34" />
-          <entry key="md" value="5" />
-          <entry key="py" value="3" />
-          <entry key="txt" value="9" />
+          <entry key="cpp" value="52" />
+          <entry key="h" value="12" />
+          <entry key="hpp" value="46" />
+          <entry key="md" value="6" />
+          <entry key="py" value="4" />
+          <entry key="sh" value="1" />
+          <entry key="txt" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="Bash" value="1" />
           <entry key="CMakeCache.txt" value="1" />
-          <entry key="CMakeLists.txt" value="9" />
-          <entry key="Markdown" value="5" />
-          <entry key="ObjectiveC" value="69" />
+          <entry key="CMakeLists.txt" value="11" />
+          <entry key="Markdown" value="6" />
+          <entry key="ObjectiveC" value="111" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="3" />
+          <entry key="Python" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="6513" />
-          <entry key="h" value="353" />
-          <entry key="hpp" value="5284" />
+          <entry key="cpp" value="7657" />
+          <entry key="h" value="359" />
+          <entry key="hpp" value="13471" />
           <entry key="md" value="260" />
-          <entry key="py" value="3" />
-          <entry key="txt" value="4" />
+          <entry key="py" value="7" />
+          <entry key="sh" value="3" />
+          <entry key="txt" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CMakeLists.txt" value="3" />
+          <entry key="Bash" value="3" />
+          <entry key="CMakeLists.txt" value="28" />
           <entry key="Markdown" value="260" />
-          <entry key="ObjectiveC" value="12150" />
+          <entry key="ObjectiveC" value="21487" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="3" />
+          <entry key="Python" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -111,14 +153,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Game_minimax.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="2" selection-start-column="2" selection-end-column="2" />
+              <folding>
+                <element signature="e#40#65#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Field_map.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3150">
+              <caret line="215" selection-start-line="215" selection-end-line="215" />
+              <folding>
+                <element signature="e#5957#6914#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Field_info.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7066">
+              <caret line="531" column="9" selection-start-line="531" selection-start-column="9" selection-end-line="531" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Field.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-              <folding>
-                <element signature="e#14549#14648#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-948">
+              <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -126,26 +198,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MCTS_player.hpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="-321">
+              <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+              <folding>
+                <element signature="e#91#109#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Field_info.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="481" column="87" selection-start-line="481" selection-start-column="87" selection-end-line="481" selection-end-column="87" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Field_info.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="49" column="60" selection-start-line="49" selection-start-column="60" selection-end-line="49" selection-end-column="60" />
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="315">
+                <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -154,12 +223,15 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cout</find>
       <find>score</find>
       <find>max_step</find>
       <find>destroy</find>
       <find>block</find>
       <find>step</find>
+      <find>to_select</find>
+      <find>en_val_table</find>
+      <find>print</find>
+      <find>cout</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,20 +240,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/def.hpp" />
-        <option value="$PROJECT_DIR$/src/Game_minimax.cpp" />
-        <option value="$PROJECT_DIR$/src/Field_map.cpp" />
         <option value="$PROJECT_DIR$/src/annealing.cpp" />
         <option value="$PROJECT_DIR$/src/anneal.cpp" />
-        <option value="$PROJECT_DIR$/src/Game_mcts.cpp" />
-        <option value="$PROJECT_DIR$/src/MCTS_player.hpp" />
-        <option value="$PROJECT_DIR$/src/Field_info.h" />
-        <option value="$PROJECT_DIR$/src/Minimax_players.hpp" />
-        <option value="$PROJECT_DIR$/src/Field_info.cpp" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/Field_info.h" />
+        <option value="$PROJECT_DIR$/src/def.hpp" />
+        <option value="$PROJECT_DIR$/src/Game_minimax.cpp" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/src/Field_map.cpp" />
+        <option value="$PROJECT_DIR$/src/Field_info.cpp" />
         <option value="$PROJECT_DIR$/src/Field.hpp" />
+        <option value="$PROJECT_DIR$/src/Game_mcts.cpp" />
+        <option value="$PROJECT_DIR$/src/Game_mix.cpp" />
+        <option value="$PROJECT_DIR$/src/Minimax_players.hpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/build.sh" />
+        <option value="$PROJECT_DIR$/src/MCTS_player.hpp" />
       </list>
     </option>
   </component>
@@ -193,8 +267,7 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="846" />
-    <option name="width" value="834" />
+    <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -235,6 +308,11 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -247,7 +325,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Tank_minimax">
+  <component name="RunManager" selected="Application.Anneal">
     <configuration name="Anneal" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Tank" TARGET_NAME="Anneal" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Tank" RUN_TARGET_NAME="Anneal">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -300,31 +378,41 @@
       <workItem from="1541058044757" duration="503000" />
       <workItem from="1541058571951" duration="62267000" />
       <workItem from="1541178073077" duration="16000" />
-      <workItem from="1541178139610" duration="32095000" />
+      <workItem from="1541178139610" duration="81072000" />
+      <workItem from="1541436293164" duration="846000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94881000" />
+    <option name="totallyTimeSpent" value="144704000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.15370706" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15370706" />
       <window_info id="Structure" order="1" show_stripe_button="false" side_tool="true" weight="0.2496925" />
       <window_info id="Favorites" order="2" show_stripe_button="false" side_tool="true" weight="0.3296433" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4397959" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996986" weight="0.4397959" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49909583" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32959184" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32959184" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32959184" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50090414" side_tool="true" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="CMake" order="12" weight="0.32959184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -343,6 +431,13 @@
     <MESSAGE value="1" />
     <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="this-&gt;my_val_table[0]" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CMakeCache.txt" />
     <entry file="file://$PROJECT_DIR$/cmake_install.cmake" />
@@ -351,20 +446,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="2708" selection-start-line="2708" selection-end-line="2708" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -379,65 +460,78 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/annealing.cpp" />
-    <entry file="file://$PROJECT_DIR$/src/Game_minimax.cpp">
+    <entry file="file://$PROJECT_DIR$/src/Field_info.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="17" selection-end-column="21" />
+        <state relative-caret-position="452">
+          <caret line="56" column="4" lean-forward="true" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IO_handler.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-402" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/anneal.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1205">
+          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding>
-            <element signature="e#40#65#0" expanded="true" />
+            <element signature="e#40#60#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game_mcts.cpp">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/def.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="9" />
+        <state relative-caret-position="145">
+          <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
           <folding>
             <element signature="e#112#130#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Field_info.h">
+    <entry file="file:///Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/math.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="49" column="60" selection-start-line="49" selection-start-column="60" selection-end-line="49" selection-end-column="60" />
+        <state relative-caret-position="911">
+          <caret line="931" selection-start-line="931" selection-end-line="931" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Game_mix.cpp" />
     <entry file="file://$PROJECT_DIR$/src/Minimax_players.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="143" column="6" lean-forward="true" selection-start-line="143" selection-start-column="6" selection-end-line="143" selection-end-column="6" />
+        <state relative-caret-position="157">
+          <caret line="197" column="42" selection-start-line="197" selection-start-column="42" selection-end-line="197" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Field_map.cpp">
+    <entry file="file://$PROJECT_DIR$/src/Game_mcts.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="203" column="16" selection-start-line="203" selection-start-column="16" selection-end-line="203" selection-end-column="16" />
+        <state relative-caret-position="105">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Field_info.cpp">
+    <entry file="file://$PROJECT_DIR$/build.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="481" column="87" selection-start-line="481" selection-start-column="87" selection-end-line="481" selection-end-column="87" />
+        <state relative-caret-position="75">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MCTS_player.hpp">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="300">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
@@ -451,23 +545,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/anneal.cpp">
+    <entry file="file://$PROJECT_DIR$/src/Game_minimax.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-778">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+        <state>
+          <caret column="2" selection-start-column="2" selection-end-column="2" />
           <folding>
-            <element signature="e#40#60#0" expanded="true" />
+            <element signature="e#40#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Field_map.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3150">
+          <caret line="215" selection-start-line="215" selection-end-line="215" />
+          <folding>
+            <element signature="e#5957#6914#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MCTS_player.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-321">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+          <folding>
+            <element signature="e#91#109#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Field.hpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="e#14549#14648#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-948">
+          <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Field_info.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7066">
+          <caret line="531" column="9" selection-start-line="531" selection-start-column="9" selection-end-line="531" selection-end-column="9" />
         </state>
       </provider>
     </entry>

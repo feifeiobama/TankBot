@@ -22,6 +22,20 @@ Field_map.h
 Field_info.h
 /Users/szc/Desktop/tank/src/Field_info.h
 
+/Users/szc/Desktop/tank/src/Field_info.cpp
+cstring
+-
+iostream
+-
+iomanip
+-
+stack
+-
+Field_info.h
+/Users/szc/Desktop/tank/src/Field_info.h
+Field_map.h
+/Users/szc/Desktop/tank/src/Field_map.h
+
 /Users/szc/Desktop/tank/src/Field_info.h
 def.hpp
 /Users/szc/Desktop/tank/src/def.hpp
@@ -29,6 +43,20 @@ map
 -
 vector
 -
+
+/Users/szc/Desktop/tank/src/Field_map.cpp
+stdlib.h
+-
+ctime
+-
+iostream
+-
+cstring
+-
+Field_map.h
+/Users/szc/Desktop/tank/src/Field_map.h
+Field_info.h
+/Users/szc/Desktop/tank/src/Field_info.h
 
 /Users/szc/Desktop/tank/src/Field_map.h
 def.hpp
@@ -47,8 +75,6 @@ Minimax_players.hpp
 /Users/szc/Desktop/tank/src/Minimax_players.hpp
 Game.hpp
 /Users/szc/Desktop/tank/src/Game.hpp
-MCTS_player.hpp
-/Users/szc/Desktop/tank/src/MCTS_player.hpp
 iostream
 -
 random
@@ -63,12 +89,6 @@ Field.hpp
 /Users/szc/Desktop/tank/src/Field.hpp
 jsoncpp/json.h
 /Users/szc/Desktop/tank/src/jsoncpp/json.h
-
-/Users/szc/Desktop/tank/src/MCTS_player.hpp
-def.hpp
-/Users/szc/Desktop/tank/src/def.hpp
-Field.hpp
-/Users/szc/Desktop/tank/src/Field.hpp
 
 /Users/szc/Desktop/tank/src/Minimax_players.hpp
 cstring

@@ -5,7 +5,6 @@
 #include "IO_handler.hpp"
 #include "Minimax_players.hpp"
 #include "Game.hpp"
-#include "MCTS_player.hpp"
 #include <iostream>
 #include <random>
 

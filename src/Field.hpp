@@ -15,8 +15,8 @@
 #include "Field_info.h"
 
 constexpr int Argc = 8;
-constexpr double Argv[Argc] = {3.6034462436, 0.0534986776, 0.0351365857, 0.0031822821, 0.0152381077, 0.0073149502,
-                               12.8622818941, 0.0448960420};
+constexpr double Argv[Argc] = {2.6158915724, 0.0788740851, 0.0607443561, 0.0035808342, 0.0141540994, 0.0052071428,
+                               9.2215825860, 0.2386554811};
 
 class Field {
     Field_map field_map;
@@ -63,7 +63,7 @@ public:
     }
 
     // 返回蓝方胜率 (0,1) 禁止已经结束的局进入
-    double evaluate(double argv[Argc], bool if_print = false) {
+    double evaluate(double const argv[Argc] = Argv, bool if_print = false) {
 #ifdef _BOTZONE_ONLINE
         if_print = false;
 #endif
@@ -257,7 +257,7 @@ public:
         if (if_print) {
             cout << "blue kill " << int(min_step) << endl;
         }
-        if (min_step != unsigned(-1)) {
+        if (min_step != unsigned(-1) && field_map.get_round() + min_step <= 100) {
             score[0] += (argv[6] - argv[7] * min_step);
             goto skip_red;
         }
@@ -367,7 +367,7 @@ public:
         if (if_print) {
             cout << "red kill " << int(min_step) << endl;
         }
-        if (min_step != unsigned(-1)) {
+        if (min_step != unsigned(-1) && field_map.get_round() + min_step <= 100) {
             score[1] += (argv[6] - argv[7] * min_step);
         }
 

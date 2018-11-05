@@ -4,7 +4,7 @@
 # compile CXX with /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
 CXX_FLAGS = -g -fPIC   -std=gnu++11
 
-CXX_DEFINES = -DTank_mcts_lib_EXPORTS
+CXX_DEFINES = -DTank_mcts_lib_EXPORTS -D_BOTZONE_ONLINE
 
 CXX_INCLUDES = 
 

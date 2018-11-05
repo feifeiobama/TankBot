@@ -33,10 +33,10 @@ Field_map::Field_map(bool random_initialize) {
 
     srand48(clock());
     FOR_INIT_HALF_FIELD(i, j, {
-            if (is_empty(i, j) && drand48() < 0.4) {
-                set_brick(8 - i, 8 - j);
-                set_brick(i, j);
-            }
+        if (is_empty(i, j) && drand48() < 0.4) {
+            set_brick(8 - i, 8 - j);
+            set_brick(i, j);
+        }
     })
 }
 
@@ -101,10 +101,8 @@ void Field_map::update(Action &action1, Action &action2) {
         }
     }
     for (int i = 0; i != 4; ++i) {
-        if (moves[i] == -1) {
-            if (tanks[i] != Null_pos) {
-                map[tanks[i].x] |= (0b11 << (tanks[i].y << 1));
-            }
+        if ((moves[i] == -1 && tanks[i] != Null_pos) || moves[i] >= 4) {
+            map[tanks[i].x] |= (0b11 << (tanks[i].y << 1));
         }
     }
 
@@ -219,7 +217,7 @@ void Field_map::print() const {
     char map[9][10] = {'\0'};
     bool multi[9][9] = {0};
     FOR_THE_FIELD(i, j, {
-            map[j][i] = is_empty(i, j) ? ':' : '#';
+        map[j][i] = is_empty(i, j) ? ':' : '#';
     })
     char tank_char[4] = {'b', 'B', 'r', 'R'};
     for (int i = 0; i != 4; ++i) {

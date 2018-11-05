@@ -64,6 +64,24 @@ inline bool operator!=(const Position &pos1, const Position &pos2) {
     return pos1.x != pos2.x || pos1.y != pos2.y;
 }
 
+inline int encode(Move m1, Move m2, Move m3, Move m4) {
+    int ans = (m1 + 1);
+    ans = ans * 9 + (m2 + 1);
+    ans = ans * 9 + (m3 + 1);
+    ans = ans * 9 + (m4 + 1);
+    return ans;
+}
+
+inline void decode(int ans, Move &m1, Move &m2, Move &m3, Move &m4) {
+    m4 = ans % 9 - 1;
+    ans = ans / 9;
+    m3 = ans % 9 - 1;
+    ans = ans / 9;
+    m2 = ans % 9 - 1;
+    ans = ans / 9;
+    m1 = ans - 1;
+}
+
 #define FOR_ADJACENT_POS_INDEX(position, adj_pos, expression)\
 for (int dir = 0; dir != 4; ++dir) {\
     Position adj_pos = get_adjacent_position(position, dir);\

@@ -68,18 +68,16 @@ map
 
 /media/psf/Home/Desktop/tank/src/Game.hpp
 
-/media/psf/Home/Desktop/tank/src/Game_minimax.cpp
+/media/psf/Home/Desktop/tank/src/Game_mcts.cpp
 IO_handler.hpp
 /media/psf/Home/Desktop/tank/src/IO_handler.hpp
-Minimax_players.hpp
-/media/psf/Home/Desktop/tank/src/Minimax_players.hpp
 Game.hpp
 /media/psf/Home/Desktop/tank/src/Game.hpp
 MCTS_player.hpp
 /media/psf/Home/Desktop/tank/src/MCTS_player.hpp
+Minimax_players.hpp
+/media/psf/Home/Desktop/tank/src/Minimax_players.hpp
 iostream
--
-random
 -
 
 /media/psf/Home/Desktop/tank/src/IO_handler.hpp
@@ -97,6 +95,12 @@ def.hpp
 /media/psf/Home/Desktop/tank/src/def.hpp
 Field.hpp
 /media/psf/Home/Desktop/tank/src/Field.hpp
+map
+-
+string
+-
+sstream
+-
 
 /media/psf/Home/Desktop/tank/src/Minimax_players.hpp
 cstring
