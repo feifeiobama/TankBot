@@ -20,7 +20,7 @@
 
 * 基本估价 (debug 情况下一次估值需要 5e-5 s)
 
-    val = sum(argv[0] * tank - argv[1] * dist + argv[2] * min_ahead) - argv[3] * first_threat
+    val = sum(argv[0] * tank - argv[1] * dist + argv[2] * min_ahead) + argv[3] * area_fire + argv[4] * area_move - argv[5] * first_threat
 
 * 斩杀判定
 
@@ -30,9 +30,9 @@
     
     (2) 两坦克进攻敌方一名坦克，放空另一只坦克
 
-​	若一方全胜 val += argv[4] - argv[5] * 斩杀步数
+​	若一方全胜 val += argv[6] - argv[7] * 斩杀步数
 
-* 最后sigmoid(argv[6] * (blue - red))
+* 最后sigmoid(blue - red)
 
 #### 总结
 
