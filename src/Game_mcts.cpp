@@ -21,7 +21,7 @@ void game_start() {
     Color currentColor = recover_from_input(field_map, history);
 
     MCTS_player player = MCTS_player(currentColor);
-    Action action = player.make_decision(field_map);
+    Action action = player.make_decision(field_map, history);
     encode_output(action, player.encode_debug());
 }
 }

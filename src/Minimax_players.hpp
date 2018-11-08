@@ -26,14 +26,10 @@ public:
         if (if_print) {
             field1.print();
         }
-        double ans = 0;
-        for (int i = 0; i != 5; ++i) {
-            ans += field1.evaluate(argv);
-        }
-        return ans / 5;
+        return field1.evaluate(argv);
     }
 
-    Action make_decision(Color color, const Field &field, vector<pair<Field_map, Action> > history[2]) {
+    Action make_decision(Color color, Field &field, vector<pair<Field_map, Action> > history[2]) {
         clock_t clk0 = clock();
 
         // 判定双方可做的动作 (不管怎样 -1 应该都是可以的)
@@ -45,6 +41,7 @@ public:
         }
 
         Action a = field.find_history(history[1 - color]);
+        record = field.evaluate();
 
         // 带剪枝的 minimax
         Action ans = {-1, -1};
@@ -94,7 +91,6 @@ public:
                     label1:;
                 }
             }
-            record = max_val;
         } else {
             double min_val = 1.0;
             for (int m3 = -1; m3 != 8; ++m3) {
@@ -141,7 +137,6 @@ public:
                     label2:;
                 }
             }
-            record = min_val;
         }
 
         clock_t clk1 = clock();
@@ -153,12 +148,9 @@ public:
         return ans;
     }
 
-    bool must_win(Color color) {
-        if (color == BLUE) {
-            return record >= 0.95;
-        } else {
-            return record <= 0.05;
-        }
+    bool must_end(Color color) {
+        cout << record << endl;
+        return record >= 0.98 || record <= 0.02;
     }
 
     void printDecision(Color color, Move m1, Move m2, const Field &field) {

@@ -15,9 +15,8 @@
 #include "Field_info.h"
 
 constexpr int Argc = 8;
-constexpr double Argv[Argc] = {2.6158915724, 0.0788740851, 0.0607443561, 0.0035808342, 0.0141540994, 0.0052071428,
-                               9.2215825860, 0.2386554811};
-
+constexpr double Argv[Argc] = {3.0755024418, 0.1391485771, 0.0364841232, 0.0044624227, 0.0168976814, 0.0035262750,
+                               9.7777705284, 0.2231057750};
 class Field {
     Field_map field_map;
     Field_info field_info;
@@ -76,12 +75,9 @@ public:
         } else if (pre_judge == 1) {
             return 0.0;
         }
+
         bool if_tank_dead[4] = {false};
-        for (int i = 0; i != 4; ++i) {
-            if (field_map.get_tank(i) == Null_pos) {
-                if_tank_dead[i] = true;
-            }
-        }
+        field_info.mask_tank(if_tank_dead);
 
         // prepare values
 
@@ -139,7 +135,6 @@ public:
                         })
                     }
                     score[c] += argv[2] * min_ahead;
-
                     score[c] += argv[3] * area_fire[i];
                     score[c] += argv[4] * area_move[i];
                 }
@@ -381,7 +376,7 @@ public:
     }
 
     bool is_avail(int tank, Move m) const {
-        return field_map.is_avail(tank, m);
+        return field_info.is_available(tank, m, field_map);
     }
 
     int get_round() {

@@ -10,10 +10,11 @@
 #include <map>
 #include <string>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
-const double MAX_TIME = 4.5;
+const double MAX_TIME = 3.8;
 const int SEARCH_UPPER_BOUND = 10000000;
 
 class Val_table {
@@ -61,7 +62,7 @@ public:
 
     Node(Node *father_) : field(father_->field), father(father_), offset(father_->offset) {};
 
-    void calc_avail_move() {
+    void calc_avail_move(vector<pair<Field_map, Action> > history) {
         if (has_cache) {
             return;
         }
@@ -75,9 +76,15 @@ public:
             }
         }
         bool en_avail[2][9] = {0};
-        for (int i = 0; i != 2; ++i) {
-            for (int j = 0; j != 9; ++j) {
-                en_avail[i][j] = field.is_avail((i + offset + 2) % 4, j - 1);
+        Action a = field.find_history(history);
+        if (a.move[0] != -2) {
+            en_avail[0][a.move[0] + 1] = true;
+            en_avail[1][a.move[1] + 1] = true;
+        } else {
+            for (int i = 0; i != 2; ++i) {
+                for (int j = 0; j != 9; ++j) {
+                    en_avail[i][j] = field.is_avail((i + offset + 2) % 4, j - 1);
+                }
             }
         }
         for (int i = 0; i != 9; ++i) {
@@ -104,8 +111,8 @@ public:
 //        field.print();
     }
 
-    Node *select() {
-        calc_avail_move();
+    Node *select(vector<pair<Field_map, Action> > history) {
+        calc_avail_move(history);
         if (field.judge() != 2) {
             return this;
         } else {
@@ -150,7 +157,7 @@ public:
             int s = encode(to_select[0], to_select[1], to_select[2], to_select[3]);
             auto p = children.find(s);
             if (p != children.end()) {
-                return p->second->select();
+                return p->second->select(history);
             } else {
                 return this;
             }
@@ -183,7 +190,10 @@ public:
         }
     }
 
-    double evaluate() { return field.evaluate(); }
+    double evaluate() {
+        double a = field.evaluate();
+        return a;
+    }
 
     Action get_ans() {
         Move m[2] = {-1, -1};
@@ -195,7 +205,8 @@ public:
                     continue;
                 }
 #ifndef _BOTZONE_ONLINE
-                cout << i << " " << j << " " << my_val_table[i][j]->get_win_rate() << " " << my_val_table[i][j]->get_calcd() << endl;
+                cout << i << " " << j - 1 << " " << my_val_table[i][j]->get_win_rate() << " "
+                     << my_val_table[i][j]->get_calcd() << endl;
 #endif
                 if (my_val_table[i][j]->get_win_rate() > max_win_rate) {
                     max_win_rate = my_val_table[i][j]->get_win_rate();
@@ -203,6 +214,18 @@ public:
                 }
             }
         }
+
+#ifndef _BOTZONE_ONLINE
+        for (int i = 0; i != 2; ++i) {
+            for (int j = 0; j != 9; ++j) {
+                if (en_val_table[m[0] + 1][m[1] + 1][i][j] == NULL) {
+                    continue;
+                }
+                cout << i + 2 << " " << j - 1 << " " << en_val_table[m[0] + 1][m[1] + 1][i][j]->get_win_rate() << " "
+                     << en_val_table[m[0] + 1][m[1] + 1][i][j]->get_calcd() << endl;
+            }
+        }
+#endif
 
         return Action{m[0], m[1]};
     }
@@ -246,18 +269,18 @@ public:
     MCTS_player(Color color_) : color(color_) {}
 
     ~MCTS_player() {
-#ifndef _BOTZONE_ONLINE
+#ifdef _LOCAL_COMP
         root->remove();
         delete root;
 #endif
     }
 
-    Action make_decision(Field_map &field_map) {
+    Action make_decision(Field_map &field_map, vector<pair<Field_map, Action> > history[2]) {
         clock_t clk = clock() + clock_t(CLOCKS_PER_SEC * MAX_TIME);
         root = new Node(field_map, color);
         int search_cnt = 0;
         while (search_cnt < SEARCH_UPPER_BOUND && clock() < clk) {
-            Node *existing_node = root->select();
+            Node *existing_node = root->select(history[1 - color]);
             Node *new_node = existing_node->expand();
             new_node->back_propagate(new_node->evaluate());
         }

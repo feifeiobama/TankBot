@@ -36,6 +36,9 @@ class Field_info {
     bool fire_map[4][9][9] = {0};
     unsigned base_row_barrier[2][9] = {0};
 
+    bool tank_dead[4] = {0};
+    bool is_avail[4][9] = {0};
+
 public:
     Field_info(const Field_map &field_map);
 
@@ -49,16 +52,20 @@ public:
 
     void calc_distance(int i, Position position, bool loaded);
 
+    void calc_avail(const Field_map &field_map);
+
+    void mask_tank(bool if_tank_dead[4]);
+
     // 以下均保证坦克合法
 
     // 允许在其它位置射击击穿砖块
     unsigned dist_to_shoot_base(int tank, const Field_map &field_map, bool enemy=true) const;
 
-    // <被延缓的步数，被禁止通过>
-    pair<int, bool> block_route(int tank1, int tank2, const Field_map &field_map) const;
+    // <被延缓的步数，对某一边领先步数的影响>
+    pair<int, int> block_route(int tank1, int tank2, const Field_map &field_map, bool is_left) const;
 
     // 保证对方双坦都在
-    pair<int, bool> blocked_route(int tank, const Field_map &field_map) const;
+    pair<int, int> blocked_route(int tank, const Field_map &field_map) const;
 
     // <斩杀领先的步数>=0, 最短的斩杀步数>
     pair<int, unsigned> dist_to_shoot_avoid(int tank1, int tank2, const Field_map &field_map) const;
@@ -74,6 +81,8 @@ public:
 
     // 附近移动宽敞(应当避开敌方火线，和所有坦克坐标)
     unsigned area_move(int tank, const Field_map &field_map) const;
+
+    bool is_available(int tank, Move m, const Field_map &field_map) const;
 
     void print(const Field_map &field_map) const;
 };
