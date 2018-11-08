@@ -32,7 +32,7 @@
 
 ​	若一方全胜 val += argv[6] - argv[7] * 斩杀步数
 
-* 最后sigmoid(blue - red)
+    最后sigmoid(blue - red)
 
 #### 总结
 
