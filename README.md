@@ -20,7 +20,9 @@
 
 * 基本估价 (debug 情况下一次估值需要 5e-5 s)
 
-    val = sum(argv[0] * tank - argv[1] * dist + argv[2] * min_ahead) + argv[3] * area_fire + argv[4] * area_move - argv[5] * first_threat
+$$
+    val = \sum(argv[0] * tank - argv[1] * dist + argv[2] * min_ahead + argv[3] * area_fire + argv[4] * area_move) - argv[5] * first_threat
+$$
 
 * 斩杀判定
 
