@@ -15,8 +15,8 @@
 #include "Field_info.h"
 
 constexpr int Argc = 8;
-constexpr double Argv[Argc] = {3.8210216365, 0.1034557189, 0.0532674934, 0.0027350287, 0.0142413549, 0.0057076207,
-                               10.7704850556, 0.2051516580};
+constexpr double Argv[Argc] = {2.5498221057, 0.0696530386, 0.0631729052, 0.0000000000, 0.0000000000, 0.0052121100,
+                               13.3366227200, 0.2750589899};
 class Field {
     Field_map field_map;
     Field_info field_info;
