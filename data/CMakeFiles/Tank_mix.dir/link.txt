@@ -1,1 +1,1 @@
-/Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -O3 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/Tank_mix.dir/src/main.cpp.o CMakeFiles/Tank_mix.dir/src/Game_mix.cpp.o CMakeFiles/Tank_mix.dir/src/Field_info.cpp.o CMakeFiles/Tank_mix.dir/src/Field_map.cpp.o  -o Tank_mix 
+/usr/bin/c++  -O3   CMakeFiles/Tank_mix.dir/src/main.cpp.o CMakeFiles/Tank_mix.dir/src/Game_mix.cpp.o CMakeFiles/Tank_mix.dir/src/Field_info.cpp.o CMakeFiles/Tank_mix.dir/src/Field_map.cpp.o  -o Tank_mix 
