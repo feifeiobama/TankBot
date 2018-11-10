@@ -3,7 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Tank_minimax_lib.dir/src/Field_info.cpp.o"
   "CMakeFiles/Tank_minimax_lib.dir/src/Field_map.cpp.o"
   "libTank_minimax_lib.pdb"
-  "libTank_minimax_lib.so"
+  "libTank_minimax_lib.dylib"
 )
 
 # Per-language clean rules from dependency scanning.

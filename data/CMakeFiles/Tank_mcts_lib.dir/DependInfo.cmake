@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/media/psf/Home/Documents/project/tank/src/Field_info.cpp" "/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_mcts_lib.dir/src/Field_info.cpp.o"
-  "/media/psf/Home/Documents/project/tank/src/Field_map.cpp" "/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_mcts_lib.dir/src/Field_map.cpp.o"
-  "/media/psf/Home/Documents/project/tank/src/Game_mcts.cpp" "/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_mcts_lib.dir/src/Game_mcts.cpp.o"
+  "/Users/szc/Documents/project/Tank/src/Field_info.cpp" "/Users/szc/Documents/project/Tank/data/CMakeFiles/Tank_mcts_lib.dir/src/Field_info.cpp.o"
+  "/Users/szc/Documents/project/Tank/src/Field_map.cpp" "/Users/szc/Documents/project/Tank/data/CMakeFiles/Tank_mcts_lib.dir/src/Field_map.cpp.o"
+  "/Users/szc/Documents/project/Tank/src/Game_mcts.cpp" "/Users/szc/Documents/project/Tank/data/CMakeFiles/Tank_mcts_lib.dir/src/Game_mcts.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX

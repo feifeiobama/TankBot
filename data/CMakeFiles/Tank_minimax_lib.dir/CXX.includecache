@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/media/psf/Home/Documents/project/tank/src/Field.hpp
+/Users/szc/Documents/project/Tank/src/Field.hpp
 cmath
 -
 cstring
@@ -16,13 +16,13 @@ iostream
 vector
 -
 def.hpp
-/media/psf/Home/Documents/project/tank/src/def.hpp
+/Users/szc/Documents/project/Tank/src/def.hpp
 Field_map.h
-/media/psf/Home/Documents/project/tank/src/Field_map.h
+/Users/szc/Documents/project/Tank/src/Field_map.h
 Field_info.h
-/media/psf/Home/Documents/project/tank/src/Field_info.h
+/Users/szc/Documents/project/Tank/src/Field_info.h
 
-/media/psf/Home/Documents/project/tank/src/Field_info.cpp
+/Users/szc/Documents/project/Tank/src/Field_info.cpp
 cstring
 -
 iostream
@@ -32,19 +32,19 @@ iomanip
 stack
 -
 Field_info.h
-/media/psf/Home/Documents/project/tank/src/Field_info.h
+/Users/szc/Documents/project/Tank/src/Field_info.h
 Field_map.h
-/media/psf/Home/Documents/project/tank/src/Field_map.h
+/Users/szc/Documents/project/Tank/src/Field_map.h
 
-/media/psf/Home/Documents/project/tank/src/Field_info.h
+/Users/szc/Documents/project/Tank/src/Field_info.h
 def.hpp
-/media/psf/Home/Documents/project/tank/src/def.hpp
+/Users/szc/Documents/project/Tank/src/def.hpp
 map
 -
 vector
 -
 
-/media/psf/Home/Documents/project/tank/src/Field_map.cpp
+/Users/szc/Documents/project/Tank/src/Field_map.cpp
 stdlib.h
 -
 ctime
@@ -54,49 +54,49 @@ iostream
 cstring
 -
 Field_map.h
-/media/psf/Home/Documents/project/tank/src/Field_map.h
+/Users/szc/Documents/project/Tank/src/Field_map.h
 Field_info.h
-/media/psf/Home/Documents/project/tank/src/Field_info.h
+/Users/szc/Documents/project/Tank/src/Field_info.h
 
-/media/psf/Home/Documents/project/tank/src/Field_map.h
+/Users/szc/Documents/project/Tank/src/Field_map.h
 def.hpp
-/media/psf/Home/Documents/project/tank/src/def.hpp
+/Users/szc/Documents/project/Tank/src/def.hpp
 vector
 -
 map
 -
 
-/media/psf/Home/Documents/project/tank/src/Game.hpp
+/Users/szc/Documents/project/Tank/src/Game.hpp
 
-/media/psf/Home/Documents/project/tank/src/Game_minimax.cpp
+/Users/szc/Documents/project/Tank/src/Game_minimax.cpp
 IO_handler.hpp
-/media/psf/Home/Documents/project/tank/src/IO_handler.hpp
+/Users/szc/Documents/project/Tank/src/IO_handler.hpp
 Minimax_players.hpp
-/media/psf/Home/Documents/project/tank/src/Minimax_players.hpp
+/Users/szc/Documents/project/Tank/src/Minimax_players.hpp
 Game.hpp
-/media/psf/Home/Documents/project/tank/src/Game.hpp
+/Users/szc/Documents/project/Tank/src/Game.hpp
 iostream
 -
 random
 -
 
-/media/psf/Home/Documents/project/tank/src/IO_handler.hpp
+/Users/szc/Documents/project/Tank/src/IO_handler.hpp
 iostream
 -
 def.hpp
-/media/psf/Home/Documents/project/tank/src/def.hpp
+/Users/szc/Documents/project/Tank/src/def.hpp
 Field.hpp
-/media/psf/Home/Documents/project/tank/src/Field.hpp
+/Users/szc/Documents/project/Tank/src/Field.hpp
 jsoncpp/json.h
-/media/psf/Home/Documents/project/tank/src/jsoncpp/json.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/json.h
 
-/media/psf/Home/Documents/project/tank/src/Minimax_players.hpp
+/Users/szc/Documents/project/Tank/src/Minimax_players.hpp
 cstring
 -
 Field.hpp
-/media/psf/Home/Documents/project/tank/src/Field.hpp
+/Users/szc/Documents/project/Tank/src/Field.hpp
 
-/media/psf/Home/Documents/project/tank/src/def.hpp
+/Users/szc/Documents/project/Tank/src/def.hpp
 cstdint
 -
 limits
@@ -104,9 +104,9 @@ limits
 climits
 -
 
-/media/psf/Home/Documents/project/tank/src/jsoncpp.cpp
+/Users/szc/Documents/project/Tank/src/jsoncpp.cpp
 jsoncpp/json.h
-/media/psf/Home/Documents/project/tank/src/jsoncpp/json.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/json.h
 json/assertions.h
 -
 json/reader.h
@@ -114,7 +114,7 @@ json/reader.h
 json/value.h
 -
 json_tool.h
-/media/psf/Home/Documents/project/tank/src/json_tool.h
+/Users/szc/Documents/project/Tank/src/json_tool.h
 utility
 -
 cstdio
@@ -136,7 +136,7 @@ json/value.h
 json/writer.h
 -
 json_batchallocator.h
-/media/psf/Home/Documents/project/tank/src/json_batchallocator.h
+/Users/szc/Documents/project/Tank/src/json_batchallocator.h
 math.h
 -
 sstream
@@ -152,15 +152,15 @@ cpptl/conststring.h
 cstddef
 -
 json_internalarray.inl
-/media/psf/Home/Documents/project/tank/src/json_internalarray.inl
+/Users/szc/Documents/project/Tank/src/json_internalarray.inl
 json_internalmap.inl
-/media/psf/Home/Documents/project/tank/src/json_internalmap.inl
+/Users/szc/Documents/project/Tank/src/json_internalmap.inl
 json_valueiterator.inl
-/media/psf/Home/Documents/project/tank/src/json_valueiterator.inl
+/Users/szc/Documents/project/Tank/src/json_valueiterator.inl
 json/writer.h
 -
 json_tool.h
-/media/psf/Home/Documents/project/tank/src/json_tool.h
+/Users/szc/Documents/project/Tank/src/json_tool.h
 utility
 -
 assert.h
@@ -178,15 +178,15 @@ math.h
 float.h
 -
 
-/media/psf/Home/Documents/project/tank/src/jsoncpp/json.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/json.h
 cpptl/config.h
 -
 config.h
-/media/psf/Home/Documents/project/tank/src/jsoncpp/config.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/config.h
 forwards.h
-/media/psf/Home/Documents/project/tank/src/jsoncpp/forwards.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/forwards.h
 forwards.h
-/media/psf/Home/Documents/project/tank/src/jsoncpp/forwards.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/forwards.h
 string
 -
 vector
@@ -198,9 +198,9 @@ cpptl/smallmap.h
 cpptl/forwards.h
 -
 features.h
-/media/psf/Home/Documents/project/tank/src/jsoncpp/features.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/features.h
 value.h
-/media/psf/Home/Documents/project/tank/src/jsoncpp/value.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/value.h
 deque
 -
 iosfwd
@@ -210,7 +210,7 @@ stack
 string
 -
 value.h
-/media/psf/Home/Documents/project/tank/src/jsoncpp/value.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/value.h
 vector
 -
 string
@@ -218,9 +218,9 @@ string
 stdlib.h
 -
 config.h
-/media/psf/Home/Documents/project/tank/src/jsoncpp/config.h
+/Users/szc/Documents/project/Tank/src/jsoncpp/config.h
 stdexcept
 -
 ../jsoncpp.cpp
-/media/psf/Home/Documents/project/tank/src/jsoncpp.cpp
+/Users/szc/Documents/project/Tank/src/jsoncpp.cpp
 

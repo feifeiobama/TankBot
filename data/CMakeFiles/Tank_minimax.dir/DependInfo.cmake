@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/media/psf/Home/Documents/project/tank/src/Field_info.cpp" "/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.o"
-  "/media/psf/Home/Documents/project/tank/src/Field_map.cpp" "/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.o"
-  "/media/psf/Home/Documents/project/tank/src/Game_minimax.cpp" "/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o"
-  "/media/psf/Home/Documents/project/tank/src/main.cpp" "/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_minimax.dir/src/main.cpp.o"
+  "/Users/szc/Documents/project/Tank/src/Field_info.cpp" "/Users/szc/Documents/project/Tank/data/CMakeFiles/Tank_minimax.dir/src/Field_info.cpp.o"
+  "/Users/szc/Documents/project/Tank/src/Field_map.cpp" "/Users/szc/Documents/project/Tank/data/CMakeFiles/Tank_minimax.dir/src/Field_map.cpp.o"
+  "/Users/szc/Documents/project/Tank/src/Game_minimax.cpp" "/Users/szc/Documents/project/Tank/data/CMakeFiles/Tank_minimax.dir/src/Game_minimax.cpp.o"
+  "/Users/szc/Documents/project/Tank/src/main.cpp" "/Users/szc/Documents/project/Tank/data/CMakeFiles/Tank_minimax.dir/src/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

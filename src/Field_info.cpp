@@ -376,15 +376,11 @@ pair<int, int> Field_info::block_route(int tank1, int tank2, const Field_map &fi
         } else { // pos1.x == pos2.x
             if (fire_map[tank1][pos1.x][pos2.y]) {
                 if (field_map.get_loaded(tank2) && !field_map.get_loaded(tank1)) {
-                    int dir = pos1.x < 4 ? 1 : 3;
-                    if (pos1.x == 4) {
-                        dir = is_left ? 3 : 1;
+                    int cnt = 0;
+                    if (abs(pos1.y - pos2.y) == 1) {
+                        cnt = 1;
                     }
-                    if ((pos1.x != 3 || !is_left) && (pos1.x != 5 || is_left) && field_map.is_avail(tank1, dir)) {
-                        return make_pair(1, 0);
-                    } else {
-                        return make_pair(1, -1);
-                    }
+                    return make_pair(cnt, -1);
                 }
             }
             // calculate block
