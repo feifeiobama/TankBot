@@ -37,7 +37,6 @@ class Field_info {
     unsigned base_row_barrier[2][9] = {0};
 
     bool tank_dead[4] = {0};
-    bool is_avail[4][9] = {0};
 
 public:
     Field_info(const Field_map &field_map);

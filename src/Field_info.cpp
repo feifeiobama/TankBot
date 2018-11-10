@@ -204,18 +204,12 @@ void Field_info::calc_avail(const Field_map &field_map) {
         }
         Position pos1 = field_map.get_tank(i);
         // 观察i是否必死
-        bool both_can_fire = true;
         FOR_ENEMY(i, j, {
             if (tank_dead[j]) {
-                both_can_fire = false;
                 continue;
             }
             Position pos2 = field_map.get_tank(j);
-            if (!fire_map[i][pos2.x][pos2.y] || !field_map.get_loaded(j)) {
-                both_can_fire = false;
-                continue;
-            }
-            if (field_map.get_loaded(i)) {
+            if (!fire_map[i][pos2.x][pos2.y] || !field_map.get_loaded(j) || field_map.get_loaded(i)) {
                 continue;
             }
             if ((pos1.x == pos2.x && !field_map.is_avail(i, 1) && !field_map.is_avail(i, 3)) ||
@@ -223,23 +217,6 @@ void Field_info::calc_avail(const Field_map &field_map) {
                 tank_dead[i] = true;
             }
         })
-        if (both_can_fire) {
-            int en1 = 2 - ((i >> 1) << 1), en2 = 3 - ((i >> 1) << 1);
-            Position pos2 = field_map.get_tank(en1), pos3 = field_map.get_tank(en2);
-            if (pos2.x != pos3.x && pos2.y != pos3.y) {
-                tank_dead[i] = true;
-            }
-        }
-    }
-
-    for (int i = 0; i != 4; ++i) {
-        is_avail[i][0] = true;
-        if (tank_dead[i]) {
-            continue;
-        }
-        for (int j = 1; j != 9; ++j) {
-            is_avail[i][j] = field_map.is_avail(i, j - 1);
-        }
     }
 }
 
@@ -695,11 +672,6 @@ unsigned Field_info::area_move(int tank, const Field_map &field_map) const {
     return cnt;
 }
 
-bool Field_info::is_available(int tank, Move m, const Field_map &field_map) const {
-    return is_avail[tank][m + 1];
-}
-
-
 void Field_info::print(const Field_map &field_map) const {
 #ifndef _BOTZONE_ONLINE
     // 打印距离
@@ -743,18 +715,6 @@ void Field_info::print(const Field_map &field_map) const {
     for (int i = 0; i != 2; ++i) {
         for (int j = 0; j != 9; ++j) {
             cout << setw(2) << right << base_row_barrier[i][j];
-        }
-        cout << endl;
-    }
-    cout << endl;
-    // available_move
-    cout << "available_move" << endl;
-    for (int i = 0; i != 4; ++i) {
-        cout << i << ":";
-        for (int j = 0; j != 9; ++j) {
-            if (is_avail[i][j]) {
-                cout << " " << j - 1;
-            }
         }
         cout << endl;
     }

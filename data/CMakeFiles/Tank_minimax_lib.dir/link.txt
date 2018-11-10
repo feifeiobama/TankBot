@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3  -shared -Wl,-soname,libTank_minimax_lib.so -o libTank_minimax_lib.so CMakeFiles/Tank_minimax_lib.dir/src/Game_minimax.cpp.o CMakeFiles/Tank_minimax_lib.dir/src/Field_info.cpp.o CMakeFiles/Tank_minimax_lib.dir/src/Field_map.cpp.o 

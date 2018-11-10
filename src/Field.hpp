@@ -376,7 +376,7 @@ public:
     }
 
     bool is_avail(int tank, Move m) const {
-        return field_info.is_available(tank, m, field_map);
+        return field_map.is_avail(tank, m);
     }
 
     int get_round() {

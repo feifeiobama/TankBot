@@ -1,0 +1,9 @@
+/media/psf/Home/Documents/project/tank/data/CMakeFiles/rebuild_cache.dir
+/media/psf/Home/Documents/project/tank/data/CMakeFiles/edit_cache.dir
+/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_mix_lib.dir
+/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_minimax.dir
+/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_minimax_lib.dir
+/media/psf/Home/Documents/project/tank/data/CMakeFiles/Anneal.dir
+/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_mcts.dir
+/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_mix.dir
+/media/psf/Home/Documents/project/tank/data/CMakeFiles/Tank_mcts_lib.dir

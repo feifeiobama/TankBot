@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/szc/Documents/project/tank/src/Field_info.cpp
+cstring
+-
+iostream
+-
+iomanip
+-
+stack
+-
+Field_info.h
+/Users/szc/Documents/project/tank/src/Field_info.h
+Field_map.h
+/Users/szc/Documents/project/tank/src/Field_map.h
+
+/Users/szc/Documents/project/tank/src/Field_info.h
+def.hpp
+/Users/szc/Documents/project/tank/src/def.hpp
+map
+-
+vector
+-
+
+/Users/szc/Documents/project/tank/src/Field_map.h
+def.hpp
+/Users/szc/Documents/project/tank/src/def.hpp
+vector
+-
+map
+-
+
+/Users/szc/Documents/project/tank/src/def.hpp
+cstdint
+-
+limits
+-
+climits
+-
+
