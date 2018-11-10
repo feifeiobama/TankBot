@@ -141,8 +141,10 @@ public:
 
         clock_t clk1 = clock();
 #ifndef _BOTZONE_ONLINE
-//        printDecision(color, 6, 6, field);
-//        printDecision(color, -1, -1, field);
+//        cout << get_val(-1, 6, -1, 4, field, true) << endl;
+//        cout << color << endl;
+//        printDecision(color, -1, 4, field);
+//        printDecision(color, 4, -1, field);
         cout << "time: " << (clk1 - clk0) / double(CLOCKS_PER_SEC) << endl;
 #endif
         return ans;

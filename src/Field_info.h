@@ -53,7 +53,9 @@ public:
 
     void calc_avail(const Field_map &field_map);
 
-    void mask_tank(bool if_tank_dead[4]);
+    void mask_tank(bool if_tank_dead[4]) const;
+
+    int judge() const;
 
     // 以下均保证坦克合法
 
@@ -80,8 +82,6 @@ public:
 
     // 附近移动宽敞(应当避开敌方火线，和所有坦克坐标)
     unsigned area_move(int tank, const Field_map &field_map) const;
-
-    bool is_available(int tank, Move m, const Field_map &field_map) const;
 
     void print(const Field_map &field_map) const;
 };

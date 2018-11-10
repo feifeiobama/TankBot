@@ -198,18 +198,25 @@ void Field_info::calc_avail(const Field_map &field_map) {
     for (int i = 0; i != 4; ++i) {
         tank_dead[i] = (field_map.get_tank(i) == Null_pos);
     }
+    bool both_can_fire[4] = {0};
     for (int i = 0; i != 4; ++i) {
         if (tank_dead[i]) {
             continue;
         }
         Position pos1 = field_map.get_tank(i);
         // 观察i是否必死
+        both_can_fire[i] = true;
         FOR_ENEMY(i, j, {
             if (tank_dead[j]) {
+                both_can_fire[i] = false;
                 continue;
             }
             Position pos2 = field_map.get_tank(j);
-            if (!fire_map[i][pos2.x][pos2.y] || !field_map.get_loaded(j) || field_map.get_loaded(i)) {
+            if (!fire_map[i][pos2.x][pos2.y] || !field_map.get_loaded(j)) {
+                both_can_fire[i] = false;
+                continue;
+            }
+            if (field_map.get_loaded(i)) {
                 continue;
             }
             if ((pos1.x == pos2.x && !field_map.is_avail(i, 1) && !field_map.is_avail(i, 3)) ||
@@ -218,10 +225,33 @@ void Field_info::calc_avail(const Field_map &field_map) {
             }
         })
     }
+    for (int i = 0; i != 4; ++i) {
+        if (both_can_fire[i]) {
+            int en1 = 2 - ((i >> 1) << 1), en2 = 3 - ((i >> 1) << 1);
+            Position pos2 = field_map.get_tank(en1), pos3 = field_map.get_tank(en2);
+            if (pos2.x != pos3.x && pos2.y != pos3.y) {
+                tank_dead[i] = true;
+            }
+        }
+    }
 }
 
-void Field_info::mask_tank(bool if_tank_dead[4]) {
+void Field_info::mask_tank(bool if_tank_dead[4]) const {
     memcpy(if_tank_dead, tank_dead, 4 * sizeof(bool));
+}
+
+// 0-蓝方赢 1-红方赢 -1-平局 2-继续
+int Field_info::judge() const {
+    bool blue_tank_dead = tank_dead[0] && tank_dead[1], red_tank_dead = tank_dead[2] && tank_dead[3];
+    if (blue_tank_dead && red_tank_dead) {
+        return -1;
+    } else if (blue_tank_dead) {
+        return 1;
+    } else if (red_tank_dead) {
+        return 0;
+    } else {
+        return 2;
+    }
 }
 
 // 允许在其它位置射击击穿砖块
@@ -717,6 +747,12 @@ void Field_info::print(const Field_map &field_map) const {
             cout << setw(2) << right << base_row_barrier[i][j];
         }
         cout << endl;
+    }
+    cout << endl;
+    // if_tank_dead
+    cout << "tank_dead" << endl;
+    for (int i = 0; i != 4; ++i) {
+        cout << tank_char[i] << " is dead ? " << tank_dead[i] << endl;
     }
     cout << endl;
     // dist to shoot base

@@ -15,8 +15,8 @@
 #include "Field_info.h"
 
 constexpr int Argc = 8;
-constexpr double Argv[Argc] = {3.0755024418, 0.1391485771, 0.0364841232, 0.0044624227, 0.0168976814, 0.0035262750,
-                               9.7777705284, 0.2231057750};
+constexpr double Argv[Argc] = {3.8210216365, 0.1034557189, 0.0532674934, 0.0027350287, 0.0142413549, 0.0057076207,
+                               10.7704850556, 0.2051516580};
 class Field {
     Field_map field_map;
     Field_info field_info;
@@ -57,6 +57,9 @@ public:
             return ending;
         } else {
             ending = field_map.judge();
+            if (ending == 2) {
+                ending = field_info.judge();
+            }
             return ending;
         }
     }
